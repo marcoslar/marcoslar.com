@@ -1,0 +1,20 @@
+# Default site settings
+
+sitename = "Lessmarcos.com"
+title = "Lessmarcos"
+author = "Marcos"
+layout = "base_layout"
+description = "Lessmarcos.com | Sessions"
+
+content_dir = "posts"
+templates_dir = "templates"
+output_dir = "public"
+static_dir = "static"
+
+partials = [
+    "head",
+    "footer",
+    "scripts",
+    "highlighter",
+    "reload",
+]

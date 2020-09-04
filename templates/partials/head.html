@@ -1,0 +1,9 @@
+{{ define "partials_head"}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{{ .Params.description }}">
+<meta name="keywords" content="software, {{ .Params.keywords }}">
+<link rel="stylesheet" href="/{{ .Params.static_dir }}/css/main.css">
+<title>{{ .Params.sitename }} | {{ .Params.title }}</title>
+{{ template "partials_highlighter" . }}
+{{ end }}

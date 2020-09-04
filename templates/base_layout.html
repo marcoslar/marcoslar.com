@@ -1,0 +1,23 @@
+{{ define "base_layout" }}
+<!DOCTYPE html>
+<html lang="en">
+    <head>{{ template "partials_head" . }}</head>
+    <body>
+        <div>
+            <a href="/">{{ .Params.sitename }}</a>&mdash;<em id="rString">Asteroid Blues</em><em>{{ .Params.italic_title}}</em>
+        </div>
+        <section>
+            <h1>
+                {{ .Params.title }}
+                {{ template "partials_reload" . }}
+            </h1>
+            <div class="subtitle">
+                <p><small>{{ .CreatedAt.Format "Monday, 02 January 2006" }}</small></p>
+            </div>
+            <div><br>{{ template "content" . }}</div>
+        </section>
+        {{ template "partials_footer" . }}
+        {{ template "partials_scripts" . }}
+    </body>
+</html>
+{{ end }}

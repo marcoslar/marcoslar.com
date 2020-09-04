@@ -1,0 +1,89 @@
+{{ define "partials_scripts" }}
+<noscript>
+    <style type="text/css">
+        /* If JS is disabled, display version 1 of all the versionable
+        snippets (if any) and hide the rest */
+        *[class^="belbo_v"] { display: none; }
+        *[class^="belbo_v1"] { display: inline; }
+    </style>
+</noscript>
+
+<script>
+function enableParallelSnippets(manuallyTriggered) {
+    var snippetsByVersion = {};
+    var versionableSnippets = document.querySelectorAll('[class^="belbo_v"]');
+
+    for (var j = 0; j < versionableSnippets.length; j++) {
+        var snippet = versionableSnippets[j]
+        var majorVersion = snippet.className.split("-")[1];
+        if (majorVersion in snippetsByVersion) {
+            snippetsByVersion[majorVersion].push(snippet);
+            continue;
+        }
+
+        snippetsByVersion[majorVersion] = [snippet];
+    }
+
+    if (Object.keys(snippetsByVersion).length === 0) {
+        return;
+    }
+
+    var randomSnippets = {};
+    for (var s in snippetsByVersion) {
+        var len = snippetsByVersion[s].length;
+        randomSnippets[len] = Math.floor(Math.random() * len) + 1;
+    }
+
+    // Show one version. Hide the rest
+    for (var s in snippetsByVersion) {
+        var snippetIndex = randomSnippets[snippetsByVersion[s].length];
+
+        for (var i = 0; i < snippetsByVersion[s].length; i++) {
+            if (i !== snippetIndex - 1) {
+                snippetsByVersion[s][i].style.display = 'none';
+                // snippetsByVersion[s][i].parentNode.removeChild(snippetsByVersion[s][i])
+            } else {
+                snippetsByVersion[s][i].style.display = 'inline';
+            }
+        }
+    }
+
+    if (manuallyTriggered) {
+        var el = document.getElementById('reload-icon');
+        el.classList.remove('spinner');
+        void el.offsetWidth;
+        el.classList.add('spinner');
+    }
+}
+
+function enableReloadIcon() {
+    if (document.querySelectorAll('[class^="belbo_v"]').length > 0) {
+        document.getElementById('reload').style.display = 'inline';
+    }
+}
+
+function enableRandomTitle() {
+    var titles = [
+        'Asteroid Blues',
+        'Waltz for Venus',
+        'Ganymede Elegy',
+        'Betelgeuse Tango',
+        'Jupiter Jazz',
+        'Ariel Funk',
+        'Callisto Riffs',
+        'Aldebaran Soul',
+    ];
+
+    var el = document.querySelector('#rString');
+    if (el) {
+        el.innerHTML = titles[Math.floor(Math.random() * titles.length)];
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function(e) {
+    enableRandomTitle();
+    enableParallelSnippets(false);
+    enableReloadIcon();
+});
+</script>
+{{ end }}

@@ -1,0 +1,302 @@
+pre {
+    background: #f7f3f7;
+    color: #ab9bab;
+    font-family: Menlo,Consolas,"Bitstream Vera Sans Mono","DejaVu Sans Mono",Monaco,monospace;
+    line-height: 1.5;
+    padding: 10px;
+    font-size: 10pt;
+    border-radius: 10px;
+    border: none;
+    white-space: pre-wrap;
+    margin-bottom: 20px;
+}
+
+.code_caption {
+    margin-top: 1.25em;
+    display: block;
+    font-size: 10pt;
+    font-family: Monaco,"Lucida Console",monospace;
+}
+
+ol.linenums {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+body {
+    min-width: 200px;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+a:link,a:visited {
+    color: #00f
+}
+
+.codeblock_name,code,pre.prettyprint {
+    font-family: Monaco,"Lucida Console",monospace
+}
+
+body {
+    font-size: 14pt
+}
+
+.codeblock_name,.math,.seealso,code {
+    font-size: 10pt
+}
+
+.codeblock {
+    page-break-inside: avoid;
+    padding-bottom: 15px
+}
+
+.math {
+    text-indent: 0
+}
+
+pre.prettyprint {
+    font-size: 10pt;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    white-space: pre-wrap
+}
+
+.codeblock_name {
+    margin-top: 1.25em;
+    display: block
+}
+
+a:link {
+    text-decoration: none
+}
+
+a:link:not(.lit):hover {
+    color: #00f;
+    text-decoration: underline
+}
+
+a:link:active {
+    color: red
+}
+
+h4 {
+    padding-right: 1.25em
+}
+
+h4.noheading {
+    margin-bottom: 0
+}
+
+h1 {
+    text-align: center
+}
+
+code {
+    padding: 2px
+}
+
+pre {
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4
+}
+
+p:not(.notp) {
+    /*margin: 0;*/
+    text-indent: 2em
+}
+
+.two-col {
+    list-style-type: none
+}
+
+.two-col li:before {
+    content: '-';
+    padding: 5px;
+    margin-right: 5px;
+    color: orange;
+    background-color: #fff;
+    display: inline-block
+}
+
+@media print {
+    body {
+        font-size: 10pt
+    }
+
+    pre.prettyprint {
+        font-size: 8pt
+    }
+
+    .seealso {
+        font-size: 9pt
+    }
+
+    .codeblock_name,.math,code {
+        font-size: 8pt
+    }
+
+    .math {
+        text-indent: 0
+    }
+}
+
+/** Custom ? **/
+img {
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p:not(.notp) {
+    text-indent: 0;
+    line-height: 1.3;
+}
+
+.section > p {
+    margin-bottom: 1.3rem;
+}
+
+li {
+    margin-bottom: 0.3rem;
+}
+
+pre {
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Header Style */
+
+h4.noheading {
+    display: none;
+}
+
+.post-categories {
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    font-weight: bolder;
+    font-family: sans-serif;
+    padding-right: 1rem;
+}
+
+.post-categories span {
+    padding-left: .35rem;
+    vertical-align: sub;
+}
+
+.post-categories .post-category--software {
+    color: #03a598;
+}
+
+.post-categories .post-category--notes {
+    color: #b7005a;
+}
+
+.post-date {
+    font-family: monospace;
+    font-size: .95rem;
+    padding-right: 0.6rem;
+}
+
+.subtitle > p {
+   margin-bottom: .25rem;
+   text-align: center;
+}
+.index ul {
+    padding-left: 0;
+}
+
+.index li {
+    list-style-type: none;
+}
+
+footer {
+    margin-top: 5rem;
+}
+footer ul {
+    padding-left: 0;
+}
+footer li {
+    display: inline-block;
+    list-style-type: none;
+}
+footer li:after {
+    content: " — ";
+}
+footer li:last-child:after {
+    content: "";
+}
+
+h4 em {
+    font-family: Georgia, serif;
+}
+
+blockquote {
+    padding-left: 1rem;
+    border-left: dotted 1px;
+    font-style: italic;
+    margin: 2.5rem 0;
+}
+
+blockquote p:last-child {
+    font-weight: bolder;
+    font-size: smaller;
+}
+
+.reload {
+    font-size: small;
+    vertical-align: middle;
+}
+
+.reload:hover {
+    text-decoration: none !important;
+    vertical-align: middle;
+}
+
+#reload { display: none; }
+
+.spinner {
+    animation: spin-animation 0.5s linear;
+    display: inline-block;
+}
+
+.spinner:active {
+    animation: spin-animation 0.5s linear;
+    display: inline-block;
+}
+
+@keyframes spin-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}
+
+figcaption {
+    text-align: center;
+    font-style: italic;
+    margin-top: .75rem;
+    font-size: 15px;
+}
+
+figure {
+    margin-bottom: 2rem;
+}
+
+body {
+    counter-reset: figures;
+}
+
+figure {
+    counter-increment: figures;
+}
+
+figure figcaption:before {
+    content: 'Fig. ' counter(figures) ' ';
+    font-weight: bolder;
+}

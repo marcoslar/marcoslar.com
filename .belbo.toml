@@ -8,7 +8,7 @@ description = "Lessmarcos.com | Sessions"
 
 content_dir = "posts"
 templates_dir = "templates"
-output_dir = "public"
+output_dir = "dist"
 static_dir = "static"
 
 partials = [

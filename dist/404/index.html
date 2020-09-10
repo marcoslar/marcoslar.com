@@ -7,7 +7,7 @@
 <meta name="description" content="Lessmarcos.com | Sessions">
 <meta name="keywords" content="software, ">
 <link rel="stylesheet" href="/static/css/main.css">
-<title>Lessmarcos.com | Nubes de Monet usando ruido Perlin (old)</title>
+<title>Lessmarcos.com | </title>
 
 <script>
 
@@ -120,135 +120,10 @@ var hljs=function(){"use strict";function e(n){Object.freeze(n);var t="function"
         </div>
         <section>
             
-                <h1>
-                    Nubes de Monet usando ruido Perlin (old)
-                    
- <span id="reload">
-     <a title="Reload to get a parallel version of this page"
-        class="reload"
-        href="#"
-        onclick="enableParallelSnippets(true); return false;"
-     >
-         <span id="reload-icon">⟳</span>
-     </a>
- </span>
-
-                </h1>
             
-            
-                <div class="subtitle">
-                    <p><small>Monday, 03 February 2014</small></p>
-                </div>
-            
-            <div><br><p>En la naturaleza muchas estructuras parecen surgir del caos,
-de la aleatoriedad. Si observas las nubes seguramente no
-distingirás ningún patrón recurrente que te ayude a predecir
-su forma o estructura. Podríamos pensar que son simplemente
-agrupaciones al azar de partículas de agua o hielo suspendidas
-en la atmósfera.</p>
-
-<p>Como siempre, la realidad es un poco más complicada. Si
-quisiéramos simular nubes en un ordenador y nos valiésemos
-por el azar que puede darnos la ubicua función <code>random</code>, no
-quedaríamos muy satisfechos. Para comprobarlo vamos a generar
-nubes en dos dimensiones (texturas) usando
-la función <code>Math.random</code> de JavaScript.
-Esta función sigue una distribución uniforme, es decir,
-todos los valores que genera tienen la misma
-probabilidad de aparecer.</p>
-
-<p>Éste es el código (<a href="http://processing.org/">Processing.js</a>) que genera la textura:</p>
-
-<pre><code class="language-javascript">void setup() {
-   size(400, 400);
-   noLoop();
-}
-
-t = 100;
-
-void draw() {
-   background(0);
-   loadPixels();
-
-   for (int x = 0; x &lt; width; x++) {
-      for (int y = 0; y &lt; height; y++) {
-         float bright = Math.random() * 255;
-         pixels[x + y * width] = color(bright, 127, 255);
-         t += 0.1;
-      }
-   }
-   updatePixels();
-}
-</code></pre>
-
-<p>Iteramos sobre todos los píxeles que forman la región a pintar y
-les asignamos un color comprendido entre 0 y 255 con tonos de azul y rosa.
-Y el resultado:</p>
-
-<figure>
-    <img alt="Random Monet" src="/static/projects/perlin-noise/img/monet-random.jpg">
-    <figcaption>¿Una tele mal sintonizada?</figcaption>
-</figure>
-
-<p>Como véis, no tiene aspecto de nube debido a que
-un generador de números aleatorios (como la función <code>Math.random</code>)
-produce números que no guardan relación alguna y no muestran ningún
-patrón distinguible. Para simular la naturaleza de las nubes, es
-necesario un poco menos de aleatoriedad en nuestros cálculos,
-un caos coherente.</p>
-
-<p>¿Cómo generar un poco menos de aleatoriedad? Podemos usar
-la función <a href="Ruido Perlin">Perlin Noise</a>. Los detalles de esta
-función los podéis consultar en la <a href="http://www.mrl.nyu.edu/~perlin/doc/oscar.html">web de Ken Perlin</a>.
-Perlin desarrolló este algoritmo en los
-ochenta para generar las texturas de la película Tron.
-Lo que nos interesa es que
-el Ruido Perlin tiene un comportamiento más &ldquo;natural&rdquo;. Produce
-una secuencia de números pseudo-aleatorios menos &ldquo;brusca&rdquo; que
-la que podría producir la función <code>Math.random</code>.</p>
-
-<p>Usaremos el Ruido Perlin como generador de números pseudo-aleatorios.
-<a href="http://processing.org/">Processing.js</a> tiene una función <code>noise</code> que implementa este algoritmo.
-El código para generar las nubes:</p>
-
-<pre><code class="language-javascript">void setup() {
-   size(300, 300);
-   noLoop();
-}
-
-float toff = 0;
-
-void draw() {
-   background(0);
-   loadPixels();
-   float xoff = 0.0;
-
-   for (int x = 0; x &lt; width; x++) {
-      float yoff = 0.0;
-      for (int y = 0; y &lt; height; y++) {
-         float bright = noise(xoff, yoff) * 255;
-         pixels[x + y * width] = color(bright, 127, 255);
-         yoff += 0.01;
-      }
-      xoff += 0.01;
-   }
-   updatePixels();
-   toff += 1;
-}
-</code></pre>
-
-<p>El código es casi el mismo. Lo único que varía es el
-uso de la función <code>noise</code> en lugar de <code>Math.random</code>.
-El resultado:</p>
-
-<figure>
-    <img alt="Random Monet" src="/static/projects/perlin-noise/img/monet-perlin.jpg">
-    <figcaption>Nubes de Monet, o casi</figcaption>
-</figure>
-
-<p>Bueno, quizá no se parezcan demasiado a las nubes de los
-cuadros de Monet, pero esta es la primera vez que
-genero algo con aspecto &ldquo;natural&rdquo; y me siento &hellip; entusiasmado.</p>
+            <div><br><div style="text-align: center; margin-top: 4rem; font-family:monospace;">
+    <span class="belbo_v1-s1">404 - NOT FOUND</span><span class="belbo_v2-s1">HTTP 404</span><span class="belbo_v3-s1">404</span><span class="belbo_v4-s1">404 ERROR</span><span class="belbo_v5-s1">Page Not Found</span><span class="belbo_v6-s1">404 *__*</span>
+</div>
 </div>
         </section>
         

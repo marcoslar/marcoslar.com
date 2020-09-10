@@ -56,9 +56,12 @@ function enableParallelSnippets(manuallyTriggered) {
     }
 }
 
-function enableReloadIcon() {
+function enableReloadPageIcon() {
     if (document.querySelectorAll('[class^="belbo_v"]').length > 0) {
-        document.getElementById('reload').style.display = 'inline';
+        var reloadPageIcon = document.getElementById('reload');
+        if (reloadPageIcon !== null) {
+            reloadPageIcon.style.display = 'inline';
+        }
     }
 }
 
@@ -82,8 +85,8 @@ function enableRandomTitle() {
 
 document.addEventListener('DOMContentLoaded', function(e) {
     enableRandomTitle();
-    enableParallelSnippets(false);
-    enableReloadIcon();
+    enableParallelSnippets((manuallyTriggered = false));
+    enableReloadPageIcon();
 });
 </script>
 {{ end }}

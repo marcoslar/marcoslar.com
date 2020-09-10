@@ -150,7 +150,8 @@ under the same URL of P.</p>
 <p>Take this page as an example: refresh the page and you would
 <span class="belbo_v1-s3">probably</span><span class="belbo_v2-s3"></span> get a different version of it; a version that conveys the
 same meaning (most of the time) but looks slightly different.
-You can find out more about this idea in the post <a href="/...">Parallel Blogs</a>.</p>
+You can find out more about this idea in the post
+<a href="https://www.lessmarcos.com/posts/2020/08/parallel-blogs/">Parallel Blogs</a>.</p>
 
 <p>This site is built with <a href="https://github.com/lessmarcos/belbo">belbo</a>.</p>
 
@@ -226,9 +227,12 @@ function enableParallelSnippets(manuallyTriggered) {
     }
 }
 
-function enableReloadIcon() {
+function enableReloadPageIcon() {
     if (document.querySelectorAll('[class^="belbo_v"]').length > 0) {
-        document.getElementById('reload').style.display = 'inline';
+        var reloadPageIcon = document.getElementById('reload');
+        if (reloadPageIcon !== null) {
+            reloadPageIcon.style.display = 'inline';
+        }
     }
 }
 
@@ -252,8 +256,8 @@ function enableRandomTitle() {
 
 document.addEventListener('DOMContentLoaded', function(e) {
     enableRandomTitle();
-    enableParallelSnippets(false);
-    enableReloadIcon();
+    enableParallelSnippets((manuallyTriggered = false));
+    enableReloadPageIcon();
 });
 </script>
 

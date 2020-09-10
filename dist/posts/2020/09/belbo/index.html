@@ -119,9 +119,10 @@ var hljs=function(){"use strict";function e(n){Object.freeze(n);var t="function"
             <a href="/">Lessmarcos.com</a>&mdash;<em id="rString">Asteroid Blues</em><em></em>
         </div>
         <section>
-            <h1>
-                Belbo — static site generator
-                
+            
+                <h1>
+                    Belbo — static site generator
+                    
  <span id="reload">
      <a title="Reload to get a parallel version of this page"
         class="reload"
@@ -132,10 +133,13 @@ var hljs=function(){"use strict";function e(n){Object.freeze(n);var t="function"
      </a>
  </span>
 
-            </h1>
-            <div class="subtitle">
-                <p><small>Tuesday, 01 September 2020</small></p>
-            </div>
+                </h1>
+            
+            
+                <div class="subtitle">
+                    <p><small>Tuesday, 01 September 2020</small></p>
+                </div>
+            
             <div><br><p>Another static site generator. <span class="belbo_v1-s1">Sorry for that.</span><span class="belbo_v2-s1"></span></p>
 
 <p>I was using <a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://pages.github.com/">GitHub Pages</a>
@@ -273,9 +277,12 @@ function enableParallelSnippets(manuallyTriggered) {
     }
 }
 
-function enableReloadIcon() {
+function enableReloadPageIcon() {
     if (document.querySelectorAll('[class^="belbo_v"]').length > 0) {
-        document.getElementById('reload').style.display = 'inline';
+        var reloadPageIcon = document.getElementById('reload');
+        if (reloadPageIcon !== null) {
+            reloadPageIcon.style.display = 'inline';
+        }
     }
 }
 
@@ -299,8 +306,8 @@ function enableRandomTitle() {
 
 document.addEventListener('DOMContentLoaded', function(e) {
     enableRandomTitle();
-    enableParallelSnippets(false);
-    enableReloadIcon();
+    enableParallelSnippets((manuallyTriggered = false));
+    enableReloadPageIcon();
 });
 </script>
 

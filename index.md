@@ -8,7 +8,7 @@ layout = "index_layout"
 
 <ul>
 {{ range $k, $page := .AllPages -}}
-    {{ if and (ne $page.Name "index") (ne $page.Name "about") (ne $page.Name "books") -}}
+    {{ if and (ne $page.Name "index") (ne $page.Name "about") (ne $page.Name "books") (ne $page.Name "404") -}}
         <li>
            <span class="post-date">{{ $page.CreatedAt.Format "2006-01-02" }}</span>
            {{ if $page.Params.external_url }}

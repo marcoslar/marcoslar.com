@@ -119,9 +119,10 @@ var hljs=function(){"use strict";function e(n){Object.freeze(n);var t="function"
             <a href="/">Lessmarcos.com</a>&mdash;<em id="rString">Asteroid Blues</em><em></em>
         </div>
         <section>
-            <h1>
-                Cassandra (old)
-                
+            
+                <h1>
+                    Cassandra (old)
+                    
  <span id="reload">
      <a title="Reload to get a parallel version of this page"
         class="reload"
@@ -132,10 +133,13 @@ var hljs=function(){"use strict";function e(n){Object.freeze(n);var t="function"
      </a>
  </span>
 
-            </h1>
-            <div class="subtitle">
-                <p><small>Friday, 10 October 2014</small></p>
-            </div>
+                </h1>
+            
+            
+                <div class="subtitle">
+                    <p><small>Friday, 10 October 2014</small></p>
+                </div>
+            
             <div><br></div>
         </section>
         
@@ -204,9 +208,12 @@ function enableParallelSnippets(manuallyTriggered) {
     }
 }
 
-function enableReloadIcon() {
+function enableReloadPageIcon() {
     if (document.querySelectorAll('[class^="belbo_v"]').length > 0) {
-        document.getElementById('reload').style.display = 'inline';
+        var reloadPageIcon = document.getElementById('reload');
+        if (reloadPageIcon !== null) {
+            reloadPageIcon.style.display = 'inline';
+        }
     }
 }
 
@@ -230,8 +237,8 @@ function enableRandomTitle() {
 
 document.addEventListener('DOMContentLoaded', function(e) {
     enableRandomTitle();
-    enableParallelSnippets(false);
-    enableReloadIcon();
+    enableParallelSnippets((manuallyTriggered = false));
+    enableReloadPageIcon();
 });
 </script>
 

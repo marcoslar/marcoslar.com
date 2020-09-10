@@ -4,16 +4,20 @@
     <head>{{ template "partials_head" . }}</head>
     <body>
         <div>
-            <a href="/">{{ .Params.sitename }}</a>&mdash;<em id="rString">Asteroid Blues</em><em>{{ .Params.italic_title}}</em>
+            <a href="/">{{ .Params.sitename }}</a>&mdash;<em id="rString">Asteroid Blues</em><em>{{ .Params.italic_title }}</em>
         </div>
         <section>
-            <h1>
-                {{ .Params.title }}
-                {{ template "partials_reload" . }}
-            </h1>
-            <div class="subtitle">
-                <p><small>{{ .CreatedAt.Format "Monday, 02 January 2006" }}</small></p>
-            </div>
+            {{ if .Params.title }}
+                <h1>
+                    {{ .Params.title }}
+                    {{ template "partials_reload" . }}
+                </h1>
+            {{ end }}
+            {{ if ne .Name "404" }}
+                <div class="subtitle">
+                    <p><small>{{ .CreatedAt.Format "Monday, 02 January 2006" }}</small></p>
+                </div>
+            {{ end }}
             <div><br>{{ template "content" . }}</div>
         </section>
         {{ template "partials_footer" . }}

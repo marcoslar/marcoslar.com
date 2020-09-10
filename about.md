@@ -15,7 +15,8 @@ under the same URL of P.
 Take this page as an example: refresh the page and you would 
 @{probably||}@ get a different version of it; a version that conveys the 
 same meaning (most of the time) but looks slightly different.
-You can find out more about this idea in the post [Parallel Blogs](/...).
+You can find out more about this idea in the post 
+[Parallel Blogs](https://www.lessmarcos.com/posts/2020/08/parallel-blogs/).
 
 This site is built with [belbo](https://github.com/lessmarcos/belbo).
 

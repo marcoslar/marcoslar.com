@@ -8,6 +8,8 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 #### *2020*
 
+- Sapiens: A Brief History of Humankind. *Yuval Noah Harari*
+- Docker Deep Dive. *Nigel Poulton*
 - Scalable Internet Architectures. *Theo Schlossnagle*
 - CORS in Action. *Monsur Hossain*
 - Patterns of Enterprise Application Architecture. *Martin Fowler*

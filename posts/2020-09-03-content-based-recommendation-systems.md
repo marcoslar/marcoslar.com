@@ -11,7 +11,7 @@ by the same people or not. Communities are not needed to provide
 discoverability of books you probably would like to read@{.|| (although they
 exist nonetheless).}@
 
-In this place, recommendations of books are based on their content. 
+In such a place, recommendations of books are based on their content. 
 In this place I can discover @{unknown||}@ books in which the main character
 shares traits with @{Jacopo Belbo||Funes el memorioso}@; I get to know
 books in which philosophical topics are discussed the way Sartre used to do.

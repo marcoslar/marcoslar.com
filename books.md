@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 #### *2020*
 
+- Ripley Under Ground. *Patricia Highsmith*
 - Sapiens: A Brief History of Humankind. *Yuval Noah Harari*
 - Docker Deep Dive. *Nigel Poulton*
 - Scalable Internet Architectures. *Theo Schlossnagle*

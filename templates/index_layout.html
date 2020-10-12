@@ -9,7 +9,7 @@
                 <a href="/">{{ .Params.sitename }}</a>&mdash;<em id="rString">Asteroid Blues</em><em>{{ .Params.italic_title}}</em>
             </div>
             {{ end }}
-            <h1 style="text-align: left;">
+            <h1 style='text-align: left; {{ if eq .Name "index" }} margin-top: 0; {{ end }}'>
                 {{ .Params.title }}{{ if .Params.random_title }}&mdash;<em id="rString">Asteroid Blues</em>{{ end }}{{ if .Params.italic_title }}&mdash;<em>{{ .Params.italic_title}}</em>{{ end }}
                 {{ template "partials_reload" . }}
             </h1>

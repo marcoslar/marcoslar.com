@@ -5,22 +5,31 @@ layout = "index_layout"
 
 ### About this site
 
-This site is mostly about software and tech, but here you may also
-find writings under many subjects. If there is anything that may
+This site is mostly about software, but here you may also find writings 
+under many subjects. If there is anything that may
 distinguish this @{site||blog}@ from others is that it is what I call a 
-*parallel @{site||blog}@*. This means that for every page P hosted on
-this site, there exists multiple versions of P and all of them co-exist
+*parallel @{site||blog}@*. This means that for every page P of this site, 
+there exists multiple versions of P and all of them co-exist
 under the same URL of P.
-
 Take this page as an example: refresh the page and you would 
 @{probably||}@ get a different version of it; a version that conveys the 
 same meaning (most of the time) but looks slightly different.
 You can find out more about this idea in the post 
 [Parallel Blogs](https://www.lessmarcos.com/posts/2020/08/parallel-blogs/).
+@{It's a silly idea,||It's a tremendous idea,}@ I know.
 
 This site is built with [belbo](https://github.com/lessmarcos/belbo).
 
 ### About me
 
-I'm Marcos. I work as a @{software engineer||programmer||developer}@ in Germany.
-@{||And probably that's pretty much all you need to know.}@
+My name is Enrique Marcos. I currently live in Germany, but I have spent most
+of my life in Spain. I work as a @{software engineer||programmer||developer}@ since 2012.
+
+I am curious about many things, but my main trait is that I
+*don't get as many things done* as much as I would like. Nevertheless, I usually work
+on personal projects just for sports. Current project code name: FJ.
+
+
+@{||That's probably pretty much all you need to know.}@
+
+

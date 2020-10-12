@@ -1,5 +1,5 @@
 pre {
-    background: #f7f3f7;
+    background: #f9fbfd;
     color: #ab9bab;
     font-family: Menlo,Consolas,"Bitstream Vera Sans Mono","DejaVu Sans Mono",Monaco,monospace;
     line-height: 1.5;
@@ -25,8 +25,9 @@ ol.linenums {
 
 body {
     min-width: 200px;
-    max-width: 850px;
-    margin: 0 auto;
+    max-width: 750px;
+    /* max-width: 850px; */
+    /* margin: 0 auto; */
     padding: 30px;
 }
 
@@ -90,7 +91,7 @@ h4.noheading {
 }
 
 h1 {
-    text-align: center
+    /** text-align: center **/
 }
 
 code {
@@ -203,7 +204,7 @@ h4.noheading {
 
 .subtitle > p {
    margin-bottom: .25rem;
-   text-align: center;
+   /** text-align: center; **/
 }
 .index ul {
     padding-left: 0;
@@ -241,8 +242,9 @@ blockquote {
     margin: 2.5rem 0;
 }
 
+
 blockquote p:last-child {
-    font-weight: bolder;
+    /**font-weight: bolder;**/
     font-size: smaller;
 }
 

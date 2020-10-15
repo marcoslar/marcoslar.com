@@ -40,7 +40,7 @@ a:link,a:visited {
 }
 
 body {
-    font-size: 14pt
+    font-size: 1.5rem;
 }
 
 .codeblock_name,.math,.seealso,code {
@@ -70,7 +70,11 @@ pre.prettyprint {
 }
 
 a:link {
-    text-decoration: none
+    text-decoration: underline;
+}
+
+.index a:link, footer a:link {
+   text-decoration: none;
 }
 
 a:link:not(.lit):hover {

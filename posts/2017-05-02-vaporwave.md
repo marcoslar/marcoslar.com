@@ -1,6 +1,8 @@
 ---
 title = "v a p o r w a v e"
 categories = ["music"]
+style = ["background-color:#fbb9b96e"]
+li_style = ["background-color:pink", "color:white"]
 ---
 
 For the past few weeks I've been listening to various vaporwave

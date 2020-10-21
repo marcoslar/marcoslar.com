@@ -2,7 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>{{ template "partials_head" . }}</head>
-    <body class="{{ if (eq .Name "index") }}index{{ end }}">
+    <body
+            class="{{ if (eq .Name "index") }}index{{ end }}"
+            style="{{ if .Params.background }}background: {{ .Params.background}}; {{ end }}"
+    >
         <section>
             {{ if or (eq .Name "about") (eq .Name "index") }}
             <div>

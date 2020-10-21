@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>{{ template "partials_head" . }}</head>
-    <body>
+    {{ $dat := .Params.style }}
+    <body style="{{ if .Params.style }}{{ range $style := .Params.style }}{{ $style }};{{ end }}{{ end }}">
         <div>
             <a href="/">{{ .Params.sitename }}</a>&mdash;<em id="rString">Asteroid Blues</em><em>{{ .Params.italic_title }}</em>
         </div>

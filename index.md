@@ -12,9 +12,13 @@ layout = "index_layout"
         <li>
            <span class="post-date">{{ $page.CreatedAt.Format "2006-01-02" }}</span>
            {{ if $page.Params.external_url }}
-                <a href="{{ $page.Params.external_url }}">{{ $page.Params.title }}</a>
+                <a
+                 style="{{ if $page.Params.li_style }}{{ range $style := $page.Params.li_style }}{{ $style }};{{ end }}{{ end }}"
+                 href="{{ $page.Params.external_url }}">{{ $page.Params.title }}</a>
            {{ else }}
-                <a href="{{ $page.PublicPath }}/">{{ $page.Params.title }}</a>
+                <a 
+                 style="{{ if $page.Params.li_style }}{{ range $style := $page.Params.li_style }}{{ $style }};{{ end }}{{ end }}"
+                 href="{{ $page.PublicPath }}/">{{ $page.Params.title }}</a>
            {{ end }}
            <span class="post-categories">
                 {{ range $i, $category := $page.Params.categories }}

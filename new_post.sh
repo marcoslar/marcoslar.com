@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ -z "$1" ]; then
-  echo "usage ./new_post.sh FILENAME"
+  echo "usage ./new_post.sh FILE-NAME"
   exit 1
 fi
 

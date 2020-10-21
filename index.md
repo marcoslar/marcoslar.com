@@ -4,7 +4,7 @@ random_title = true
 layout = "index_layout"
 ---
 
-### Sessions
+<h4 class="sessions">S e s s i o n s</h4>
 
 <ul>
 {{ range $k, $page := .AllPages -}}

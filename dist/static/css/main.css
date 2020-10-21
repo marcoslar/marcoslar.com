@@ -28,7 +28,9 @@ body {
     max-width: 750px;
     /* max-width: 850px; */
     /* margin: 0 auto; */
-    padding: 30px;
+    padding: 1rem;
+    font-size: 1.2rem;
+    margin-top: 2rem;
 }
 
 a:link,a:visited {
@@ -37,10 +39,6 @@ a:link,a:visited {
 
 .codeblock_name,code,pre.prettyprint {
     font-family: Monaco,"Lucida Console",monospace
-}
-
-body {
-    font-size: 1.5rem;
 }
 
 .codeblock_name,.math,.seealso,code {
@@ -202,7 +200,7 @@ h4.noheading {
 
 .post-date {
     font-family: monospace;
-    font-size: .95rem;
+    /*font-size: .95rem;*/
     padding-right: 0.6rem;
 }
 
@@ -305,4 +303,84 @@ figure {
 figure figcaption:before {
     content: 'Fig. ' counter(figures) ' ';
     font-weight: bolder;
+}
+
+
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+
+    body {
+        padding: 2rem;
+    }
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    body {
+        padding: 2rem;
+    }
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    body {
+        padding: 2rem;
+    }
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    body {
+        padding: 2rem;
+    }
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    body {
+        padding: 1rem;
+    }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+
+}
+
+#rString {
+    font-size: 1.25rem;
+    font-weight: normal;
+}
+
+.sessions {
+    text-transform: uppercase;
 }

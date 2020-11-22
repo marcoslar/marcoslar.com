@@ -7,6 +7,7 @@ layout = "index_layout"
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.
 
 #### *2020*
+- Don't just Roll the Dice. *Neil Davidson*
 - Monolith to Microservices. *Sam Newman*
 - Ripley Under Ground. *Patricia Highsmith*
 - Sapiens: A Brief History of Humankind. *Yuval Noah Harari*

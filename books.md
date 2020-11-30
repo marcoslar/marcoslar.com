@@ -1,7 +1,5 @@
 ---
-title = "Lessmarcos"
-italic_title = "Books"
-layout = "index_layout"
+title = "B_o_o_k_s"
 ---
 
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.

@@ -4,25 +4,30 @@
     <head>{{ template "partials_head" . }}</head>
     {{ $dat := .Params.style }}
     <body style="{{ if .Params.style }}{{ range $style := .Params.style }}{{ $style }};{{ end }}{{ end }}">
-        <div>
-            <a href="/">{{ .Params.sitename }}</a>&mdash;<em id="rString">Asteroid Blues</em><em>{{ .Params.italic_title }}</em>
-        </div>
-        <section>
-            {{ if .Params.title }}
-                <h1 style="margin-top: 5rem;margin-bottom:0.5rem;">
-                    {{ .Params.title }}
-                    {{ template "partials_reload" . }}
-                </h1>
-            {{ end }}
-            {{ if ne .Name "404" }}
-                <div class="subtitle">
-                   <p style="margin-top:0">
-                    <small>By <a href="/about">Marcos</a>. {{ .CreatedAt.Format "Monday, 02 January 2006" }}</small>
-                   </p>
+        <div class="section">
+            <article class="article">
+                <div>
+                    <a href="/">{{ .Params.sitename }}</a>&mdash;<em id="rString">Asteroid Blues</em><em>{{ .Params.italic_title }}</em>
                 </div>
-            {{ end }}
-            <div><br>{{ template "content" . }}</div>
-        </section>
+
+                {{ if .Params.title }}
+                    <h1 style="margin-top: 4rem;margin-bottom:0.5rem;">
+                        {{ .Params.title }}
+                        {{ template "partials_reload" . }}
+                    </h1>
+                {{ end }}
+
+                <div class="subtitle">
+                    <p style="margin-top:0">
+                            <small style="visibility: {{ if and (ne .Name "about") (ne .Name "index") (ne .Name "404") (ne .Name "books") }} visible {{ else }} hidden {{ end }}">
+                                By <a href="/about/">Marcos</a>. {{ .CreatedAt.Format "Monday, 02 January 2006" }}
+                            </small>
+                    </p>
+                </div>
+                <div>{{ template "content" . }}</div>
+            </article>
+            {{ template "partials_aside" . }}
+        </div>
         {{ template "partials_footer" . }}
         {{ template "partials_scripts" . }}
     </body>

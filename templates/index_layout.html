@@ -6,21 +6,29 @@
             class="{{ if (eq .Name "index") }}index{{ end }}"
             style="{{ if .Params.background }}background: {{ .Params.background}}; {{ end }}"
     >
-        <section>
-            {{ if or (eq .Name "about") (eq .Name "index") }}
-            <div>
-                <a href="/">{{ .Params.sitename }}</a>&mdash;<em id="rString">Asteroid Blues</em><em>{{ .Params.italic_title}}</em>
-            </div>
-            {{ end }}
-            <!--h1 style='text-align: left; {{ if eq .Name "index" }} margin-top: 0; {{ end }}'>
+        <div class="section">
+            <article class="article">
+                {{ if or (eq .Name "about") (eq .Name "index") }}
+                    <div>
+                        <a href="/">{{ .Params.sitename }}</a>&mdash;<em id="rString">Asteroid Blues</em><em>{{ .Params.italic_title}}</em>
+                    </div>
+                {{ end }}
+                <!--h1 style='text-align: left; {{ if eq .Name "index" }} margin-top: 0; {{ end }}'>
                 {{ .Params.title }}{{ if .Params.random_title }}&mdash;<em id="rString">Asteroid Blues</em>{{ end }}{{ if .Params.italic_title }}&mdash;<em>{{ .Params.italic_title}}</em>{{ end }}
                 {{ template "partials_reload" . }}
             </h1-->
-            <div class="subtitle">
-                <p>{{ .Params.subtitle }}</p>
-            </div>
-            <div><br>{{ template "content" . }}</div>
-        </section>
+
+                {{ if and (ne .Name "about") (ne .Name "index") (ne .Name "404") }}
+                    <div class="subtitle">
+                        <p>{{ .Params.subtitle }}</p>
+                    </div>
+                {{ end }}
+
+                <div>{{ template "content" . }}</div>
+            </article>
+
+            {{ template "partials_aside" . }}
+        </div>
         {{ template "partials_footer" . }}
         {{ template "partials_scripts" . }}
     </body>

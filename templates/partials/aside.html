@@ -1,0 +1,13 @@
+{{ define "partials_aside" }}
+    <aside class="side">
+        {{ if  and (ne .Name "about") (ne .Name "books") }}
+            <div>
+                <p>
+                    I'm Enrique. I currently work full-time as a developer for an e-commerce platform.
+                    This site is mostly about software, but here you may also find writings under many subjects.
+                    <a href="/about/">Find out more</a>.
+                </p>
+            </div>
+        {{ end }}
+    </aside>
+{{ end }}

@@ -17,4 +17,5 @@ partials = [
     "scripts",
     "highlighter",
     "reload",
+    "aside",
 ]

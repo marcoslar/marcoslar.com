@@ -1,9 +1,12 @@
 {{ define "base_layout" }}
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>{{ template "partials_head" . }}</head>
+    <head>
+        {{ template "partials_head" . }}
+    </head>
     {{ $dat := .Params.style }}
-    <body style="{{ if .Params.style }}{{ range $style := .Params.style }}{{ $style }};{{ end }}{{ end }}">
+    <body class="{{ if (eq .Name "index") }}index{{ end }}" style="{{ if .Params.style }}{{ range $style := .Params.style }}{{ $style }};{{ end }}{{ end }}">
         <div class="section">
             <article class="article">
                 <div>
@@ -17,19 +20,27 @@
                     </h1>
                 {{ end }}
 
-                <div class="subtitle">
-                    <p style="margin-top:0">
+                {{ if and (ne .Name "about") (ne .Name "index") (ne .Name "404") }}
+                    <div class="subtitle">
+                        <p style="margin-top:0">
                             <small style="visibility: {{ if and (ne .Name "about") (ne .Name "index") (ne .Name "404") (ne .Name "books") }} visible {{ else }} hidden {{ end }}">
                                 By <a href="/about/">Marcos</a>. {{ .CreatedAt.Format "Monday, 02 January 2006" }}
                             </small>
-                    </p>
+                        </p>
+                    </div>
+                {{ end }}
+
+                <div>
+                    {{ template "content" . }}
                 </div>
-                <div>{{ template "content" . }}</div>
             </article>
-            {{ template "partials_aside" . }}
+
+            <!-- {{ template "partials_aside" . }} -->
         </div>
+
         {{ template "partials_footer" . }}
         {{ template "partials_scripts" . }}
     </body>
 </html>
+
 {{ end }}

@@ -4,6 +4,6 @@
 <meta name="description" content="{{ .Params.description }}">
 <meta name="keywords" content="software, {{ .Params.keywords }}">
 <link rel="stylesheet" href="/{{ .Params.static_dir }}/css/main.css">
-<title>{{ .Params.sitename }} | {{ .Params.title }}</title>
+<title>{{ .Params.sitename }}{{ if .Params.title }} | {{ .Params.title }} {{ end }}</title>
 {{ template "partials_highlighter" . }}
 {{ end }}

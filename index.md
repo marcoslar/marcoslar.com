@@ -1,7 +1,6 @@
 ---
-title = "Lessmarcos"
+title = ""
 random_title = true
-layout = "index_layout"
 ---
 
 <h1 class="sessions">S e s s i o n s</h1>

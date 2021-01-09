@@ -1,24 +1,28 @@
+@font-face { font-family: 'Consolas'; font-style: normal; font-weight: 400; font-display: fallback;
+    src: url(/static/fonts/Consolas.woff) format('woff'); }
+@font-face { font-family: 'Consolas'; font-style: normal; font-weight: 800; font-display: fallback;
+    src: url(/static/fonts/Consolas-Bold.woff) format('woff'); }
+
+
 pre {
     background: #f9fbfd;
     color: #ab9bab;
-    font-family: Menlo, monospace;
-    line-height: 1.5;
-    padding: 10px;
-    font-size: 10pt;
-    border-radius: 10px;
+    font-family: Consolas, Menlo, monospace;
+    line-height: 1.45;
+    padding: 16px;
+    border-radius: 3px;
     border: none;
     white-space: pre-wrap;
     margin-bottom: 20px;
 
-    border: 1px solid black;
-    background: #f7f7f7;
+    background: #f6f8fa;
 }
 
 .code_caption {
     margin-top: 1.25em;
     display: block;
     font-size: 10pt;
-    font-family: Monaco,"Lucida Console",monospace;
+    font-family: Consolas, monospace;
 }
 
 ol.linenums {
@@ -53,7 +57,7 @@ a:link,a:visited {
 }
 
 .codeblock_name,code,pre.prettyprint {
-    font-family: Monaco,"Lucida Console",monospace
+    font-family: Consolas,monospace
 }
 
 .codeblock_name,.math,.seealso,code {

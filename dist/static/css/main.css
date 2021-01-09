@@ -1,14 +1,7 @@
-@font-face { font-family: 'Libre Baskerville'; font-style: normal; font-weight: 400; font-display: fallback;
-    src: local('Libre Baskerville'), local('LibreBaskerville-Regular'), url(/static/fonts/libre-baskerville.woff2) format('woff2'); }
-@font-face { font-family: 'Libre Baskerville'; font-style: normal; font-weight: 700; font-display: fallback;
-    src: local('Libre Baskerville Bold'), local('LibreBaskerville-Bold'), url(/static/fonts/libre-baskerville-bold.woff2) format('woff2'); }
-@font-face { font-family: 'Libre Baskerville'; font-style: italic; font-weight: 400; font-display: fallback;
-    src: local('Libre Baskerville Italic'), local('LibreBaskerville-Italic'), url(/static/fonts/libre-baskerville-italic.woff2) format('woff2'); }
-
 pre {
     background: #f9fbfd;
     color: #ab9bab;
-    font-family: Menlo,Consolas,"Bitstream Vera Sans Mono","DejaVu Sans Mono",Monaco,monospace;
+    font-family: Menlo, monospace;
     line-height: 1.5;
     padding: 10px;
     font-size: 10pt;
@@ -16,6 +9,9 @@ pre {
     border: none;
     white-space: pre-wrap;
     margin-bottom: 20px;
+
+    border: 1px solid black;
+    background: #f7f7f7;
 }
 
 .code_caption {
@@ -31,7 +27,8 @@ ol.linenums {
 }
 
 html {
-    font: 16px/180% 'Libre Baskerville', 'DejaVu Serif', 'Bitstream Vera Serif', 'Georgia', serif;
+    font-family: serif;
+    font-size: 1.125rem;
 }
 
 body {
@@ -110,8 +107,8 @@ h4.noheading {
     margin-bottom: 0
 }
 
-h1 {
-    /** text-align: center **/
+h1::first-letter {
+    font-size: 2.5rem;
 }
 
 code {
@@ -211,7 +208,7 @@ h4.noheading {
 }
 
 .subtitle > p {
-   margin-bottom: .25rem;
+   margin-bottom: 3.5rem;
    /** text-align: center; **/
 }
 .index ul {
@@ -478,15 +475,18 @@ figure figcaption:before {
 }
 
 .article {
-    max-width: 50rem;
-    width: 50rem;
+    max-width: 40rem;
+    width: 40rem;
     /*padding-right: 17rem;*/
+    margin-right: auto;
+    padding-left: 3rem;
 }
 
 @media (max-width: 54em) {
     .article {
         max-width: 100%;
         padding-right: 0;
+        padding-left: 0;
     }
 }
 

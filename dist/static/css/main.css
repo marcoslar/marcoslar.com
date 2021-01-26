@@ -3,7 +3,6 @@
 @font-face { font-family: 'Consolas'; font-style: normal; font-weight: 800; font-display: fallback;
     src: url(/static/fonts/Consolas-Bold.woff) format('woff'); }
 
-
 pre {
     background: #f9fbfd;
     color: #ab9bab;
@@ -30,20 +29,22 @@ ol.linenums {
     margin-bottom: 0
 }
 
+a:hover {
+  background-color: #acf9e9;
+}
+
+::selection {
+  background: #acf9e9;
+}
+
 html {
     font-family: serif;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
 }
 
 body {
     margin: 0;
-    /*min-width: 200px;*/
-    /*max-width: 750px;*/
-    /* max-width: 850px; */
-    /* margin: 0 auto; */
-    /*padding: 1rem;*/
-    /*margin-top: 2rem;*/
-    /*margin: 0 auto;*/
+    border-top: 5px solid #acf9e9;
 }
 
 .section {
@@ -327,10 +328,6 @@ figure figcaption:before {
         padding: 2rem 0;
     }
 
-    /*.article {*/
-    /*    padding-right: 17rem;*/
-    /*}*/
-
     .article {
         max-width: 50rem;
         width: 50rem;
@@ -479,11 +476,11 @@ figure figcaption:before {
 }
 
 .article {
-    max-width: 40rem;
-    width: 40rem;
-    /*padding-right: 17rem;*/
-    margin-right: auto;
-    padding-left: 3rem;
+    max-width: 55rem;
+    width: 55rem;
+    /* margin-right: auto; */
+    /* padding-left: 3rem; */
+    margin: 0 auto;
 }
 
 @media (max-width: 54em) {

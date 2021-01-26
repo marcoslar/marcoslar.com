@@ -4,6 +4,9 @@ title = "B o_o k s"
 
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.
 
+#### *2021*
+- Ficciones. *Jorge Luis Borges*
+
 #### *2020*
 - The Art of Computer Programming. *Donald Knuth* (without exercises)
 - A Philosophy of Software Design. *John Ousterhout*

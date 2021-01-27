@@ -476,8 +476,8 @@ figure figcaption:before {
 }
 
 .article {
-    max-width: 55rem;
-    width: 55rem;
+    max-width: 50rem;
+    width: 50rem;
     /* margin-right: auto; */
     /* padding-left: 3rem; */
     margin: 0 auto;

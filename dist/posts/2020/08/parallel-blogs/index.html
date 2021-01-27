@@ -162,48 +162,41 @@ var hljs=function(){"use strict";function e(n){Object.freeze(n);var t="function"
                 <div>
                     <h3>1. What</h3>
 
-<p>The idea is similar to the one of parallel universes<span class="belbo_v1-s1">:</span><span class="belbo_v2-s1"> (to a lesser extent
-of course!):</span> in a <em>parallel blog</em> each post consists of multiple versions of
-itself that co-exist within the same plane of &ldquo;existence&rdquo; (the URL of every
+<p>The idea is similar to the one of parallel universes<span class="belbo_v1-s1">:</span><span class="belbo_v2-s1"> (but to a lesser extent
+of course):</span> in a <em>parallel blog</em> each post consists of multiple versions of
+itself that co-exist within the same &ldquo;plane of existence&rdquo; (the URL of every
 individual post). The sum of all these co-existing posts constitute the actual
-post that one may expect under a given URL.</p>
-
-<p>Take the page you are reading right now as an example. There are multiple
+post that one may expect under a given URL.<br />
+Take the page you are reading right now as an example. There are multiple
 versions of it and all of them co-exist under the same URL
 (<code>posts/2020/08/parallel-blogs/</code>). How to access the other versions? Just reload
-your browser. You may get a different version of this page, similar to the
+the browser. You may get a different version of this page, similar to the
 previous one and that conveys the same meaning<span class="belbo_v1-s2"></span><span class="belbo_v2-s2"> (most of the time)</span>.</p>
 
 <h3>2. Why</h3>
 
-<p>Writing is difficult and sometimes I end up with multiple versions of the same
-<span class="belbo_v1-s3">post</span><span class="belbo_v2-s3">page</span> but because of the way blogs work I must select only one version
-to publish. Sure, I could release multiple versions of the same page under
-different URLs, but <span class="belbo_v1-s4">that&rsquo;s cumbersome</span><span class="belbo_v2-s4"> that doesn&rsquo;t feel very natural to me</span>:</p>
-
-<ul>
-<li>I have to maintain separate copies of the same page (e.g., <code>/my-post-v1</code>,
-<code>/my-post-v2</code>, etc.)</li>
-<li>pages with <em>appreciably similar</em> content may impact search engine
-rankings <span class="belbo_v1-s5"></span><span class="belbo_v2-s5">(it&rsquo;s not that I do care though)</span></li>
-<li>if the post actually is the interest of anyone, they probably won&rsquo;t visit
-all the different versions. It&rsquo;s just not worth it</li>
-</ul>
-
-<p>Hence, one page multiple versions.</p>
+<p>There are few ideas more overwhelming than that of the multiverse, and the
+mere notion that the universe <em>may</em> fork itself perpetually before the
+realization of every action&mdash;no matter how small&mdash;is fascinating.
+In some<span class="belbo_v1-s3">&mdash;poor&mdash;</span><span class="belbo_v2-s3">&mdash;poor&mdash;</span><span class="belbo_v3-s3"> </span>way this site tries to implement the idea.
+One page, multiple versions. Some versions could contradict all the other ones,
+some versions could be just slight variations of the original <span class="belbo_v1-s4">(which one is
+the original?), </span><span class="belbo_v2-s4"> </span>some versions have grammar mistakes, some versions are
+really <span class="belbo_v1-s5">good</span><span class="belbo_v2-s5">bad</span>, some versions make this site one of the top 500
+sites on the web.</p>
 
 <h3>3. How</h3>
 
-<p>A super naive implementation: wrap different versions of text snippets in <code>&lt;span&gt;&lt;/span&gt;</code>
-tags and hide them (or display them) randomly.</p>
+<p>An easy way to do it is by wrapping different versions of text snippets
+in <code>&lt;span&gt;</code> tags and hide them or display them randomly.</p>
 
-<p><span class="code_caption">{Example of how to define a sentence with
-two possible rendering outcomes}</span></p>
+<p><span class="code_caption">{Example of a sentence with two possible
+rendering outcomes}</span></p>
 
 <pre><code class="language-html">My favourite book is &lt;span class=&quot;v1&quot;&gt;Foucault's Pendulum&lt;/span&gt;&lt;span class=&quot;v2&quot;&gt;Fictions&lt;/span&gt;.
 </code></pre>
 
-<p>This snippet would get rendered as either:</p>
+<p>The previous code would get rendered as either:</p>
 
 <p><span class="code_caption">{Outcome 1}</span></p>
 
@@ -217,24 +210,23 @@ two possible rendering outcomes}</span></p>
 <pre><code class="language-text">My favourite book is Fictions.
 </code></pre>
 
-<p>Since I don&rsquo;t know how to generate random numbers with plain HTML and CSS, I use
-JavaScript. You can take a look at the source code of this page and see how
-it&rsquo;s done. If JavaScript is disabled, only one version is displayed
-(the one tagged as v1).</p>
+<p>I don&rsquo;t know how to generate random numbers with plain HTML and CSS, so I use
+JavaScript. Take a look at the source code of this page and see how
+it&rsquo;s done (I&rsquo;m sure Marcos would not approve such code). If JavaScript
+is disabled, only one version is displayed (the one tagged as version one).</p>
 
 <h3>4. How (II)</h3>
 
-<p>Wrapping every version in <code>&lt;span&gt;&lt;/span&gt;</code> tags with custom CSS classes here and
-there is tiring, so I came up with a way to specify the same but with fewer characters.
-This is what I&rsquo;m doing now instead:</p>
+<p>Wrapping every potential version of text in <code>&lt;span&gt;</code> tags with custom
+CSS classes here and there is tiring, so I came up with a way to specify the same but with fewer characters. This is what I&rsquo;m doing now instead:</p>
 
 <pre><code class="language-text">My favourite book is @{Foucault's Pendulum||Fictions}@
 </code></pre>
 
-<p>It&rsquo;s shorter and less distracting. The <code>span</code> tags and CSS classes are added
-automatically. While I could have done the parsing using JavaScript in the browser,
-I thought it was cool to just add it to my <span class="belbo_v1-s7"></span><span class="belbo_v2-s7">(shameless plug)</span> own static site
-generator <a href="https://github.com/lessmarcos/belbo">belbo</a>.</p>
+<p>It&rsquo;s shorter and less distracting (for the writer). The <code>&lt;span&gt;</code> tags and
+CSS classes are added automatically. While I could have implemented it too
+using JavaScript, I thought it was worth adding it to my
+static site generator <a href="https://github.com/lessmarcos/belbo">belbo</a>.</p>
 
                 </div>
             </article>

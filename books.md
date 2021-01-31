@@ -5,6 +5,7 @@ title = "B o_o k s"
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.
 
 #### *2021*
+- El Hacedor. *Jorge Luis Borges*
 - Ficciones. *Jorge Luis Borges*
 
 #### *2020*

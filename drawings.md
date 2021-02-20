@@ -7,7 +7,7 @@ drawings = [
  
 <div class="gallery">
 {{ range $k, $d := .Params.drawings }}
-    <img src="{{$d.url}}" alt="{{$d.alt}}">
+    <img src="{{$d.url}}" alt="{{$d.alt}}" title="{{$d.alt}}">
 {{ end }}
 </div>
 

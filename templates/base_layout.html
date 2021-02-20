@@ -23,7 +23,7 @@
                 {{ if and (ne .Name "about") (ne .Name "index") (ne .Name "404") }}
                     <div class="subtitle">
                         <p style="margin-top:0">
-                            <small style="visibility: {{ if and (ne .Name "about") (ne .Name "index") (ne .Name "404") (ne .Name "books") }} visible {{ else }} hidden {{ end }}">
+                            <small style="visibility: {{ if and (ne .Name "about") (ne .Name "index") (ne .Name "drawings") (ne .Name "404") (ne .Name "books") }} visible {{ else }} hidden {{ end }}">
                                 By <a href="/about/">Marcos</a>. {{ .CreatedAt.Format "Monday, 02 January 2006" }}
                             </small>
                         </p>

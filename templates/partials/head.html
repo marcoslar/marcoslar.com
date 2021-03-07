@@ -6,4 +6,12 @@
 <link rel="stylesheet" href="/{{ .Params.static_dir }}/css/main.css">
 <title>{{ .Params.sitename }}{{ if .Params.title }} | {{ .Params.title }} {{ end }}</title>
 {{ template "partials_highlighter" . }}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CKSRZTR0B9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CKSRZTR0B9');
+</script>
 {{ end }}

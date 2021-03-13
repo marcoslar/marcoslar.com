@@ -1,8 +1,6 @@
 ---
 title = "D r a w i n g s"
-drawings = [
-    {url="https://raw.githubusercontent.com/lessmarcos/lessmarcos.com/master/static/img/drawings/hbf1.jpg", alt="Hbf 1"},
-]
+drawings = []
 ---
  
 <div class="gallery">

@@ -7,7 +7,7 @@ random_title = true
 
 <ul class="posts" style="margin-top:6rem;">
 {{ range $k, $page := .AllPages -}}
-    {{ if and (ne $page.Name "index") (ne $page.Name "about") (ne $page.Name "books") (ne $page.Name "404") -}}
+    {{ if and (ne $page.Name "index") (ne $page.Name "about") (ne $page.Name "books") (ne $page.Name "404") (ne $page.Name "drawings") -}}
         <li>
            <span class="post-date">{{ $page.CreatedAt.Format "02 Jan 2006" }}</span>
            {{ if $page.Params.external_url }}

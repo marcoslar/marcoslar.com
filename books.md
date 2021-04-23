@@ -5,6 +5,7 @@ title = "B o_o k s"
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.
 
 #### *2021*
+- The Information: A History, a Theory, a Flood. *James Gleick*
 - The Boy Who Followed Ripley. *Patricia Highsmith*
 - Exhalation: Stories. *Ted Chiang*
 - El Hacedor. *Jorge Luis Borges*

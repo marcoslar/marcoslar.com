@@ -1,6 +1,7 @@
 ---
 title = "Nubes de Monet usando ruido Perlin (old)"
 categories = ["software"]
+syntax_on = true
 ---
 
 En la naturaleza muchas estructuras parecen surgir del caos,

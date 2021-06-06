@@ -6,7 +6,9 @@ author = "Marcos"
 layout = "base_layout"
 description = "Lessmarcos.com | Sessions"
 
-content_dir = "posts"
+content_dir = [
+    "posts",
+]
 templates_dir = "templates"
 output_dir = "dist"
 static_dir = "static"
@@ -17,5 +19,5 @@ partials = [
     "scripts",
     "highlighter",
     "reload",
-    "aside",
+    "nav",
 ]

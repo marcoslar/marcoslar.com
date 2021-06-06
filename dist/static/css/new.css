@@ -1,0 +1,155 @@
+@font-face {
+    font-family:'Inria Sans';
+    src: url('/static/fonts/InriaSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:'CooperHewitt';
+src: url('/static/fonts/CooperHewitt-Bold.woff') format('woff');
+font-weight: 700;
+    font-style: normal;
+}
+
+a {
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover {
+    color: grey;
+}
+
+a:visited {
+    color: darkgrey;
+}
+
+header {
+    padding: 2rem;
+    border-bottom: 1px solid #222;
+}
+
+header a:focus {
+    outline: none;
+}
+
+header a:hover {
+    color: transparent !important;
+}
+
+header a:visited {
+    color: transparent;
+}
+
+h1 {
+    font-size: 1.9rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'IBM Pledx Sans', sans-serif;
+    font-size: 110%;
+    line-height: 1.6;
+}
+
+body ul {
+    padding: inherit !important;
+    margin: inherit !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.main-and-nav {
+    display: flex;
+}
+
+nav {
+    flex: 1;
+    padding: 2rem;
+}
+
+nav section ul, main ul {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin: 0;
+    padding: 2rem;
+    flex: 3;
+}
+
+.left {
+    flex: 6;
+}
+
+footer {
+    padding: 1rem 2rem;
+    border-top: 1px solid #222;
+    font-size: 1rem !important;
+}
+
+/* Decorators */
+.capitalize {
+    text-transform: capitalize;
+}
+
+.bulletless li {
+    list-style-type: none;
+}
+
+.post-date {
+    font-family: monospace;
+    font-size: 110%;
+    margin-right: .5em;
+}
+
+/* Logo */
+.logobox {
+    background-color: black;
+    color: white;
+    border: 1px solid transparent;
+    width: 75px;
+    height: 75px;
+}
+
+.logo {
+    font-family: 'CooperHewitt', monospace !important;
+    font-size:.75rem;
+    /**letter-spacing:-5px;*/
+    padding-top:1.75rem;
+    padding-left:.7rem;
+}
+
+@media screen and (max-width: 1440px) {
+    .left, nav, main {
+        flex: auto;
+    }
+
+    .main-and-nav {
+        flex-wrap: wrap-reverse;
+    }
+
+    main {
+        padding: 1.25rem;
+    }
+}
+
+/* Code */
+pre {
+    background-color: #131313;
+    color: white;
+    padding: 1rem;
+    font-size: 110%;
+}
+
+/* Theme */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: black;
+        color: white
+    }
+}

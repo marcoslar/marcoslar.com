@@ -1,5 +1,6 @@
 ---
 title = "B o_o k s"
+dont_show_in_sessions = true
 ---
 
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.

@@ -1,30 +1,19 @@
 ---
-title = ""
-random_title = true
+title = "Home"
+dont_show_in_sessions = true
 ---
 
-<h1 class="sessions">S e s s i o n s</h1>
+<a href="/"><h1>Hi</h1></a>
 
-<ul class="posts" style="margin-top:6rem;">
-{{ range $k, $page := .AllPages -}}
-    {{ if and (ne $page.Name "index") (ne $page.Name "about") (ne $page.Name "books") (ne $page.Name "404") (ne $page.Name "drawings") -}}
-        <li>
-           <span class="post-date">{{ $page.CreatedAt.Format "02 Jan 2006" }}</span>
-           {{ if $page.Params.external_url }}
-                <a
-                 style="{{ if $page.Params.li_style }}{{ range $style := $page.Params.li_style }}{{ $style }};{{ end }}{{ end }}"
-                 href="{{ $page.Params.external_url }}">{{ $page.Params.title }}</a>
-           {{ else }}
-                <a 
-                 style="{{ if $page.Params.li_style }}{{ range $style := $page.Params.li_style }}{{ $style }};{{ end }}{{ end }}"
-                 href="{{ $page.PublicPath }}/">{{ $page.Params.title }}</a>
-           {{ end }}
-           <!--span class="post-categories">
-                {{ range $i, $category := $page.Params.categories }}
-                    <span class="post-category--{{ $category }}" >{{ $category }}</span>
-                {{ end }}
-           </span-->
-        </li>
-    {{- end }}
-{{- end }}
-</ul>
+I'm Marcos. I used to like drawing, and I used to write a lot. Nowadays I prefer reading.
+I live with my wife in Germany. I work as a programmer (and I like it).
+
+I'm a big fan of starting new things and rarely finishing them. The good thing is: I get to learn
+some (useless?) stuff. The not so good thing is: I don't get to brag about it.
+Anyway, in an alternate universe I'm sure I've worked on something that revolutionized
+the IT world. Meanwhile, in this universe, you can check what I'm doing right <a href="/now/">now</a>,
+read some more <a href="/sessions/">structured stuff</a>, or find out more <a href="/about/">about me and
+this site</a>.
+
+`lessmarcos.com` is a place where I archive my stuff raw & unedited, so if it's prose 
+you may find grammar mistakes; if it's code you'll definitely find bugs!

@@ -136,14 +136,18 @@ footer {
     main {
         padding: 1.25rem;
     }
+
+    header {
+        padding: 1.25rem;
+    }
 }
 
 /* Code */
 pre {
     background-color: #131313;
     color: white;
-    padding: 1rem;
-    font-size: 110%;
+    padding: 2rem;
+    width: fit-content;
 }
 
 /* Theme */
@@ -151,5 +155,18 @@ pre {
     body {
         background: black;
         color: white
+    }
+
+    a {
+        color: white;
+    }
+
+    .logobox {
+        background-color: white;
+        color: black;
+    }
+
+    pre {
+        padding: 1rem;
     }
 }

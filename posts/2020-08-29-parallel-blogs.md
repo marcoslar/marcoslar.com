@@ -37,7 +37,8 @@ in `<span>` tags and hide them or display them randomly.
 rendering outcomes}</span>
 
 ```html
-My favourite book is <span class="v1">Foucault's Pendulum</span><span class="v2">Fictions</span>.
+My favourite book is <span class="v1">Foucault's Pendulum</span>
+<span class="v2">Fictions</span>.
 ```
 
 The previous code would get rendered as either:
@@ -62,7 +63,8 @@ is disabled, only one version is displayed (the one tagged as version one).
 ### 4. How (II)
 
 Wrapping every potential version of text in `<span>` tags with custom 
-CSS classes here and there is tiring, so I came up with a way to specify the same but with fewer characters. This is what I'm doing now instead:
+CSS classes here and there is tiring, so I came up with a way to specify the 
+same but with fewer characters. This is what I'm doing now instead:
 
 ```text
 My favourite book is @{Foucault's Pendulum||Fictions}@

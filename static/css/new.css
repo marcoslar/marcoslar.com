@@ -146,6 +146,14 @@ pre {
     border-radius: 3px;
 }
 
+/* Quotes */
+blockquote {
+    font-style: italic;
+    border-left: 1px solid grey;
+    padding-left: 1rem;
+    margin: 0;
+}
+
 /* Theme */
 @media (prefers-color-scheme: dark) {
     body {

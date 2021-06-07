@@ -5,12 +5,11 @@
         
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Lessmarcos.com | Sessions">
+<meta name="description" content="Lessmarcos.com">
 <meta name="keywords" content="software, ">
 <link rel="stylesheet" href="/static/css/new.css">
+<link rel="shortcut icon" href="https://raw.githubusercontent.com/lessmarcos/lessmarcos.com/master/static/img/icon.ico"/>
 <title>Lessmarcos.com | S e s s i o n s </title>
-
-
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKSRZTR0B9"></script>
 <script>
@@ -204,7 +203,10 @@
         
 <footer>
     <p>
-        <b>Lessmarcos.com</b> © 2021 — <a href="https://github.com/lessmarcos/lessmarcos.com/blob/master/LICENSE.md" target="_blank">BY-NC-SA 4.0</a>
+        <b>Lessmarcos.com</b> © <span id="year">2021</span> —
+        <a href="https://github.com/lessmarcos/lessmarcos.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
+            BY-NC-SA 4.0
+        </a>
     </p>
 </footer>
 
@@ -294,10 +296,12 @@ function enableRandomTitle() {
 }
 
 document.addEventListener('DOMContentLoaded', function(e) {
+    document.getElementById("year").innerHTML = new Date().getFullYear();
     enableRandomTitle();
     enableParallelSnippets((manuallyTriggered = false));
     enableReloadPageIcon();
 });
+
 </script>
 
     </body>

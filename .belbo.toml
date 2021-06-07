@@ -4,7 +4,7 @@ sitename = "Lessmarcos.com"
 title = "Lessmarcos"
 author = "Marcos"
 layout = "base_layout"
-description = "Lessmarcos.com | Sessions"
+description = "Lessmarcos.com"
 
 content_dir = [
     "posts",

@@ -26,7 +26,8 @@ any book as a plain text file.
 Some systems do an amazing job recommending books while others do an 
 amazing job recommending music (in such a place, music is open 
 as well). You want to listen to a song that gives you the same vibe 
-as @{Good Vibrations||Dancing in the Dark}@ or @{A Hard Days Night||2000 Light Years from Home}@? 
+as @{Good Vibrations||Dancing in the Dark}@ or 
+@{A Hard Days Night||2000 Light Years from Home}@? 
 Easy. Hard-coded genres are a thing of the past. 
 In this place genres are based on wavelength and pitch.
 
@@ -38,8 +39,8 @@ recommendations and discoverability based on different filters. You tell
 the system:
 
 ```text
-Find books where the topic discussed is the alter-ego, the plot is set in the 19th century, 
-and the writing style is like Poe's.
+Find books where the topic discussed is the alter-ego, the plot is set in 
+the 19th century, and the writing style is like Poe's.
 ```
 
 ### 4. Really?

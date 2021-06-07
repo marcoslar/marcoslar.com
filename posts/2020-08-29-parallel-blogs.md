@@ -1,5 +1,6 @@
 ---
 title = "Parallel Blogs"
+syntax_on = true
 ---
 
 ### 1. What

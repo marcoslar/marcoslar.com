@@ -1,14 +1,7 @@
 @font-face {
-    font-family:'Inria Sans';
-    src: url('/static/fonts/InriaSans-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
     font-family:'CooperHewitt';
-src: url('/static/fonts/CooperHewitt-Bold.woff') format('woff');
-font-weight: 700;
+    src: url('/static/fonts/CooperHewitt-Bold.woff') format('woff');
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -43,6 +36,10 @@ header a:visited {
     color: transparent;
 }
 
+header a {
+    text-decoration: none;
+}
+
 h1 {
     font-size: 1.9rem;
 }
@@ -67,7 +64,7 @@ body ul {
 }
 
 nav {
-    flex: 1;
+    flex: 2;
     padding: 2rem;
 }
 
@@ -79,7 +76,7 @@ nav section ul, main ul {
 main {
     margin: 0;
     padding: 2rem;
-    flex: 3;
+    flex: 8;
 }
 
 .left {
@@ -124,7 +121,7 @@ footer {
     padding-left:.7rem;
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1280px) {
     .left, nav, main {
         flex: auto;
     }
@@ -144,10 +141,9 @@ footer {
 
 /* Code */
 pre {
-    background-color: #131313;
-    color: white;
-    padding: 2rem;
-    width: fit-content;
+    margin: 0;
+    border: 1px solid #f8f8f8;
+    border-radius: 3px;
 }
 
 /* Theme */
@@ -166,21 +162,12 @@ pre {
         color: black;
     }
 
-    pre {
-        padding: 1rem;
+    pre .hljs {
+        background-color: black !important;
+        color: white !important;
+    }
+
+    .hljs span {
+        color: white !important;
     }
 }
-
-/*body {*/
-/*    background: black;*/
-/*    color: white*/
-/*}*/
-
-/*a {*/
-/*    color: white;*/
-/*}*/
-
-/*.logobox {*/
-/*    background-color: white;*/
-/*    color: black;*/
-/*}*/

@@ -85,9 +85,11 @@ function enableRandomTitle() {
 }
 
 document.addEventListener('DOMContentLoaded', function(e) {
+    document.getElementById("year").innerHTML = new Date().getFullYear();
     enableRandomTitle();
     enableParallelSnippets((manuallyTriggered = false));
     enableReloadPageIcon();
 });
+
 </script>
 {{ end }}

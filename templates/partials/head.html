@@ -4,10 +4,11 @@
 <meta name="description" content="{{ .Params.description }}">
 <meta name="keywords" content="software, {{ .Params.keywords }}">
 <link rel="stylesheet" href="/{{ .Params.static_dir }}/css/new.css">
+<link rel="shortcut icon" href="https://raw.githubusercontent.com/lessmarcos/lessmarcos.com/master/static/img/icon.ico"/>
 <title>{{ .Params.sitename }}{{ if .Params.title }} | {{ .Params.title }} {{ end }}</title>
-{{/*{{ if .Params.syntax_on }}*/}}
-{{/*  {{ template "partials_highlighter" . }}*/}}
-{{/*{{ end }}*/}}
+{{ if .Params.syntax_on }}
+  {{ template "partials_highlighter" . }}
+{{ end }}
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKSRZTR0B9"></script>
 <script>
   window.dataLayer = window.dataLayer || [];

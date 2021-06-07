@@ -33,7 +33,7 @@ too big in comparison); so if you know some decent and small MP3 player let me k
 ## Software
 
 I do like to keep dependencies at a minimum, so these days I try to run as much as I can in virtual
-machines. Nevertheless this is a list of some programs I have installed in my machine:
+machines. Nevertheless, this is a list of some programs I have installed in my machine:
 
 - IntelliJ IDEA (e.g., Goland, PyCharm)
 - Vim

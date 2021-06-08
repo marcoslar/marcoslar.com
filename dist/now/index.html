@@ -132,6 +132,7 @@ function enableParallelSnippets(manuallyTriggered) {
 
     
     for (var s in snippetsByVersion) {
+        console.log(s);
         var snippetIndex = randomSnippets[snippetsByVersion[s].length];
 
         for (var i = 0; i < snippetsByVersion[s].length; i++) {
@@ -181,10 +182,11 @@ function enableRandomTitle() {
 }
 
 document.addEventListener('DOMContentLoaded', function(e) {
-    document.getElementById("year").innerHTML = new Date().getFullYear();
     enableRandomTitle();
     enableParallelSnippets((manuallyTriggered = false));
     enableReloadPageIcon();
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+    
 });
 
 </script>

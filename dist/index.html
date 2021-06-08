@@ -61,17 +61,18 @@
                 
                 <p><a href="/"><h1>Hi</h1></a></p>
 
-<p>I&rsquo;m Marcos. I used to like drawing, and I used to write a lot. Nowadays I prefer reading.
-I live with my wife in Germany. I work as a programmer (and I like it).</p>
+<p>I&rsquo;m Marcos. I live with my wife in Germany where I work as a computer programmer.
+I&rsquo;m not a dad and I don&rsquo;t have pets, but if I ever have a dog I will
+call it  Hbf (pronounced <em>hawpt&middot;baan&middot;hof</em>).</p>
 
 <p>I&rsquo;m a big fan of starting new things and rarely finishing them. The good thing is: I get to learn
 some <span class="belbo_v1-s1">(useless?)</span><span class="belbo_v2-s1"></span> stuff. The not so good thing is: I don&rsquo;t get to brag about it.
 Anyway, in an alternate universe I&rsquo;m sure I&rsquo;ve worked on something that revolutionized
 the IT world. Meanwhile in this universe, you can check what I&rsquo;m doing right <a href="/now/">now</a>,
-read some more <a href="/sessions/">structured stuff</a>, or find out more <a href="/about/">about me and
-this site</a>.</p>
+read some <a href="/sessions/">stuff</a> I have written in the past, or find out
+more <a href="/about/">about me and this site</a>.</p>
 
-<p><code>lessmarcos.com</code> is a place where I archive my stuff raw &amp; unedited, so if it&rsquo;s prose
+<p><code>lessmarcos.com</code> is just a place where I archive my stuff, so if it&rsquo;s prose
 you may find grammar mistakes; if it&rsquo;s code you&rsquo;ll definitely find bugs!</p>
 
             </main>
@@ -124,6 +125,7 @@ function enableParallelSnippets(manuallyTriggered) {
 
     
     for (var s in snippetsByVersion) {
+        console.log(s);
         var snippetIndex = randomSnippets[snippetsByVersion[s].length];
 
         for (var i = 0; i < snippetsByVersion[s].length; i++) {
@@ -173,10 +175,11 @@ function enableRandomTitle() {
 }
 
 document.addEventListener('DOMContentLoaded', function(e) {
-    document.getElementById("year").innerHTML = new Date().getFullYear();
     enableRandomTitle();
     enableParallelSnippets((manuallyTriggered = false));
     enableReloadPageIcon();
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+    
 });
 
 </script>

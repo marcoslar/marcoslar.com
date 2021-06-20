@@ -6,6 +6,7 @@ dont_show_in_sessions = true
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.
 
 #### *2021*
+- Utopia. *Thomas More*
 - The Art of SQL. *Stéphane Faroult*
 - The Information: A History, a Theory, a Flood. *James Gleick*
 - The Boy Who Followed Ripley. *Patricia Highsmith*

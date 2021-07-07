@@ -5,8 +5,18 @@ dont_show_in_sessions = true
 
 # Log
 
-## June 2021
 
+## July 2021
+
+<div class="post-date">07 Jul 2021</div>
+While I appreciate tools like `go fmt`, I think third-party linters add little value to already
+existing projects. Code changes all the time, structure (should) remain more ore less stable; 
+let's focus on the big picture! An extra semicolon is not going to make the project easier 
+(or harder) to read or maintain---consistency in the upper layers of abstraction brings more
+value (e.g., don't put business logic in the transport layer, proper error logging, don't use
+logs when metrics are enough, good commit messages for important features, etc.)
+
+## June 2021
 
 <div class="post-date">06 Jun 2021</div>
 Once again I have changed the style of the website. I had to update [belbo] to support content

@@ -1,5 +1,5 @@
 ---
-title = "S e s s i o n s"
+title = "Sessions"
 dont_show_in_sessions = true
 random_title = true
 ---

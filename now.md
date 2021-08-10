@@ -19,3 +19,7 @@ I'm reading:
 - Operating Systems: Three Easy Pieces by Andrea Arpaci-Dusseau and Remzi Arpaci-Dusseau
 - Peopleware by Timothy Lister and Tom DeMarco
 - Cuentos Completos by Borges
+
+I'm writing:
+
+- Destiny is Gravity---a magazine

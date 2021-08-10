@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Lessmarcos.com">
 <meta name="keywords" content="software, ">
@@ -65,28 +65,28 @@
 
 <p>I was using <a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://pages.github.com/">GitHub Pages</a>
 to generate my (old) blog. Somehow my Ruby version got broken (some gems
-could not be found and Jekyll could not get started) and, oh boy, it&rsquo;s been
+could not be found and Jekyll could not get started) and, oh boy, it’s been
 ages since the last time I touched Ruby code or played with
-<a href="https://bundler.io/">Bundler</a>. I didn&rsquo;t feel like I wanted to fix it, so I
+<a href="https://bundler.io/">Bundler</a>. I didn’t feel like I wanted to fix it, so I
 decided to go for something new.</p>
 
 <h3>1. Static site generators in Go</h3>
 
 <p>Well, these days I mainly write Go code (not much, but still) so yeah why not,
-let&rsquo;s try to find a static site generator written in Go. To my surprise there are not so
+let’s try to find a static site generator written in Go. To my surprise there are not so
 many, at least not many popular ones. So I took a look at <a href="https://gohugo.io/">Hugo</a>.
-I have to say that the framework is nice and all, but it&rsquo;s not what I was looking for.
+I have to say that the framework is nice and all, but it’s not what I was looking for.
 The main downside is that it has tons of features.</p>
 
 <h3>2. Error number one</h3>
 
 <p>For many people <em>tons of features</em> is a plus, but I was looking for something simpler.
-Sure, I don&rsquo;t have to use all of Hugo&rsquo;s features but the API surface area of Hugo is
-not small in my opinion. So I said, I pass. Let&rsquo;s try another one. And I tried
+Sure, I don’t have to use all of Hugo’s features but the API surface area of Hugo is
+not small in my opinion. So I said, I pass. Let’s try another one. And I tried
 <a href="https://github.com/imdario/zas">Zas</a>. I thought I had found THE static site generator
-I was looking for. It&rsquo;s very zen and minimalistic and simple but somehow it still didn&rsquo;t fit
-my simple (but not simpler) requirements and I really didn&rsquo;t like that Zas
-used <code>&lt;embed&gt;</code> to compose layouts. Call me crazy.</p>
+I was looking for. It’s very zen and minimalistic and simple but somehow it still didn’t fit
+my simple (but not simpler) requirements and I really didn’t like that Zas
+used <code><embed></code> to compose layouts. Call me crazy.</p>
 
 <p>I probably overlooked so many projects because at this point I was wondering: how hard
 can it be to come up with my own static site generator in Go?</p>
@@ -96,7 +96,7 @@ can it be to come up with my own static site generator in Go?</p>
 <p>How was that?</p>
 
 <blockquote>
-<p>It&rsquo;s harder to read code than to write it</p>
+<p>It’s harder to read code than to write it</p>
 
 <p><a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/">Joel Spolsky</a></p>
 </blockquote>
@@ -106,20 +106,20 @@ can it be to come up with my own static site generator in Go?</p>
 <ul>
 <li>markdown as input, HTML as output</li>
 <li>everything in the root and <code>posts</code> directory should be taken into account</li>
-<li>rely on Golang&rsquo;s template features for layout composition</li>
+<li>rely on Golang’s template features for layout composition</li>
 </ul>
 
-<p>How hard this could be? Honest answer is I don&rsquo;t know yet. I did build my own
+<p>How hard this could be? Honest answer is I don’t know yet. I did build my own
 static site generator (<a href="https://github.com/lessmarcos/belbo">belbo</a>) and so far so good
 (I mean, this website was built using belbo), but I may find that it lacks some features
-I will need in the future that I don&rsquo;t need right now.</p>
+I will need in the future that I don’t need right now.</p>
 
-<p><span class="belbo_v1-s2"></span><span class="belbo_v2-s2">For example, as of now belbo does not support watch features nor SASS nor themes. It&rsquo;s
+<p><span class="belbo_v1-s2"></span><span class="belbo_v2-s2">For example, as of now belbo does not support watch features nor SASS nor themes. It’s
 not that I do need these features, but still. Also I have already found a couple of bugs!
 Not very critical but they are already there, lurking.
 </span></p>
 
-<p>How easy or hard is going to be to maintain belbo? I think it shouldn&rsquo;t be that hard,
+<p>How easy or hard is going to be to maintain belbo? I think it shouldn’t be that hard,
 but I let you know in a few months.</p>
 
 <h3>4. But <span class="belbo_v1-s3"></span><span class="belbo_v2-s3">hey, </span> this is new</h3>
@@ -127,7 +127,7 @@ but I let you know in a few months.</p>
 <p>One more thing though. If there is anything that may call your attention about belbo
 is that it enables what I call
 <a href="https://lessmarcos.com/posts/2020/08/parallel-blogs/">Parallel Blogs</a>.
-<span class="belbo_v1-s4"></span><span class="belbo_v2-s4">It&rsquo;s not that I&rsquo;m super proud of this but I&rsquo;m certainly having fun these days with
+<span class="belbo_v1-s4"></span><span class="belbo_v2-s4">It’s not that I’m super proud of this but I’m certainly having fun these days with
 this little feature available right now (in the entire ecosystem of static site generators)
 only in belbo. How lame is that!</span></p>
 

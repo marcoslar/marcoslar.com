@@ -36,10 +36,10 @@ in `<span>` tags and hide them or display them randomly.
 <span class="code_caption">{Example of a sentence with two possible 
 rendering outcomes}</span>
 
-```html
+<xmp>
 My favourite book is <span class="v1">Foucault's Pendulum</span>
 <span class="v2">Fictions</span>.
-```
+</xmp>
 
 The previous code would get rendered as either:
 

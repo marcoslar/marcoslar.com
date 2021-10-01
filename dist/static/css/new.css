@@ -227,8 +227,15 @@ footer {
 /* Code */
 pre {
     margin: 0;
-    border: 1px solid #f8f8f8;
+    /**border: 1px solid #f8f8f8;**/
     border-radius: 3px;
+    width: fit-content;
+  /*  background-color: rgb(144, 162, 255 / 7%); */
+    padding: .3em .625em;
+    /*color: rgb(37, 41, 55);*/
+}
+
+pre code {
 }
 
 /* Quotes */
@@ -267,4 +274,8 @@ blockquote {
 
 *::selection{
     background-color: aquamarine;
+}
+
+.hljs {
+    background-color: #fcfcfc !important;
 }

@@ -1,12 +1,12 @@
 {{ define "partials_head"}}
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="{{ .Params.description }}">
-<meta name="keywords" content="software, {{ .Params.keywords }}">
-<link rel="stylesheet" href="/{{ .Params.static_dir }}/css/new.css">
+<meta name="description" content="{{ .Config.description }}">
+<meta name="keywords" content="software, {{ .Config.keywords }}">
+<link rel="stylesheet" href="/{{ .Config.static_dir }}/css/new.css">
 <link rel="shortcut icon" href="https://raw.githubusercontent.com/lessmarcos/lessmarcos.com/master/static/img/icon.ico"/>
-<title>{{ .Params.sitename }}{{ if .Params.title }} | {{ .Params.title }} {{ end }}</title>
-{{ if .Params.syntax_on }}
+<title>{{ .Config.sitename }}{{ if .Config.title }} | {{ .Config.title }} {{ end }}</title>
+{{ if .Config.syntax_on }}
   {{ template "partials_highlighter" . }}
 {{ end }}
 <!--script async src="https://www.googletagmanager.com/gtag/js?id=G-CKSRZTR0B9"></script-->

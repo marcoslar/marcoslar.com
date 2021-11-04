@@ -15,8 +15,8 @@
         <section class="main-and-nav">
             <nav>{{ template "partials_nav" . }}</nav>
             <main>
-                {{ if (and (.Params.title) (ne .Name "log") (ne .Name "index") ) }}
-                    <h1>{{ .Params.title }}</h1>
+                {{ if (and (.Config.title) (ne .Title "log") (ne .Title "index") ) }}
+                    <h1>{{ .Config.title }}</h1>
                 {{ end }}
                 {{ template "content" . }}
             </main>

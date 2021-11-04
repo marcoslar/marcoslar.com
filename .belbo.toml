@@ -13,7 +13,7 @@ templates_dir = "templates"
 output_dir = "dist"
 static_dir = "static"
 
-partials = [
+templates = [
     "head",
     "footer",
     "scripts",

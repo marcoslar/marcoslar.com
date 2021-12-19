@@ -7,55 +7,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Lessmarcos.com">
 <meta name="keywords" content="software, ">
-<link rel="stylesheet" href="/static/css/new.css">
-<link rel="shortcut icon" href="https://raw.githubusercontent.com/lessmarcos/lessmarcos.com/master/static/img/icon.ico"/>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="shortcut icon" href="/static/myicon.svg"/>
 <title>Lessmarcos.com | Setup </title>
 
 
 
 
     </head>
-    <body>
-        <header>
-            <a href="/">
-                <div class="logobox">
-                    <div class="logo"><div>LESS</div><div>MARCOS</div></div>
-                </div>
-            </a>
-        </header>
-        <section class="main-and-nav">
-            <nav>
-<section class="bulletless">
-    <section>
-        <h3>About(s)</h3>
-        <ul>
-            <li><a href="/about/">Me</a></li>
-            <li><a href="/setup/">Setup</a></li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>Blog</h3>
-        <ul class="capitalize">
-            <li><a href="/sessions/">Sessions</a></li>
-            <li><a href="/log/">Log</a></li>
-            <li><a href="/now/">Now!</a></li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>Meta</h3>
-        <ul class="capitalize">
-            <li><a href="/archive/">Archive</a></li>
-        </ul>
-    </section>
-</section>
-</nav>
-            <main>
+    <body style="">
+        
+            <span style="display: flex;">
+                <h1><span class="init-ch">S</span>etup</h1>
                 
-                    <h1>Setup</h1>
+                    <small class="homelink"><a href="/">Lessmarcos.com</a></small>
                 
-                <h2>Hardware</h2>
+            </span>
+            
+        
+
+        <h3>Hardware</h3>
 
 <p>My first and current laptop is a
 <a href="https://support.apple.com/kb/sp719?locale=en_US">MacBook Pro (Retina, 15-inch, Mid 2015)</a>
@@ -85,9 +56,9 @@ I&rsquo;m currently looking for a replacement, but so far nothing comes close
 too big in comparison</span><span class="belbo_v2-s2">the Mighty Vibe? It plays nothing but Spotify playlists; so dumb</span>);
 so if you know some decent and small MP3 player let me know.</p>
 
-<h2>Software</h2>
+<h3>Software</h3>
 
-<p>I do like to keep dependencies at a minimum. These days I try to run as much as I can in virtual
+<p>I like to keep dependencies at a minimum. These days I try to run as much as I can in virtual
 machines. Nevertheless, this is a list of some programs I have installed in my machine:</p>
 
 <ul>
@@ -103,17 +74,18 @@ machines. Nevertheless, this is a list of some programs I have installed in my m
 <li>f.lux</li>
 </ul>
 
-            </main>
-            <div class="left"></div>
-        </section>
+        
+            <div class="backlink"></div><small><a href="/">↩ back</a></small><br>
+        
         
 <footer>
     <p>
-        <b>Lessmarcos.com</b> © <span id="year">2021</span> —
+        <b><a href="/">Lessmarcos.com</a></b> © <span id="year">2021</span> —
         <a href="https://github.com/lessmarcos/lessmarcos.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
             BY-NC-SA 4.0
-        </a><br>
-        <a href="https://github.com/lessmarcos/lessmarcos.com">Source code</a>
+        </a> —
+        <a href="https://github.com/lessmarcos/lessmarcos.com">Source code</a> —
+        <a href="/about">About</a>
     </p>
 </footer>
 
@@ -154,7 +126,6 @@ function enableParallelSnippets(manuallyTriggered) {
 
     
     for (var s in snippetsByVersion) {
-        console.log(s);
         var snippetIndex = randomSnippets[snippetsByVersion[s].length];
 
         for (var i = 0; i < snippetsByVersion[s].length; i++) {

@@ -3,18 +3,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{{ .Config.description }}">
 <meta name="keywords" content="software, {{ .Config.keywords }}">
-<link rel="stylesheet" href="/{{ .Config.static_dir }}/css/new.css">
-<link rel="shortcut icon" href="https://raw.githubusercontent.com/lessmarcos/lessmarcos.com/master/static/img/icon.ico"/>
+<link rel="stylesheet" href="/{{ .Config.static_dir }}/css/style.css">
+<link rel="shortcut icon" href="/static/myicon.svg"/>
 <title>{{ .Config.sitename }}{{ if .Config.title }} | {{ .Config.title }} {{ end }}</title>
-{{ if .Config.syntax_on }}
-  {{ template "partials_highlighter" . }}
-{{ end }}
-<!--script async src="https://www.googletagmanager.com/gtag/js?id=G-CKSRZTR0B9"></script-->
-<!--script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-CKSRZTR0B9');
-</script-->
+{{/*{{ if .Config.syntax_on }}*/}}
+{{/*  {{ template "partials_highlighter" . }}*/}}
+{{/*{{ end }}*/}}
 {{ end }}

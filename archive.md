@@ -1,6 +1,6 @@
 ---
 title = "Archive"
-dont_show_in_sessions = true
+display_in_sessions = false
 ---
 
 TO DO

@@ -1,6 +1,7 @@
 ---
 title = "Now!"
-dont_show_in_sessions = true
+display_in_sessions = false
+display_date = false
 ---
 
 Things I'm doing at the moment.
@@ -15,10 +16,8 @@ I'm reading:
 
 - Unix and Linux System Administration Handbook by  Evi Nemeth et al.
 - TCP/IP Illustrated, Vol. 1: The Protocols by Kevin R. Fall, W. Richard Stevens
-- Complete Works of Edgar Allan Poe
 - Operating Systems: Three Easy Pieces by Andrea Arpaci-Dusseau and Remzi Arpaci-Dusseau
-- Peopleware by Timothy Lister and Tom DeMarco
-- Cuentos Completos by Borges
+- Site Reliability Engineering: How Google Runs Production Systems by Betsy Beyer et al.
 
 I'm writing:
 

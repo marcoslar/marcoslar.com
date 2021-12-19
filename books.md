@@ -1,11 +1,11 @@
 ---
-title = "B o_o k s"
-dont_show_in_sessions = true
+title = "Bo_oks"
+display_in_sessions = false
 ---
 
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.
 
-#### *2021*
+### *2021*
 - Poems. *Charles Bukowski*
 - Peopleware. *Timothy Lister and Tom DeMarco*
 - Obra poética completa. *César Vallejo*
@@ -19,7 +19,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 - El Hacedor. *Jorge Luis Borges*
 - Ficciones. *Jorge Luis Borges*
 
-#### *2020*
+### *2020*
 - The Art of Computer Programming. *Donald Knuth* (without exercises)
 - A Philosophy of Software Design. *John Ousterhout*
 - Ripley's Game. *Patricia Highsmith*
@@ -43,7 +43,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 - Divina Comedia. *Dante Alighieri*
 - Go Web Programming. *Sau Sheong Chang*
 
-#### *2019*
+### *2019*
 
 - Designing Data-Intensive Applications. *Martin Kleppmann*
 - Overcoming the Five Dysfunctions of a Team. *Patrick Lencioni*
@@ -56,7 +56,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 - Domain Driven Design in PHP. *K. Akbary, C. Buenosvinos, C. Soronellas*
 - The Go Programming Language. *Alan A. A. Donovan, Brian W. Kernighan*
 
-#### *2018*
+### *2018*
 
 - Domain-Driven Design. Tackling Complexity in the Heart of Software. *Eric J. Evans*
 - High Performance MySQL. Optimization, Backups, and Replication. *Baron Schwartz* (50%)
@@ -74,7 +74,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 - High Performance Web Sites. *Steve Souders*
 - Think OS. A Brief Introduction to Operating Systems. *Allen B. Downey*
 
-#### *2017*
+### *2017*
 
 - Fight Club. *Chuck Palahniuk*
 - Post Office. *Charles Bukowski*
@@ -88,7 +88,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 - The Picture of Dorian Gray. *Oscar Wilde*
 - The Little Prince. *Antoine de Saint-Exupéry*
 
-#### *2016*
+### *2016*
 
 - Animal Farm. *George Orwell*
 - The Great Gatsby. *F. Scott Fitzgerald*

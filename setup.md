@@ -1,9 +1,10 @@
 ---
 title = "Setup"
-dont_show_in_sessions = true
+display_in_sessions = false
+display_date = false
 ---
 
-## Hardware
+### Hardware
 
 My first and current laptop is a 
 <a href="https://support.apple.com/kb/sp719?locale=en_US">MacBook Pro (Retina, 15-inch, Mid 2015)</a>
@@ -33,9 +34,9 @@ I'm currently looking for a replacement, but so far nothing comes close
 too big in comparison||the Mighty Vibe? It plays nothing but Spotify playlists; so dumb}@); 
 so if you know some decent and small MP3 player let me know.
 
-## Software
+### Software
 
-I do like to keep dependencies at a minimum. These days I try to run as much as I can in virtual
+I like to keep dependencies at a minimum. These days I try to run as much as I can in virtual
 machines. Nevertheless, this is a list of some programs I have installed in my machine:
 
 - IntelliJ IDEA (e.g., Goland, PyCharm)

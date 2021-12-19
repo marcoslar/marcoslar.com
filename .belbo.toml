@@ -12,6 +12,11 @@ content_dir = [
 templates_dir = "templates"
 output_dir = "dist"
 static_dir = "static"
+plugins_dir = "plugins"
+
+display_title = true
+display_date = true
+display_backlink = true
 
 templates = [
     "head",
@@ -19,5 +24,7 @@ templates = [
     "scripts",
     "highlighter",
     "reload",
-    "nav",
+    "index_left",
+    "index_top",
+    "index_right"
 ]

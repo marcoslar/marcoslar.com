@@ -36,7 +36,6 @@ function enableParallelSnippets(manuallyTriggered) {
 
     // Show one version. Hide the rest
     for (var s in snippetsByVersion) {
-        console.log(s);
         var snippetIndex = randomSnippets[snippetsByVersion[s].length];
 
         for (var i = 0; i < snippetsByVersion[s].length; i++) {

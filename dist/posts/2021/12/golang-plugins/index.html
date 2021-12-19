@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Lessmarcos.com">
+<meta name="keywords" content="software, ">
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="shortcut icon" href="/static/myicon.svg"/>
+<title>Lessmarcos.com | Golang plugins </title>
+
+
+
+
+    </head>
+    <body style="">
+        
+            <span style="display: flex;">
+                <h1><span class="init-ch">G</span>olang plugins</h1>
+                
+                    <small class="homelink"><a href="/">Lessmarcos.com</a></small>
+                
+            </span>
+            
+                <small class="post-date">Saturday, 18 December 2021</small><br><br>
+            
+        
+
+        <p>While working on my static site generator I stumbled upon the
+following one-man requirement:</p>
+
+<blockquote>
+<p>It would be great if I can execute custom template functions</p>
+</blockquote>
+
+<p>Now, while Go provides a way to define, and later use, any kind of function
+in templates via <code>template.FuncMap</code> and <code>template.Funcs</code>, the deal here was
+to be able to define such functions on the fly, and link them to the already
+existing main executable (the static site generator).</p>
+
+<h3>Dynamically-linked libraries</h3>
+
+<p>So, what we need is a way to create our own <em>library</em> of template
+functions, which can be linked to the main executable on demand, at runtime.
+This way we can always update the library without having to recompile the
+main executable again. This sounds a lot quite similar to the concept of
+<a href="https://en.wikipedia.org/wiki/Dynamic_linker">dynamic linking</a>.
+Dynamic linking, in a nutshell, means to bind a (shared) library into
+a running process. The main reason this technique exists is to save
+on memory usage: multiple processes using the same shared library can point
+to a single copy of such library in physical memory. For our particular use
+case, though, the main advantage is to be able to change the shared library
+without having to recompile the main executable.</p>
+
+<h3>Go plugins</h3>
+
+<p>By googling &ldquo;go dynamic linking&rdquo; I ended up in a doc called <a href="https://docs.google.com/document/d/1nr-TQHw_er6GOQRsF6T43GGhFDelrAP0NqSS_00RgZQ/edit">Go execution modes</a>.
+The doc (dated from 2014, and updated in 2016) describes future (now current)
+directions for Go support for shared libraries and related ways of building
+Go programs. Among all the available build modes described in the doc, the build
+mode <code>plugin</code> seems to be the most suitable one for our original requirement.</p>
+
+<h4>The plugin</h4>
+
+<p>Let&rsquo;s say we want our <code>h1</code>s to be rendered with a fancy capital letter (like in the
+title of this blog post). The final result should look as follows:</p>
+
+<pre><code>&lt;h1&gt;&lt;span class=&quot;capital-letter&quot;&gt;G&lt;/span&gt;olang plugins&lt;/h1&gt;
+</code></pre>
+
+<p>And the template that generates the previous HTML should be as easy as:</p>
+
+<pre><code>&lt;h1&gt;{{ .myHeader | fancyTitle }}&lt;/h1&gt;
+</code></pre>
+
+<p>The implementation of <code>fancyTitle</code> should be straightforward:</p>
+
+<p><em>File <code>plugins/plugin.go</code></em></p>
+
+<pre><code>package main // Plugins must live within the main package
+
+import (
+    &quot;fmt&quot;
+    &quot;html/template&quot;
+)
+
+var MyFuncs = template.FuncMap {
+    &quot;fancyTitle&quot;: func(s string) template.HTML {
+        if len(s) &lt; 2 {
+            return template.HTML(s)
+        }
+
+        return template.HTML(
+            fmt.Sprintf(`&lt;span class=&quot;capital-letter&quot;&gt;%s&lt;/span&gt;%s`, s[0:1], s[1:]),
+        )
+    },
+}
+</code></pre>
+
+<p>We put our function within a <code>template.FuncMap</code> because that&rsquo;s what <a href="https://pkg.go.dev/html/template#Template.Funcs"><code>template.Funcs</code></a> expects
+as parameter. The main executable can then load this plugin as follows.</p>
+
+<p><em>File <code>main.go</code></em></p>
+
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;html/template&quot;
+    &quot;os&quot;
+    &quot;os/exec&quot;
+    &quot;plugin&quot;
+)
+
+const PluginFilepath = &quot;plugins/plugin.so&quot;
+
+func main() {
+    var myFuncs template.FuncMap
+    myFuncs = loadFuncs()
+
+    t, err := template.New(&quot;mypage&quot;).Funcs(template.FuncMap(myFuncs)).ParseFiles(&quot;hello.html&quot;)
+    if err != nil {
+        panic(err)
+    }
+
+    err = t.ExecuteTemplate(os.Stdout, &quot;hello.html&quot;, nil)
+    if err != nil {
+        panic(err)
+    }
+}
+
+// LoadFuncs loads the custom template functions from a hardcoded location
+func loadFuncs() template.FuncMap {
+    // Hardcoded location of plugins
+    cmd := exec.Command(&quot;go&quot;, &quot;build&quot;, &quot;-buildmode=plugin&quot;, &quot;-o&quot;, PluginFilepath, &quot;plugins/plugin.go&quot;)
+    err := cmd.Run()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, &quot;Could not build plugin: %s&quot;, err)
+        os.Exit(1)
+    }
+
+    plugin, err := plugin.Open(PluginFilepath)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, &quot;Could not load plugin: %s&quot;, err)
+        os.Exit(1)
+    }
+
+    myFuncsSymbol, err := plugin.Lookup(&quot;MyFuncs&quot;)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, &quot;Could not find the symbol MyFuncs: %s&quot;, err)
+        os.Exit(1)
+    }
+
+    var myFuncs *template.FuncMap
+    myFuncs, ok := myFuncsSymbol.(*template.FuncMap)
+    if !ok {
+        fmt.Fprintf(os.Stderr, &quot;MyFuncs must be of type template.FuncMap&quot;)
+        os.Exit(1)
+    }
+
+    return *myFuncs
+}
+</code></pre>
+
+<p><em>File <code>hello.html</code></em></p>
+
+<pre><code>&lt;h1&gt;{{ Golang plugins | fancyTitle }}&lt;/h1&gt;
+</code></pre>
+
+<p>Explanation of the function <code>loadFuncs</code>:</p>
+
+<ol>
+<li>We build the plugin located in <code>plugins/plugin.go</code> into the file <code>plugins/plugin.so</code></li>
+<li>We open the plugin <code>plugins/plugin.so</code></li>
+<li>We search for the symbol <code>MyFuncs</code> in the plugin</li>
+<li>We assert that the type of <code>MyFuncs</code> is <code>*template.FuncMap</code><sup>1</sup>, and if so we
+return it</li>
+</ol>
+
+<p>In this toy example, there are some assumptions about how the plugin looks like.
+The relative location of the plugin should be known in advance, as well as the
+name and type of the exported symbol. In a more real-world scenario, things could
+be a bit more flexible though.</p>
+
+<h3>Caveats</h3>
+
+<p>There are multiple reasons why Go plugins do not get much love in the Go community.
+To name a few:</p>
+
+<ul>
+<li><p>both the main executable and the plugin(s) must be built using the exact same
+Go compiler version</p></li>
+
+<li><p>if the plugin(s) and the main executable use third-party packages, these versions must
+match exactly as well</p></li>
+
+<li><p>plugins do not work if the main executable was statically built (<code>CGO_ENABLED=0</code>),</p></li>
+</ul>
+
+<h4>Notes</h4>
+
+<p>[1]. When using <code>Lookup</code> to search for a global variable, you get a pointer
+(see this <a href="https://github.com/golang/go/issues/31882">GitHub</a> issue).</p>
+
+        
+            <div class="backlink"></div><small><a href="/">↩ back</a></small><br>
+        
+        
+<footer>
+    <p>
+        <b><a href="/">Lessmarcos.com</a></b> © <span id="year">2021</span> —
+        <a href="https://github.com/lessmarcos/lessmarcos.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
+            BY-NC-SA 4.0
+        </a> —
+        <a href="https://github.com/lessmarcos/lessmarcos.com">Source code</a> —
+        <a href="/about">About</a>
+    </p>
+</footer>
+
+        
+<noscript>
+    <style type="text/css">
+         
+        *[class^="belbo_v"] { display: none; }
+        *[class^="belbo_v1"] { display: inline; }
+    </style>
+</noscript>
+
+<script>
+function enableParallelSnippets(manuallyTriggered) {
+    var snippetsByVersion = {};
+    var versionableSnippets = document.querySelectorAll('[class^="belbo_v"]');
+
+    for (var j = 0; j < versionableSnippets.length; j++) {
+        var snippet = versionableSnippets[j]
+        var majorVersion = snippet.className.split("-")[1];
+        if (majorVersion in snippetsByVersion) {
+            snippetsByVersion[majorVersion].push(snippet);
+            continue;
+        }
+
+        snippetsByVersion[majorVersion] = [snippet];
+    }
+
+    if (Object.keys(snippetsByVersion).length === 0) {
+        return;
+    }
+
+    var randomSnippets = {};
+    for (var s in snippetsByVersion) {
+        var len = snippetsByVersion[s].length;
+        randomSnippets[len] = Math.floor(Math.random() * len) + 1;
+    }
+
+    
+    for (var s in snippetsByVersion) {
+        var snippetIndex = randomSnippets[snippetsByVersion[s].length];
+
+        for (var i = 0; i < snippetsByVersion[s].length; i++) {
+            if (i !== snippetIndex - 1) {
+                snippetsByVersion[s][i].style.display = 'none';
+                
+            } else {
+                snippetsByVersion[s][i].style.display = 'inline';
+            }
+        }
+    }
+
+    if (manuallyTriggered) {
+        var el = document.getElementById('reload-icon');
+        el.classList.remove('spinner');
+        void el.offsetWidth;
+        el.classList.add('spinner');
+    }
+}
+
+function enableReloadPageIcon() {
+    if (document.querySelectorAll('[class^="belbo_v"]').length > 0) {
+        var reloadPageIcon = document.getElementById('reload');
+        if (reloadPageIcon !== null) {
+            reloadPageIcon.style.display = 'inline';
+        }
+    }
+}
+
+function enableRandomTitle() {
+    var titles = [
+        'Asteroid Blues',
+        'Waltz for Venus',
+        'Ganymede Elegy',
+        'Betelgeuse Tango',
+        'Jupiter Jazz',
+        'Ariel Funk',
+        'Callisto Riffs',
+        'Aldebaran Soul',
+        'Venus Grunge',
+    ];
+
+    var el = document.querySelector('#rString');
+    if (el) {
+        el.innerHTML = titles[Math.floor(Math.random() * titles.length)];
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function(e) {
+    enableRandomTitle();
+    enableParallelSnippets((manuallyTriggered = false));
+    enableReloadPageIcon();
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+    
+});
+
+</script>
+
+    </body>
+</html>

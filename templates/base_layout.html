@@ -4,24 +4,23 @@
     <head>
         {{ template "partials_head" . }}
     </head>
-    <body>
-        <header>
-            <a href="/">
-                <div class="logobox">
-                    <div class="logo"><div>LESS</div><div>MARCOS</div></div>
-                </div>
-            </a>
-        </header>
-        <section class="main-and-nav">
-            <nav>{{ template "partials_nav" . }}</nav>
-            <main>
-                {{ if (and (.Config.title) (ne .Title "Log") (ne .Title "Home") ) }}
-                    <h1>{{ .Config.title }}</h1>
+    <body style="{{ if .Config.style }}{{ range $style := .Config.style }}{{ $style }};{{ end }}{{ end }}">
+        {{ if .Config.display_title }}
+            <span style="display: flex;">
+                <h1>{{ .Config.title | fancyTitle }}</h1>
+                {{ if .Config.display_backlink }}
+                    <small class="homelink"><a href="/">Lessmarcos.com</a></small>
                 {{ end }}
-                {{ template "content" . }}
-            </main>
-            <div class="left"></div>
-        </section>
+            </span>
+            {{ if .Config.display_date }}
+                <small class="post-date">{{ .CreatedAt.Format "Monday, 02 January 2006" }}</small><br><br>
+            {{ end }}
+        {{ end }}
+
+        {{ template "content" . }}
+        {{ if .Config.display_backlink }}
+            <div class="backlink"></div><small><a href="/">↩ back</a></small><br>
+        {{ end }}
         {{ template "partials_footer" . }}
         {{ template "partials_scripts" . }}
     </body>

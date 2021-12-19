@@ -7,65 +7,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Lessmarcos.com">
 <meta name="keywords" content="software, ">
-<link rel="stylesheet" href="/static/css/new.css">
-<link rel="shortcut icon" href="https://raw.githubusercontent.com/lessmarcos/lessmarcos.com/master/static/img/icon.ico"/>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="shortcut icon" href="/static/myicon.svg"/>
 <title>Lessmarcos.com | About </title>
 
 
 
 
     </head>
-    <body>
-        <header>
-            <a href="/">
-                <div class="logobox">
-                    <div class="logo"><div>LESS</div><div>MARCOS</div></div>
-                </div>
-            </a>
-        </header>
-        <section class="main-and-nav">
-            <nav>
-<section class="bulletless">
-    <section>
-        <h3>About(s)</h3>
-        <ul>
-            <li><a href="/about/">Me</a></li>
-            <li><a href="/setup/">Setup</a></li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>Blog</h3>
-        <ul class="capitalize">
-            <li><a href="/sessions/">Sessions</a></li>
-            <li><a href="/log/">Log</a></li>
-            <li><a href="/now/">Now!</a></li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>Meta</h3>
-        <ul class="capitalize">
-            <li><a href="/archive/">Archive</a></li>
-        </ul>
-    </section>
-</section>
-</nav>
-            <main>
+    <body style="">
+        
+            <span style="display: flex;">
+                <h1><span class="init-ch">A</span>bout</h1>
                 
-                    <h1>About</h1>
+                    <small class="homelink"><a href="/">Lessmarcos.com</a></small>
                 
-                <h2>About this site</h2>
+            </span>
+            
+        
+
+        <h3>About this site</h3>
 
 <p><span class="belbo_v1-s1">This is just another site on the web.</span><span class="belbo_v2-s1">This is one of the top 500 sites
 on the web according to <a href="https://www.alexa.com/topsites">Alexa</a>.</span>
-In the past it has lived under different names&mdash;and perhaps it has belonged
-to different owners&mdash;but at the moment its name has a very silly prefix
-on it.<br />
+In the past it has lived under different names—and perhaps it has belonged
+to different owners—but at the moment its name has a very silly prefix
+on it.
 If there is anything that may distinguish this site from others is that
-it is what I call a <em>parallel web site</em> (or <em>parasite</em>). This means that for every page P
+it is what I call a <em>parallel web site</em> (or <em>parasite</em>, or <em>parablog</em>). This means that for every page P
 on this site, there may exist multiple versions of P and all of them co-exist
-under the same URL of P. Take this page as an example: refresh the page
+under the same URL. Take this page as an example: refresh the page
 and you may get a different version of it; a version
 that conveys the same meaning (<span class="belbo_v1-s2">sometimes</span><span class="belbo_v2-s2">most of the time</span>) but it&rsquo;s
 written in a different way. You can find out more about this
@@ -75,7 +46,7 @@ idea in the post <a href="https://www.lessmarcos.com/posts/2020/08/parallel-blog
 <p>This site is built with <a href="https://github.com/lessmarcos/belbo">belbo</a>.<br />
 This site has been online since <span class="belbo_v1-s4">2012</span><span class="belbo_v2-s4">1998</span>.</p>
 
-<h2>About me</h2>
+<h3>About me</h3>
 
 <p>I&rsquo;m Marcos.<br />
 To the other one, to Marcos, is to whom things happen. From Marcos
@@ -97,17 +68,18 @@ way&hellip; I never fully understood that either.</p>
 <p><em><small>The <b>About me</b> section is paraphrasing the short
 story <a href="https://en.wikipedia.org/wiki/Borges_and_I">Borges y Yo</a>.</small></em></p>
 
-            </main>
-            <div class="left"></div>
-        </section>
+        
+            <div class="backlink"></div><small><a href="/">↩ back</a></small><br>
+        
         
 <footer>
     <p>
-        <b>Lessmarcos.com</b> © <span id="year">2021</span> —
+        <b><a href="/">Lessmarcos.com</a></b> © <span id="year">2021</span> —
         <a href="https://github.com/lessmarcos/lessmarcos.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
             BY-NC-SA 4.0
-        </a><br>
-        <a href="https://github.com/lessmarcos/lessmarcos.com">Source code</a>
+        </a> —
+        <a href="https://github.com/lessmarcos/lessmarcos.com">Source code</a> —
+        <a href="/about">About</a>
     </p>
 </footer>
 
@@ -148,7 +120,6 @@ function enableParallelSnippets(manuallyTriggered) {
 
     
     for (var s in snippetsByVersion) {
-        console.log(s);
         var snippetIndex = randomSnippets[snippetsByVersion[s].length];
 
         for (var i = 0; i < snippetsByVersion[s].length; i++) {

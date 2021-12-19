@@ -1,7 +1,7 @@
 ---
-title = "v a p o r w a v e"
+title = "V a p o r w a v e"
 categories = ["music"]
-style = ["background-color:#fbb9b96e"]
+style = ["background-color:#fbb9b96e", "color: black !important"]
 li_style = ["background-color:pink", "color:white"]
 ---
 

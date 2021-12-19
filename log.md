@@ -1,11 +1,15 @@
 ---
 title = "Log"
-dont_show_in_sessions = true
+display_in_sessions = false
+display_date = false
 ---
 
-# Log
+### December 2021
 
-## July 2021
+<div class="post-date">19 Dec 2021</div>
+I changed the design of the website one more time. I actually kinda like it now.
+
+### July 2021
 
 <div class="post-date">07 Jul 2021</div>
 While I appreciate tools like `go fmt`, I think third-party linters add little value to already
@@ -15,7 +19,7 @@ let's focus on the big picture! An extra semicolon is not going to make the proj
 value (e.g., don't put business logic in the transport layer, proper error logging, don't use
 logs when metrics are enough, good commit messages for important features, etc.)
 
-## June 2021
+### June 2021
 
 <div class="post-date">06 Jun 2021</div>
 Once again I have changed the style of the website. I had to update [belbo] to support content

@@ -7,57 +7,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Lessmarcos.com">
 <meta name="keywords" content="software, ">
-<link rel="stylesheet" href="/static/css/new.css">
-<link rel="shortcut icon" href="https://raw.githubusercontent.com/lessmarcos/lessmarcos.com/master/static/img/icon.ico"/>
-<title>Lessmarcos.com | B o_o k s </title>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="shortcut icon" href="/static/myicon.svg"/>
+<title>Lessmarcos.com | Bo_oks </title>
 
 
 
 
     </head>
-    <body>
-        <header>
-            <a href="/">
-                <div class="logobox">
-                    <div class="logo"><div>LESS</div><div>MARCOS</div></div>
-                </div>
-            </a>
-        </header>
-        <section class="main-and-nav">
-            <nav>
-<section class="bulletless">
-    <section>
-        <h3>About(s)</h3>
-        <ul>
-            <li><a href="/about/">Me</a></li>
-            <li><a href="/setup/">Setup</a></li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>Blog</h3>
-        <ul class="capitalize">
-            <li><a href="/sessions/">Sessions</a></li>
-            <li><a href="/log/">Log</a></li>
-            <li><a href="/now/">Now!</a></li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>Meta</h3>
-        <ul class="capitalize">
-            <li><a href="/archive/">Archive</a></li>
-        </ul>
-    </section>
-</section>
-</nav>
-            <main>
+    <body style="">
+        
+            <span style="display: flex;">
+                <h1><span class="init-ch">B</span>o_oks</h1>
                 
-                    <h1>B o_o k s</h1>
+                    <small class="homelink"><a href="/">Lessmarcos.com</a></small>
                 
-                <p>Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.</p>
+            </span>
+            
+                <small class="post-date">Monday, 01 January 0001</small><br><br>
+            
+        
 
-<h4><em>2021</em></h4>
+        <p>Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.</p>
+
+<h3><em>2021</em></h3>
 
 <ul>
 <li>Poems. <em>Charles Bukowski</em></li>
@@ -74,7 +47,7 @@
 <li>Ficciones. <em>Jorge Luis Borges</em></li>
 </ul>
 
-<h4><em>2020</em></h4>
+<h3><em>2020</em></h3>
 
 <ul>
 <li>The Art of Computer Programming. <em>Donald Knuth</em> (without exercises)</li>
@@ -101,7 +74,7 @@
 <li>Go Web Programming. <em>Sau Sheong Chang</em></li>
 </ul>
 
-<h4><em>2019</em></h4>
+<h3><em>2019</em></h3>
 
 <ul>
 <li>Designing Data-Intensive Applications. <em>Martin Kleppmann</em></li>
@@ -116,7 +89,7 @@
 <li>The Go Programming Language. <em>Alan A. A. Donovan, Brian W. Kernighan</em></li>
 </ul>
 
-<h4><em>2018</em></h4>
+<h3><em>2018</em></h3>
 
 <ul>
 <li>Domain-Driven Design. Tackling Complexity in the Heart of Software. <em>Eric J. Evans</em></li>
@@ -136,7 +109,7 @@
 <li>Think OS. A Brief Introduction to Operating Systems. <em>Allen B. Downey</em></li>
 </ul>
 
-<h4><em>2017</em></h4>
+<h3><em>2017</em></h3>
 
 <ul>
 <li>Fight Club. <em>Chuck Palahniuk</em></li>
@@ -152,7 +125,7 @@
 <li>The Little Prince. <em>Antoine de Saint-Exupéry</em></li>
 </ul>
 
-<h4><em>2016</em></h4>
+<h3><em>2016</em></h3>
 
 <ul>
 <li>Animal Farm. <em>George Orwell</em></li>
@@ -187,17 +160,18 @@
 <li>A few ones&hellip;</li>
 </ul>
 
-            </main>
-            <div class="left"></div>
-        </section>
+        
+            <div class="backlink"></div><small><a href="/">↩ back</a></small><br>
+        
         
 <footer>
     <p>
-        <b>Lessmarcos.com</b> © <span id="year">2021</span> —
+        <b><a href="/">Lessmarcos.com</a></b> © <span id="year">2021</span> —
         <a href="https://github.com/lessmarcos/lessmarcos.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
             BY-NC-SA 4.0
-        </a><br>
-        <a href="https://github.com/lessmarcos/lessmarcos.com">Source code</a>
+        </a> —
+        <a href="https://github.com/lessmarcos/lessmarcos.com">Source code</a> —
+        <a href="/about">About</a>
     </p>
 </footer>
 
@@ -238,7 +212,6 @@ function enableParallelSnippets(manuallyTriggered) {
 
     
     for (var s in snippetsByVersion) {
-        console.log(s);
         var snippetIndex = randomSnippets[snippetsByVersion[s].length];
 
         for (var i = 0; i < snippetsByVersion[s].length; i++) {

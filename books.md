@@ -6,6 +6,7 @@ display_in_sessions = false
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.
 
 ### *2021*
+- Shape Up: Stop Running in Circles and Ship Work that Matters. *Ryan Singer*
 - Poems. *Charles Bukowski*
 - Peopleware. *Timothy Lister and Tom DeMarco*
 - Obra poética completa. *César Vallejo*

@@ -80,7 +80,7 @@ machines. Nevertheless, this is a list of some programs I have installed in my m
         
 <footer>
     <p>
-        <b><a href="/">Lessmarcos.com</a></b> © <span id="year">2021</span> —
+        <b><a href="/">Lessmarcos.com</a></b> © <span id="year">2012–2022</span> —
         <a href="https://github.com/lessmarcos/lessmarcos.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
             BY-NC-SA 4.0
         </a> —
@@ -178,8 +178,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     enableRandomTitle();
     enableParallelSnippets((manuallyTriggered = false));
     enableReloadPageIcon();
-    document.getElementById("year").innerHTML = new Date().getFullYear();
-    
+    document.getElementById("year").innerHTML = 2012 + "–" + (new Date().getFullYear());
 });
 
 </script>

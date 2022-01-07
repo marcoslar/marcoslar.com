@@ -88,8 +88,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     enableRandomTitle();
     enableParallelSnippets((manuallyTriggered = false));
     enableReloadPageIcon();
-    document.getElementById("year").innerHTML = new Date().getFullYear();
-    //document.getElementById("timestamp").innerHTML = "[Last edit: ]";
+    document.getElementById("year").innerHTML = 2012 + "–" + (new Date().getFullYear());
 });
 
 </script>

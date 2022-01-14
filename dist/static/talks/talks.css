@@ -1,0 +1,190 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-stretch: 100%;
+    src: url('/static/talks/fonts/OpenSans/open-sans-v27-latin-300.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: 100%;
+    src: url('/static/talks/fonts/OpenSans/open-sans-v27-latin-400.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-stretch: 100%;
+    src: url('/static/talks/fonts/OpenSans/open-sans-v27-latin-600.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-stretch: 100%;
+    src: url('/static/talks/fonts/OpenSans/open-sans-v27-latin-800.woff2') format('woff2');
+}
+
+* {
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.slides.intro {
+    text-align: left;
+}
+
+body {
+    background: rgb(215, 215, 215);
+    background: -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background: -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background: -webkit-gradient(
+            radial,
+            50% 50%,
+            0,
+            50% 50%,
+            500,
+            from(rgb(240, 240, 240)),
+            to(rgb(190, 190, 190))
+    );
+
+    background: -webkit-gradient(
+            radial,
+            50% 50%,
+            0,
+            50% 50%,
+            500,
+            from(rgb(240, 240, 240)),
+            to(rgb(0 0 0))
+    );
+
+    -webkit-font-smoothing: antialiased;
+}
+
+.slides > section {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    width: 900px;
+    height: 700px;
+    left: 50%;
+    top: 50%;
+    margin-left: -450px;
+    margin-top: -350px;
+    padding: 40px 60px;
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 10px;
+    -o-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    -moz-transition: -moz-transform 0.3s ease-out;
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+
+    color: black;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    font-size: 26px;
+    line-height: 36px;
+    letter-spacing: -1px;
+}
+
+
+h1 {
+    font-size: 60px;
+    line-height: 60px;
+    padding: 0;
+    margin: 0;
+    margin-top: 200px;
+    margin-bottom: 5px;
+    padding-right: 40px;
+    font-weight: 600;
+    letter-spacing: -3px;
+    color: rgb(51, 51, 51);
+}
+
+h2 {
+    font-size: 45px;
+    line-height: 45px;
+    position: absolute;
+    bottom: 150px;
+    padding: 0;
+    margin: 0;
+    padding-right: 40px;
+    font-weight: 600;
+    letter-spacing: -2px;
+    color: rgb(51, 51, 51);
+}
+
+h3 {
+    font-size: 30px;
+    line-height: 36px;
+    padding: 0;
+    margin: 0;
+    padding-right: 40px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: rgb(51, 51, 51);
+}
+
+.presenter {
+    margin-top: 20px;
+}
+.presenter p,
+.presenter .link {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.2em;
+}
+
+code {
+    font-size: 95%;
+    font-family: 'Droid Sans Mono', 'Courier New', monospace;
+    color: black;
+}
+
+.image {
+    text-align: center;
+    margin-top: 40px;
+}
+
+pre {
+    margin: 0;
+    padding: 0;
+    font-family: 'Droid Sans Mono', 'Courier New', monospace;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -1px;
+    color: black;
+
+    padding: 5px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+
+    background: rgb(240, 240, 240);
+    border: 1px solid rgb(224, 224, 224);
+}
+
+pre.numbers span:before {
+    content: attr(num);
+    margin-right: 1em;
+    display: inline-block;
+}
+
+code {
+    font-size: 95%;
+    font-family: 'Droid Sans Mono', 'Courier New', monospace;
+
+    color: black;
+}

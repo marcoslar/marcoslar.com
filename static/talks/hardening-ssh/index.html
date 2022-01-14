@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>Hardening SSH</title>
+		<link rel="stylesheet" href="/static/talks/reveal/reveal.css">
+		<link rel="stylesheet" href="/static/talks/talks.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides intro">
+				<section data-markdown class="bldack">
+                    <textarea data-template>
+# Hardening SSH
+### LinuxPa Spain, Nov 09, 2018</h3>
+
+<div class="presenter">
+<p>E. Marcos</p>
+<a style="color: black" href="https://www.lessmarcos.com">www.lessmarcos.com</a>
+</div>
+                    </textarea>
+				</section>
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+### A bit of context
+- **<span style="color: #F2CA30">Open</span><span style="color: #CF4229">SSH</span>** 7.9
+- Ubuntu 18.04
+- We focus on hardening the `sshd` daemon (i.e., `/etc/ssh/sshd_config`)
+- Not covered here: SELinux, MFA, cryptographic devices to store keys, brute-force protection
+
+### Disclaimer
+- This is just an introduction to SSH hardening, not a reference guide
+
+<div class="image">
+	<img src="/static/talks/hardening-ssh/ssh.png" height="150px" alt="OpenSSH logo" style="filter: grayscale(75%);">
+</div>
+                    </textarea>
+                </section>
+
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+## Hardening `/etc/ssh/sshd_config`
+                    </textarea>
+				</section>
+
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+### Before you start
+
+- Don't get yourself locked out of your server while hardening (!)
+- Have open two SSH sessions
+- Use one of the sessions to update the SSH daemon configuration file
+                    </textarea>
+				</section>
+
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+### Strict modes
+
+```
+StrictModes yes
+```
+
+- Force `sshd` to check the permissions of important files and directories
+- Owned by root or the account owner. Group and world write permissions disabled
+	- `~/.ssh/authorized_keys`
+	- `~/.ssh`
+	- The user's home directory
+	- The user and system "known hosts" files
+                    </textarea>
+				</section>
+
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+### Port number and network interface
+
+```
+Port 605
+```
+
+- "Security through obscurity"... but it usually keeps away *script kiddies* and
+regular scanners
+- Do not use an unprivileged port: any user, local or remote, can DDoS it
+until it crashes. Then any non-root user can start its own `sshd` daemon on
+the same port
+
+```
+ListenAddress 172.16.20.20
+```
+
+- By default, the port is bound to all network interfaces in your host (`0.0.0.0`).
+You may not always want that
+
+
+                    </textarea>
+				</section>
+
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+### Keep alive messages
+
+```
+TCPKeepAlive yes
+```
+
+- Prevents half-dead connections from building up over time
+- Operates on the TCP layer. `sshd` does not set the timers (they are
+properties of the host's TCP stack)
+
+```
+ClientAliveInterval 300
+ClientAliveCountMax 3
+```
+
+- The server will send "alive?" messages to the client every 5 minutes until
+it receives a response or gives up and then terminates the connection
+                    </textarea>
+				</section>
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+### Failed logins
+
+```
+LoginGraceTime 30
+MaxAuthTries 3
+```
+
+- The server disconnects the client after a number of failed authentication
+requests (forces SSH brute force attackers to initiate new connections)
+- Make sure you use `IdentityFile` in the client side to associate particular
+keys with particular hosts
+
+
+                    </textarea>
+				</section>
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+### Maximum number of simultaneous connections
+
+```
+MaxStartups 5:50:10
+```
+
+- Refuses connections based on probabilities
+- To conserve resources on your host
+- To reduce the risk of denial-of-service attacks
+
+                    </textarea>
+				</section>
+
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+### Ciphers, Macs and key exchange algorithms
+
+```
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,
+aes256-ctr,aes192-ctr,aes128-ctr
+
+Macs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,
+umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,
+ecdh-sha2-nistp384,ecdh-sha2-nistp256
+```
+
+- Remove AES, MD5 and SHA-1 support
+                    </textarea>
+				</section>
+
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+### Authentication
+
+```
+PasswordAuthentication no
+PubKeyAuthentication yes
+HostbasedAuthentication no
+ChallengeResponseAuthentication no
+GSSAPIAuthentication no
+PermitRootLogin no
+AuthenticationMethods publickey
+```
+
+- Disable password-based logins
+
+                    </textarea>
+				</section>
+
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+### Key generation
+
+```
+ssh-keygen -t ed25519 -f ssh_host_ed25519_$(date +%Y-%m-%d) -C "Server X key"
+```
+
+- Unique for each server
+- Favor ED25519 keys over RSA keys if backward compatibility is not required
+- Favor `ProxyJump` over agent forwarding if you need to jump between hosts
+
+                    </textarea>
+				</section>
+
+				<section data-markdown class="normal-slide">
+                    <textarea data-template>
+### References
+
+- SSH, The Secure Shell: The Definitive Guide by Daniel J. Barrett
+and Richard Silverman
+
+                    </textarea>
+				</section>
+			</div>
+		</div>
+		<script src="/static/talks/reveal/reveal.js"></script>
+		<script src="/static/talks/reveal/notes.js"></script>
+		<script src="/static/talks/reveal/markdown.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+                controls: false,
+                progress: true,
+                slideNumber: true,
+                transition: 'none',
+                center: false,
+				backgroundTransition: 'none',
+				disableLayout: false,
+				plugins: [ RevealMarkdown, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

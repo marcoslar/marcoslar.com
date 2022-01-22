@@ -1,11 +1,17 @@
 ---
 title = "Bo_oks"
 display_in_sessions = false
+display_date = false
 ---
 
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.
 
+### *2022*
+
+- UNIX and Linux System Administration Handbook. *Evi Nemeth, Garth Snyder, et al.*
+
 ### *2021*
+- UNIX and Linux System Administration Handbook. *Evi Nemeth, Garth Snyder, et al.* (80%)
 - Shape Up: Stop Running in Circles and Ship Work that Matters. *Ryan Singer*
 - Poems. *Charles Bukowski*
 - Peopleware. *Timothy Lister and Tom DeMarco*

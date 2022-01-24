@@ -12,4 +12,8 @@ I always forget how to do this stuff.
 $ stat -c '%a' ~/.ssh/authorized_keys
 ```
 
-- ...
+- Create parent directories as needed
+
+```
+$ mkdir -p env/roles/nginx/{tasks,handlers,defaults}
+```

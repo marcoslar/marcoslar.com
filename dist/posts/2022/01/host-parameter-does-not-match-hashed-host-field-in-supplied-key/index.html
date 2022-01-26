@@ -9,7 +9,7 @@
 <meta name="keywords" content="software, ">
 <link rel="stylesheet" href="/static/css/style.css">
 <link rel="shortcut icon" href="/static/myicon.svg"/>
-<title>Lessmarcos.com | Sessions </title>
+<title>Lessmarcos.com | Host parameter does not match hashed host field in supplied key </title>
 
 
 
@@ -18,93 +18,39 @@
     <body style="">
         
             <span style="display: flex;">
-                <h1><span class="init-ch">S</span>essions</h1>
+                <h1><span class="init-ch">H</span>ost parameter does not match hashed host field in supplied key</h1>
                 
                     <small class="homelink"><a href="/">Lessmarcos.com</a></small>
                 
             </span>
             
+                <small class="post-date">Tuesday, 25 January 2022</small><br><br>
+            
         
 
-        <ul class="posts">
+        <p>While using the <a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/known_hosts_module.html"><code>known_hosts</code></a> Ansible module, I stumbled upon the error
+message that gives name to this blog post. All I could find was
+this <a href="https://github.com/ansible/ansible/issues/54661">GitHub issue</a> which unfortunately didn&rsquo;t help me much.
+I wasn&rsquo;t hashing the hostname (<code>hash_host: false</code>), and the key had
+a valid format (as per the section SSH_KNOWN_HOSTS FILE FORMAT in the
+<code>sshd(8)</code> man page).</p>
 
-    
-    <li>
-           <span class="post-date">25 Jan 2022</span>
-           
-                <a
-                 style=""
-                 href="/posts/2022/01/host-parameter-does-not-match-hashed-host-field-in-supplied-key/">Host parameter does not match hashed host field in supplied key</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">18 Dec 2021</span>
-           
-                <a
-                 style=""
-                 href="/posts/2021/12/golang-plugins/">Golang plugins</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">29 Aug 2020</span>
-           
-                <a
-                 style=""
-                 href="/posts/2020/08/parallel-blogs/">Parallel blogs (or parablogs)</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">02 May 2017</span>
-           
-                <a
-                 style="background-color:pink;color:white;"
-                 href="/posts/2017/05/vaporwave/">V a p o r w a v e</a>
-           
-        </li>
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-</ul>
+<p>My problem was that I was dealing with an ssh server that listened on
+a port other than 22. The documentation for the <code>known_host</code> module says:</p>
+
+<blockquote>
+<p>For custom SSH port, name needs to specify port as well. See example section.</p>
+</blockquote>
+
+<p>And the format is a bit special. Example:</p>
+
+<pre><code>- name: Add public key
+  known_hosts:
+    name: &quot;[{{ my_host }}]:{{ my_custom_port }}&quot;
+    key: &quot;{{ lookup(&#39;pipe&#39;, &#39;ssh-keyscan -p {{ my_custom_port }} {{ my_host }}&#39;) }}&quot;
+</code></pre>
+
+<p>Notice the square brackets around the hostname.</p>
 
         
             <div class="backlink"></div><small><a href="/">↩ back</a></small><br>

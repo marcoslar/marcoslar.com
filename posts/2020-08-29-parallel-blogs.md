@@ -65,4 +65,4 @@ My favourite book is @{Foucault's Pendulum||Fictions}@.
 It's shorter and less distracting (for the writer). The `<span>` tags and 
 CSS classes are added automatically. While I could have implemented it in JavaScript, 
 I thought it was worth adding it to my static site generator 
-[belbo](https://github.com/lessmarcos/belbo).
+[belbo](https://github.com/marcoslar/belbo).

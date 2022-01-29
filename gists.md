@@ -17,3 +17,9 @@ $ stat -c '%a' ~/.ssh/authorized_keys
 ```
 $ mkdir -p env/roles/nginx/{tasks,handlers,defaults}
 ```
+
+- Search for strings in git history excluding certain files
+
+```
+git log -S "private-key" -p -- . ':(exclude)*.html*' ':(exclude)*.js*'
+```

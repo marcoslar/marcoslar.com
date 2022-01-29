@@ -10,8 +10,7 @@ display_date = false
 @{This is just another site on the web.||This is one of the top 500 sites 
 on the web according to [Alexa](https://www.alexa.com/topsites).}@ 
 In the past it has lived under different names—and perhaps it has belonged
-to different owners—but at the moment its name has a very silly prefix 
-on it.
+to different owners—but at the moment its name has a [weird suffix][1] on it.
 If there is anything that may distinguish this site from others is that 
 it is what I call a *parallel web site* (or *parasite*, or *parablog*). This means that for every page P
 on this site, there may exist multiple versions of P and all of them co-exist 
@@ -19,10 +18,10 @@ under the same URL. Take this page as an example: refresh the page
 and you may get a different version of it; a version 
 that conveys the same meaning (@{sometimes||most of the time}@) but it's
 written in a different way. You can find out more about this 
-idea in the post [Parallel Blogs](https://www.lessmarcos.com/posts/2020/08/parallel-blogs/).
+idea in the post [Parallel Blogs][2].
 @{It's a silly idea,||It's a tremendous idea,}@ I know.
 
-This site is built with [belbo](https://github.com/lessmarcos/belbo).  
+This site is built with [belbo][3].  
 This site has been online since @{2012||1998}@.
 
 ### About me
@@ -46,3 +45,7 @@ way... I never fully understood that either.
 
 *<small>The <b>About me</b> section is paraphrasing the short 
 story [Borges y Yo](https://en.wikipedia.org/wiki/Borges_and_I).</small>*
+
+[1]: https://en.wikipedia.org/wiki/Turkish_grammar#Inflectional_suffixes
+[2]: https://www.marcoslar.com/posts/2020/08/parallel-blogs/
+[3]: https://github.com/marcoslar/belbo

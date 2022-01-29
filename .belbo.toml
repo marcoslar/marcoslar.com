@@ -1,10 +1,10 @@
 # Default site settings
 
-sitename = "Lessmarcos.com"
-title = "Lessmarcos"
+sitename = "Marcoslar.com"
+title = "Marcoslar"
 author = "Marcos"
 layout = "base_layout"
-description = "Lessmarcos.com"
+description = "Marcoslar.com"
 
 content_dir = [
     "posts",

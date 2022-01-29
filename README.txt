@@ -1,5 +1,5 @@
-WWW.LESSMARCOS.COM
+WWW.MARCOSLAR.COM
 
 ---------------
 
-Personal web site built with belbo (https://github.com/lessmarcos/belbo).
+Personal web site built with belbo (https://github.com/marcoslar/belbo).

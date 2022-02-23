@@ -9,7 +9,7 @@
 <meta name="keywords" content="software, ">
 <link rel="stylesheet" href="/static/css/style.css">
 <link rel="shortcut icon" href="/static/myicon.svg"/>
-<title>Marcoslar.com | Sessions </title>
+<title>Marcoslar.com | Ansible facts gathering skipped when specifying tags </title>
 
 
 
@@ -18,102 +18,76 @@
     <body style="">
         
             <span style="display: flex;">
-                <h1><span class="init-ch">S</span>essions</h1>
+                <h1><span class="init-ch">A</span>nsible facts gathering skipped when specifying tags</h1>
                 
                     <small class="homelink"><a href="/">Marcoslar.com</a></small>
                 
             </span>
             
+                <small class="post-date">Wednesday, 23 February 2022</small><br><br>
+            
         
 
-        <ul class="posts">
+        <p><strong>Pierly</strong>: I want to install Docker in a server (Ubuntu 20.04) via Ansible.</p>
 
-    
-    <li>
-           <span class="post-date">23 Feb 2022</span>
-           
-                <a
-                 style=""
-                 href="/posts/2022/02/facts-gathering-skipped-when-specifying-tags/">Ansible facts gathering skipped when specifying tags</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">25 Jan 2022</span>
-           
-                <a
-                 style=""
-                 href="/posts/2022/01/host-parameter-does-not-match-hashed-host-field-in-supplied-key/">Host parameter does not match hashed host field in supplied key</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">18 Dec 2021</span>
-           
-                <a
-                 style=""
-                 href="/posts/2021/12/golang-plugins/">Golang plugins</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">29 Aug 2020</span>
-           
-                <a
-                 style=""
-                 href="/posts/2020/08/parallel-blogs/">Parallel blogs (or parablogs)</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">02 May 2017</span>
-           
-                <a
-                 style="background-color:pink;color:white;"
-                 href="/posts/2017/05/vaporwave/">V a p o r w a v e</a>
-           
-        </li>
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-</ul>
+<p><strong>Tortoise</strong>: There is a playbook to setup that server and it looks as follows:</p>
+
+<p><em>(<code>setup.yml</code> file)</em></p>
+
+<pre><code>... other plays ...
+
+- name: Setup load balancers
+  hosts: balancers
+  become: true
+  gather_facts: true
+  roles:
+    - role: nginx
+      tags: nginx
+    - role: docker
+      tags: docker
+  tags:
+    - setup
+</code></pre>
+
+<p><strong>Tortoise</strong>: And by the way, the role <code>docker</code> contains, among other tasks, the following one:</p>
+
+<p><em>(<code>roles/docker/tasks/main.yml</code> file)</em></p>
+
+<pre><code>... other tasks ...
+
+- name: Add upstream repository
+  apt_repository:
+    repo: &quot;deb {{ apt_url }} {{ ansible_distribution_release }} stable&quot;
+</code></pre>
+
+<p><strong>Pierly</strong>: Easy task. But, alas, I run <code>ansible-playbook setup.yml --limit balancers --tags docker</code>
+and it fails with the following message:</p>
+
+<pre><code>The task includes an option with an undefined variable. The error was: 'ansible_distribution_release' is undefined
+</code></pre>
+
+<p><strong>Tortoise</strong>: Damn it! Facts gathering. Not happening. It seems like &ldquo;it&rsquo;s a feature not a bug&rdquo; kind of
+thing. The topic has been discussed <a href="https://github.com/ansible/ansible/issues/57529#issuecomment-500886760">here</a>.</p>
+
+<p><strong>Pierly</strong>: Adding the following play at the top of the playbook seems to be good enough:</p>
+
+<p><em>(<code>roles/docker/tasks/main.yml</code> file)</em></p>
+
+<pre><code>- hosts: all
+  become: true
+  gather_facts: true
+
+... other plays ...
+</code></pre>
+
+<p><strong>Pierly</strong>: Everything works as expected because the <em>Facthering</em> part will be implicitly executed
+every time.</p>
+
+<p><strong>Tortoise</strong>: Facthering?</p>
+
+<p><strong>Pierly</strong>: For &ldquo;fact gathering&rdquo;.</p>
+
+<p><strong>Tortoise</strong>: I&rsquo;m late for a race. Wir sehen uns später.</p>
 
         
             <div class="backlink"></div><small><a href="/">↩ back</a></small><br>

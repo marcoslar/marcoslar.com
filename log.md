@@ -4,6 +4,12 @@ display_in_sessions = false
 display_date = false
 ---
 
+### February 2022
+<div class="post-date">23 Feb 2022</div>
+
+I discovered GitLab's [Dependency Proxy](https://docs.gitlab.com/ee/user/packages/dependency_proxy/index.html). It's like a private cache for Docker images, and
+available in the free tier 🤑
+
 ### January 2022
 
 <div class="post-date">27 Jan 2022</div>

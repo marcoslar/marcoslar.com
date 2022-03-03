@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2022*
 
+- All You Zombies. *Robert A. Heinlein*
 - Ripley Under Water. *Patricia Highsmith*
 - UNIX and Linux System Administration Handbook. *Evi Nemeth, Garth Snyder, et al.*
 

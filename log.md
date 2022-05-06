@@ -4,6 +4,12 @@ display_in_sessions = false
 display_date = false
 ---
 
+### March 2022
+<div class="post-date">10 Mar 2022</div>
+
+GitLab's [Dependency Proxy](https://docs.gitlab.com/ee/user/packages/dependency_proxy/index.html)
+[doesn't seem to support](https://gitlab.com/gitlab-org/gitlab/-/issues/349466) multi-architecture upstream image repositories 😔
+
 ### February 2022
 <div class="post-date">23 Feb 2022</div>
 

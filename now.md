@@ -17,8 +17,8 @@ I'm reading:
 - Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions by Gregor Hohpe 
 - A History of Western Philosophy by Bertrand Russell
 - TCP/IP Illustrated, Vol. 1: The Protocols by Kevin R. Fall, W. Richard Stevens
-- Operating Systems: Three Easy Pieces by Andrea Arpaci-Dusseau and Remzi Arpaci-Dusseau
 - Site Reliability Engineering: How Google Runs Production Systems by Betsy Beyer et al.
+- MongoDB: The Definitive Guide by Kristina Chodorow and Michael Dirolf
 
 I'm writing:
 

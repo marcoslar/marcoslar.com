@@ -6,7 +6,7 @@ display_date = false
 
 ### Hardware
 
-My first and current laptop is a 
+My first ~~and current~~ laptop was a 
 <a href="https://support.apple.com/kb/sp719?locale=en_US">MacBook Pro (Retina, 15-inch, Mid 2015)</a>
 with 16GB of RAM and 256GB of storage. 
 I've bought it in 2016 because back then I started to use Macs at work, and I 
@@ -14,6 +14,7 @@ ended up liking them. This machine still works like the first day!
 Before the Mac I used to have a regular desktop computer with Windows and Ubuntu; you know,
 the ones you have to assemble by yourself. I got the Mac just before I moved to Germany, 
 so that was another reason to buy a laptop.
+In 2022 I got myself an M1 MacBook Pro (what a beast!).
 
 Monitor: <a href="https://www.displayspecifications.com/en/model/2bb31592">Dell U2719D</a>. 
 Not bad, but from time to time a vertical blue line appears on the left side
@@ -37,15 +38,16 @@ so if you know some decent and small MP3 player let me know.
 ### Software
 
 I like to keep dependencies at a minimum. These days I try to run as much as I can in virtual
-machines. Nevertheless, this is a list of some programs I have installed in my machine:
+machines. Nevertheless, this is a list of some programs I have installed in my laptop:
 
 - IntelliJ IDEA (e.g., Goland, PyCharm)
 - Vim
 - iTerm2
 - Vagrant
-- VirtualBox
-- Docker
-- Ansible
+- VMware
 - Git
 - Chrome, Firefox
 - f.lux
+- VLC
+- OpenEmu
+

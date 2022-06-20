@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2022*
 
+- MongoDB: The Definitive Guide. *Shannon Bradshaw, Kristina Chodorow, et al.*
 - Operating Systems: Three Easy Pieces. *Remzi and Andrea Arpaci-Dusseau*
 - Practical Node.js. *Azat Mardan*
 - All You Zombies. *Robert A. Heinlein*

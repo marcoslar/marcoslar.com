@@ -4,6 +4,15 @@ display_in_sessions = false
 display_date = false
 ---
 
+### July 2022
+<div class="post-date">26 July 2022</div>
+
+In recent versions of Jetbrain's IDEs, the action "Annotate with Git Blame" does not
+open a single floating window anymore. Instead it displays a window with 
+Git branches, commits and what not. Can be disabled via the IDE registry 
+(Shift + ⌘ + A, on Mac): `vcs.blame.show.affected.files.in.log`
+
+
 ### March 2022
 <div class="post-date">10 Mar 2022</div>
 

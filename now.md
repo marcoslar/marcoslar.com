@@ -16,8 +16,6 @@ I'm reading:
 
 - A History of Western Philosophy by Bertrand Russell
 - TCP/IP Illustrated, Vol. 1: The Protocols by Kevin R. Fall, W. Richard Stevens
-- Site Reliability Engineering: How Google Runs Production Systems by Betsy Beyer et al.
-- Kubernetes: Up and Running by Brendan Burns et al.
 
 I'm writing:
 

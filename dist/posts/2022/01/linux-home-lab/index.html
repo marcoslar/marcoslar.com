@@ -9,7 +9,7 @@
 <meta name="keywords" content="software, ">
 <link rel="stylesheet" href="/static/css/style.css">
 <link rel="shortcut icon" href="/static/myicon.svg"/>
-<title>Marcoslar.com | Sessions </title>
+<title>Marcoslar.com | Linux home lab </title>
 
 
 
@@ -18,111 +18,86 @@
     <body style="">
         
             <span style="display: flex;">
-                <h1><span class="init-ch">S</span>essions</h1>
+                <h1><span class="init-ch">L</span>inux home lab</h1>
                 
                     <small class="homelink"><a href="/">Marcoslar.com</a></small>
                 
             </span>
             
+                <small class="post-date">Sunday, 02 January 2022</small><br><br>
+            
         
 
-        <ul class="posts">
+        <p>For relaxing times, make it Linux time. For hardware, though, Macs are usually
+good choices (<em>update: and the latest <a href="https://www.apple.com/macbook-pro-14-and-16/specs/">MacBook Pro M1</a> is a beast</em>).
+If you see yourself in need of a bunch
+of Linux VMs with custom IP addresses, hostnames, and what not, <a href="https://www.vagrantup.com/">Vagrant</a>
+is your thing.</p>
 
-    
-    <li>
-           <span class="post-date">23 Feb 2022</span>
-           
-                <a
-                 style=""
-                 href="/posts/2022/02/facts-gathering-skipped-when-specifying-tags/">Ansible facts gathering skipped when specifying tags</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">25 Jan 2022</span>
-           
-                <a
-                 style=""
-                 href="/posts/2022/01/host-parameter-does-not-match-hashed-host-field-in-supplied-key/">Host parameter does not match hashed host field in supplied key</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">02 Jan 2022</span>
-           
-                <a
-                 style=""
-                 href="/posts/2022/01/linux-home-lab/">Linux home lab</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">18 Dec 2021</span>
-           
-                <a
-                 style=""
-                 href="/posts/2021/12/golang-plugins/">Golang plugins</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">29 Aug 2020</span>
-           
-                <a
-                 style=""
-                 href="/posts/2020/08/parallel-blogs/">Parallel blogs (or parablogs)</a>
-           
-        </li>
-    
-    <li>
-           <span class="post-date">02 May 2017</span>
-           
-                <a
-                 style="background-color:pink;color:white;"
-                 href="/posts/2017/05/vaporwave/">V a p o r w a v e</a>
-           
-        </li>
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-    
-        
-    
-    
-</ul>
+<h3>One <span style="color:#E95420">Ubuntu Sunset Brew</span>, please</h3>
+
+<p>To spin up one Ubuntu VM using Vagrant, the following <code>Vagrantfile</code> script
+is enough:</p>
+
+<pre><code>Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;lma/ubuntu-21.04&quot;
+  config.vm.hostname = &quot;minikube.host&quot;
+  config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;
+  config.vm.network &quot;private_network&quot;, ip: &quot;10.10.10.210&quot;
+  config.vm.provider &quot;vmware_fusion&quot; do |v|
+    v.vmx[&quot;memsize&quot;] = &quot;4096&quot;
+    v.gui = false
+  end
+end
+</code></pre>
+
+<p>Run <code>vagrant up</code> and you&rsquo;ll end up with a VM that runs Ubuntu 21.04, can be
+pinged from your host and does not have any GUI. You&rsquo;ll be also mounting
+your current folder in your host under <code>/vagrant</code> in the VM, effectively sharing
+your current folder with the VM (that&rsquo;s very useful when you want to write
+code in your host using your favorite IDE, but you want to execute the code in the VM).</p>
+
+<h3>Ein Toki, ein Hibiki und ein Kakubin, bitte</h3>
+
+<p>When setting up a lab, you usually need more than one VM. With Vagrant that&rsquo;s
+rather easy as well. Check this out:</p>
+
+<pre><code>HOSTNAME_SUFFIX = &quot;mylab.local&quot;
+PRIV_NET = &quot;10.10.10&quot;
+MACHINES = {
+    :node1 =&gt; { :hostname =&gt; &quot;node1.#{HOSTNAME_SUFFIX}&quot;, :ip =&gt; &quot;#{PRIV_NET}.10&quot; },
+    :node2 =&gt; { :hostname =&gt; &quot;node2.#{HOSTNAME_SUFFIX}&quot;, :ip =&gt; &quot;#{PRIV_NET}.20&quot; },
+    :node3 =&gt; { :hostname =&gt; &quot;node3.#{HOSTNAME_SUFFIX}&quot;, :ip =&gt; &quot;#{PRIV_NET}.30&quot; },
+}
+
+Vagrant.configure(&quot;2&quot;) do |config|
+    MACHINES.each_with_index do |(name, machine), index|
+        config.vm.define machine[:hostname] do |node|
+            node.vm.hostname = machine[:hostname]
+            node.vm.box = &quot;lma/ubuntu-21.04&quot;
+            node.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;, disabled: true
+            node.vm.network &quot;private_network&quot;, ip: machine[:ip]
+            node.vm.provider &quot;vmware_fusion&quot; do |vf|
+                vf.vmx[&quot;memsize&quot;] = 1024
+                vf.gui = false
+            end
+
+            node.vm.provision :shell, inline: &lt;&lt;-SHELL
+                sudo apt-get update
+            SHELL
+        end
+    end
+end
+</code></pre>
+
+<p>Now we have 3 VMs, each with their own ip address (<code>*.10.10.10</code>), with
+custom hostnames (<code>node{n}.mylab.local</code>), and 1GB of RAM each. Shared folder
+is disabled, and <code>apt-get update</code> provisions each machine.
+To SSH&rsquo;d into each machine you need to specify its name (e.g., <code>vagrant ssh node1.mylab.local</code>).</p>
+
+<p>There are many <em>patterns</em> when setting up labs via Vagrant (e.g., setting up
+multiple machines mixing private and public networks, non-default SSH keys,
+port forwarding, etc.). Perhaps one day I write about them&hellip; stay tuned (or not)!</p>
 
         
             <div class="backlink"></div><small><a href="/">↩ back</a></small><br>

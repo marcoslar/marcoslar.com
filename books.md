@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 
 ### *2022*
 
+- Go with the Domain. *Robert Laszczak, Miłosz Smółka*
 - Site Reliability Engineering. *Betsy Beyer, Chris Jones, et al.* (60%)
 - Kubernetes: Up and Running. *Brendan Burns, Joe Beda, et al.*
 - Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions. *Gregor Hohpe*

@@ -6,6 +6,13 @@ display_date = false
 
 I always forget how to do these stuff.
 
+- Base64 encoding
+
+```
+$ echo -n 'my-string' | base64
+```
+
+
 - Show octal file permissions
 
 ```

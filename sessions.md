@@ -1,28 +1,30 @@
 ---
-title = "Sessions"
+title = "Writings"
 display_in_sessions = false
 display_date = false
 ---
 
-<ul class="posts">
-{{ range $k, $page := .AllPages -}}
-    {{ $display_in_sessions := true }}
-    {{ if eq $page.Config.display_in_sessions false }}
-        {{ $display_in_sessions = false }}
-    {{ end }}
-    {{ if $display_in_sessions -}}
-        <li>
-           <span class="post-date">{{ $page.CreatedAt.Format "02 Jan 2006" }}</span>
-           {{ if $page.Config.external_url }}
-                <a
-                 style="{{ if $page.Config.li_style }}{{ range $style := $page.Config.li_style }}{{ $style }};{{ end }}{{ end }}"
-                 href="{{ $page.Config.external_url }}">{{ $page.Config.title }}</a>
-           {{ else }}
-                <a
-                 style="{{ if $page.Config.li_style }}{{ range $style := $page.Config.li_style }}{{ $style }};{{ end }}{{ end }}"
-                 href="/{{ $page.Url }}/">{{ $page.Config.title }}</a>
-           {{ end }}
-        </li>
-    {{- end }}
-{{- end }}
-</ul>
+<table>
+    <tbody>
+        {{- range $k, $page := .AllPages -}}
+            {{ $display_in_sessions := true }}
+            {{ if eq $page.Config.display_in_sessions false }}
+                {{ $display_in_sessions = false }}
+            {{ end }}
+            {{ if $display_in_sessions -}}
+                <tr>
+                    <td class="post-date">
+                        <span>{{ $page.CreatedAt.Format "Jan 2006" }}</span>
+                    </td>
+                    <td class="post-title">
+                        <a href="/{{ $page.Url }}/">
+                            <span style="{{ if $page.Config.li_style }}{{ range $style := $page.Config.li_style }}{{ $style }};{{ end }}{{ end }}">
+                                {{ $page.Config.title }}
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+            {{ end }}
+        {{ end }}
+    </tbody>
+</table>

@@ -14,7 +14,7 @@ ended up liking them. This machine still works like the first day!
 Before the Mac I used to have a regular desktop computer with Windows and Ubuntu; you know,
 the ones you have to assemble by yourself. I got the Mac just before I moved to Germany, 
 so that was another reason to buy a laptop.
-In 2022 I got myself an M1 MacBook Pro (what a beast!).
+In 2022 I got myself an <a href="https://support.apple.com/kb/SP858?locale=en_GB">M1 MacBook Pro</a> (what a beast!).
 
 Monitor: <a href="https://www.displayspecifications.com/en/model/2bb31592">Dell U2719D</a>. 
 Not bad, but from time to time a vertical blue line appears on the left side
@@ -30,24 +30,25 @@ I don't remember exactly when I bought it (perhaps in 2014?), but it still works
 Impressive because this guy uses a Lithium-ion battery that, in theory, should have 
 already went south. I use my iPOD every week when running or playing outdoors. The most inconvenient
 part would be that the jack/usb cable is very fragile (the original one got broken and then lost).
-I'm currently looking for a replacement, but so far nothing comes close 
-(@{perhaps the <a href="https://en.wikipedia.org/wiki/SanDisk_Sansa#SanDisk_Clip_Sport_Go">SanDisk Clip</a>?... 
-too big in comparison||the Mighty Vibe? It plays nothing but Spotify playlists; so dumb}@); 
-so if you know some decent and small MP3 player let me know.
+
+In 2022 I got myself a <a href="https://en.wikipedia.org/wiki/SanDisk_portable_media_players#SanDisk_Clip_Sport_Go">
+SanDisk Clip Sport Go</a>. Pretty decent! It's a bit bigger than the
+iPOD shuffle, but I can definitely carry it on my pocket (the clip is strong enough to carry
+the device hanging from the jacket).
 
 ### Software
 
-I like to keep dependencies at a minimum. These days I try to run as much as I can in virtual
-machines. Nevertheless, this is a list of some programs I have installed in my laptop:
+These days I try to run as much as I can in virtual machines.
+Nevertheless, this is a list of some programs I have installed in my laptop:
 
 - IntelliJ IDEA (e.g., Goland, PyCharm)
 - Vim
 - iTerm2
 - Vagrant
+- Docker
 - VMware
 - Git
 - Chrome, Firefox
 - f.lux
 - VLC
 - OpenEmu
-

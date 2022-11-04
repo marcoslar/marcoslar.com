@@ -5,19 +5,18 @@
         {{ template "partials_head" . }}
     </head>
     <body style="{{ if .Config.style }}{{ range $style := .Config.style }}{{ $style }};{{ end }}{{ end }}">
+        <nav class="navy"><b><a href="/">marcoslar.com</a></b></nav>
         {{ if .Config.display_title }}
-            <span style="display: flex;">
+            <div style="display: flex;">
                 <h1>{{ .Config.title | fancyTitle }}</h1>
-                {{ if .Config.display_backlink }}
-                    <small class="homelink"><a href="/">Marcoslar.com</a></small>
-                {{ end }}
-            </span>
+            </div>
             {{ if .Config.display_date }}
                 <small class="post-date">{{ .CreatedAt.Format "Monday, 02 January 2006" }}</small><br><br>
             {{ end }}
         {{ end }}
 
         {{ template "content" . }}
+
         {{ if .Config.display_backlink }}
             <div class="backlink"></div><small><a href="/">↩ back</a></small><br>
         {{ end }}

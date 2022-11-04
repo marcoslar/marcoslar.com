@@ -25,6 +25,5 @@ templates = [
     "highlighter",
     "reload",
     "index_left",
-    "index_top",
     "index_right"
 ]

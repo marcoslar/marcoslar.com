@@ -4,7 +4,7 @@ display_in_sessions = false
 display_date = false
 ---
 
-I always forget how to do these stuff.
+I always forget how to do this kind of stuff.
 
 - Base64 encoding
 

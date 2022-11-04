@@ -11,6 +11,7 @@ display_date = false
 on the web according to [Alexa](https://www.alexa.com/topsites).}@ 
 In the past it has lived under different names—and perhaps it has belonged
 to different owners—but at the moment its name has a [weird suffix][1] on it.
+
 If there is anything that may distinguish this site from others is that 
 it is what I call a *parallel web site* (or *parasite*, or *parablog*). This means that for every page P
 on this site, there may exist multiple versions of P and all of them co-exist 
@@ -38,6 +39,7 @@ everything to him, although I am quite aware of his perverse custom
 of falsifying and magnifying things (he usually talks to his colleagues 
 using terms like SOLID, *good practices*, DDD... and I 
 never fully understand it).  
+
 I enjoy very much the act of creating something (anything) from 
 scratch (at work I don't practice this as much as I would like), 
 but Marcos always insists in making these creations useful in some

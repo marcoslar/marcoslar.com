@@ -33,7 +33,7 @@ your current folder in your host under `/vagrant` in the VM, effectively sharing
 your current folder with the VM (that's very useful when you want to write 
 code in your host using your favorite IDE, but you want to execute the code in the VM).
 
-### Ein Toki, ein Hibiki und ein Kakubin, bitte
+### A threesome
 
 When setting up a lab, you usually need more than one VM. With Vagrant that's 
 rather easy as well. Check this out:

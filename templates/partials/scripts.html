@@ -7,7 +7,6 @@
         *[class^="belbo_v1"] { display: inline; }
     </style>
 </noscript>
-
 <script>
 function enableParallelSnippets(manuallyTriggered) {
     var snippetsByVersion = {};
@@ -56,40 +55,8 @@ function enableParallelSnippets(manuallyTriggered) {
     }
 }
 
-function enableReloadPageIcon() {
-    if (document.querySelectorAll('[class^="belbo_v"]').length > 0) {
-        var reloadPageIcon = document.getElementById('reload');
-        if (reloadPageIcon !== null) {
-            reloadPageIcon.style.display = 'inline';
-        }
-    }
-}
-
-function enableRandomTitle() {
-    var titles = [
-        'Asteroid Blues',
-        'Waltz for Venus',
-        'Ganymede Elegy',
-        'Betelgeuse Tango',
-        'Jupiter Jazz',
-        'Ariel Funk',
-        'Callisto Riffs',
-        'Aldebaran Soul',
-        'Venus Grunge',
-    ];
-
-    var el = document.querySelector('#rString');
-    if (el) {
-        el.innerHTML = titles[Math.floor(Math.random() * titles.length)];
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function(e) {
-    enableRandomTitle();
     enableParallelSnippets((manuallyTriggered = false));
-    enableReloadPageIcon();
-    document.getElementById("year").innerHTML = 2012 + "–" + (new Date().getFullYear());
 });
-
 </script>
 {{ end }}

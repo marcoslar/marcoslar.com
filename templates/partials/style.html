@@ -1,14 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Marcoslar.com">
-<meta name="keywords" content="software, ">
-<link rel="shortcut icon" href="/static/myicon.svg"/>
-<title>Marcoslar.com | About </title>
-<style>
+{{ define "partials_style" }}
 :root {
     --fontSize: 17px;
     --lineHeight: calc(var(--fontSize) * 1.5);
@@ -39,10 +29,10 @@ body {
     hyphens: auto;
     background-color: #fff;
     color: #333;
-     
+    /*max-width: 1040px;*/
     max-width: 960px;
     padding: 0 1em;
-     
+    /*margin: 72px auto;*/
     margin: 2rem auto;
 }
 
@@ -295,7 +285,7 @@ a img {
     flex-flow: column nowrap;
     max-width: 1040px;
 }
- 
+/* widescreens */
 @media screen and (min-width: 1085px) {
     .columns {
         width: 100%;
@@ -308,7 +298,7 @@ a img {
 
     .column {
         flex: auto;
-         
+        /*max-width: 477px;*/
         justify-content: space-between;
     }
 
@@ -352,28 +342,28 @@ a img {
     }
 }
 
- 
- 
- 
- 
+/*@media (prefers-color-scheme: dark) {*/
+/*    a {*/
+/*        color: #8b8bbc !important;*/
+/*    }*/
 
- 
- 
- 
+/*    code {*/
+/*        background-color: #464646;*/
+/*    }*/
 
- 
- 
- 
- 
+/*    body {*/
+/*        background-color: #222;*/
+/*        color: #eee;*/
+/*    }*/
 
- 
- 
- 
+/*    h1, h2, h3, h4, h5, h6 {*/
+/*        color: #eee;*/
+/*    }*/
 
- 
- 
- 
- 
+/*    hr {*/
+/*        background-color: #626c6f;*/
+/*    }*/
+/*}*/
 
 footer {
     margin-top: 2rem;
@@ -384,15 +374,15 @@ footer {
 .init-ch {
     font-weight: bold;
     background: -webkit-linear-gradient(45deg, #000000, #5e5e5e 60%);
-     
+    /*background: -webkit-linear-gradient(45deg, #87f0ff, #398fef 60%);*/
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 pre {
-     
+    /*background-color: #f7f7f7;*/
     background-color: #f0f8ff;
-     
+    /*border: 1px solid #ccc;*/
     border: 1px solid #e5eff9;
     line-height: 1.45em;
     font-size: .75em;
@@ -421,7 +411,7 @@ p > code, em > code, li > code {
 }
 
 a {
-     
+    /*color: #0000EE !important;*/
     color: #2222d4 !important;
     text-decoration: none;
     border-bottom: 1px dotted #b6b6e4;
@@ -448,126 +438,4 @@ footer a {
 *::selection{
     background-color: aquamarine;
 }
-</style>
-</head>
-    <body style="">
-        <nav class="navy"><b><a href="/">marcoslar.com</a></b></nav>
-        <div style="display: flex;">
-                <h1><span class="init-ch">A</span>bout</h1>
-            </div>
-            <h3>About this site</h3>
-
-<p><span class="belbo_v1-s1">This is just another site on the web.</span><span class="belbo_v2-s1">This is one of the top 500 sites
-on the web according to <a href="https://www.alexa.com/topsites">Alexa</a>.</span>
-In the past it has lived under different names—and perhaps it has belonged
-to different owners—but at the moment its name has a <a href="https://en.wikipedia.org/wiki/Turkish_grammar#Inflectional_suffixes">weird suffix</a> on it.</p>
-
-<p>If there is anything that may distinguish this site from others is that
-it is what I call a <em>parallel web site</em> (or <em>parasite</em>, or <em>parablog</em>). This means that for every page P
-on this site, there may exist multiple versions of P and all of them co-exist
-under the same URL. Take this page as an example: refresh the page
-and you may get a different version of it; a version
-that conveys the same meaning (<span class="belbo_v1-s2">sometimes</span><span class="belbo_v2-s2">most of the time</span>) but it&rsquo;s
-written in a different way. You can find out more about this
-idea in the post <a href="https://www.marcoslar.com/posts/2020/08/parallel-blogs/">Parallel Blogs</a>.
-<span class="belbo_v1-s3">It&rsquo;s a silly idea,</span><span class="belbo_v2-s3">It&rsquo;s a tremendous idea,</span> I know.</p>
-
-<p>This site is built with <a href="https://github.com/marcoslar/belbo">belbo</a>.<br />
-This site has been online since <span class="belbo_v1-s4">2012</span><span class="belbo_v2-s4">1998</span>.</p>
-
-<h3>About me</h3>
-
-<p>I&rsquo;m Marcos.<br />
-To the other one, to Marcos, is to whom things happen. From Marcos
-I find out through the e-mail and I see his name in a list of
-meeting attendees, in the output of <code>git blame</code>, or in a Rundfunkbeitrag
-bill. I like to read books, to take walks with my wife, to go out for
-a run from time to time, maps, <i>fútbol</i> juggling, and computer programming;
-he shares these preferences too, but in a vain way that turns them
-into the attributes of an actor. Little by little, I am giving over
-everything to him, although I am quite aware of his perverse custom
-of falsifying and magnifying things (he usually talks to his colleagues
-using terms like SOLID, <em>good practices</em>, DDD&hellip; and I
-never fully understand it).</p>
-
-<p>I enjoy very much the act of creating something (anything) from
-scratch (at work I don&rsquo;t practice this as much as I would like),
-but Marcos always insists in making these creations useful in some
-way&hellip; I never fully understood that either.</p>
-
-<p><em><small>The <b>About me</b> section is paraphrasing the short
-story <a href="https://en.wikipedia.org/wiki/Borges_and_I">Borges y Yo</a>.</small></em></p>
-<div class="backlink"></div><small><a href="/">↩ back</a></small><br>
-<footer>
-    <p>
-        <b><a href="/">marcoslar.com</a></b> © <span id="year">2012–2090</span> —
-        <a href="https://github.com/marcoslar/marcoslar.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
-            BY-NC-SA 4.0
-        </a> —
-        <a href="https://github.com/marcoslar/marcoslar.com">Source code</a> —
-        <a href="/about">About</a>
-        
-    </p>
-</footer>
-
-<noscript>
-    <style type="text/css">
-         
-        *[class^="belbo_v"] { display: none; }
-        *[class^="belbo_v1"] { display: inline; }
-    </style>
-</noscript>
-<script>
-function enableParallelSnippets(manuallyTriggered) {
-    var snippetsByVersion = {};
-    var versionableSnippets = document.querySelectorAll('[class^="belbo_v"]');
-
-    for (var j = 0; j < versionableSnippets.length; j++) {
-        var snippet = versionableSnippets[j]
-        var majorVersion = snippet.className.split("-")[1];
-        if (majorVersion in snippetsByVersion) {
-            snippetsByVersion[majorVersion].push(snippet);
-            continue;
-        }
-
-        snippetsByVersion[majorVersion] = [snippet];
-    }
-
-    if (Object.keys(snippetsByVersion).length === 0) {
-        return;
-    }
-
-    var randomSnippets = {};
-    for (var s in snippetsByVersion) {
-        var len = snippetsByVersion[s].length;
-        randomSnippets[len] = Math.floor(Math.random() * len) + 1;
-    }
-
-    
-    for (var s in snippetsByVersion) {
-        var snippetIndex = randomSnippets[snippetsByVersion[s].length];
-
-        for (var i = 0; i < snippetsByVersion[s].length; i++) {
-            if (i !== snippetIndex - 1) {
-                snippetsByVersion[s][i].style.display = 'none';
-                
-            } else {
-                snippetsByVersion[s][i].style.display = 'inline';
-            }
-        }
-    }
-
-    if (manuallyTriggered) {
-        var el = document.getElementById('reload-icon');
-        el.classList.remove('spinner');
-        void el.offsetWidth;
-        el.classList.add('spinner');
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function(e) {
-    enableParallelSnippets((manuallyTriggered = false));
-});
-</script>
-</body>
-</html>
+{{ end }}

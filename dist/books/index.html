@@ -2,29 +2,460 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Marcoslar.com">
 <meta name="keywords" content="software, ">
-<link rel="stylesheet" href="/static/css/style.css">
 <link rel="shortcut icon" href="/static/myicon.svg"/>
 <title>Marcoslar.com | Bo_oks </title>
+<style>
+:root {
+    --fontSize: 17px;
+    --lineHeight: calc(var(--fontSize) * 1.5);
+    --spacing: 2rem;
+    --spacingv: calc(var(--lineHeight) / 2);
+    --columnGap: 2rem;
+    --fontFamily: 'Inconsolata', sans-serif;
+}
 
+html {
+    min-height: 100%;
+}
 
+.navy {
+    border-bottom: 1px dotted #8080806e;
+}
+.navy a {
+    border-bottom: none;
+}
 
+body {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-feature-settings: "liga" 1, "dlig" 1, "kern" 1, "frac" 0;
+    hyphens: auto;
+    background-color: #fff;
+    color: #333;
+     
+    max-width: 960px;
+    padding: 0 1em;
+     
+    margin: 2rem auto;
+}
 
-    </head>
+.main-title {
+    border-bottom: 1px dotted #8080806e;
+}
+
+.underline {
+    border: 1px solid #e5eff9;
+    padding: 0.25rem;
+    background-color: aliceblue;
+    border: 1px solid #e5eff94a;
+    padding: 0.25rem;
+    background-color: #f0f8ff85;
+    box-shadow: 0px 5px 5px 0 rgb(185 185 185 / 8%), 0 5px 15px 0 rgb(197 197 197 / 12%);
+}
+
+.columns a {
+    border-bottom: none;
+}
+
+.post-date {
+    text-align: left;
+    padding-right: 1rem;
+    vertical-align: top;
+    font-family: monospace;
+    font-size: 1rem;
+}
+
+.post-title {
+    vertical-align: top;
+}
+
+p {
+    margin-top: 8px;
+}
+
+pre.highlight {
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    background-color: #f6f6f6;
+}
+
+iframe {
+    overflow: hidden;
+    margin: 0;
+    margin-top: -15px;
+    padding: 0;
+    border: none;
+}
+
+hr {
+    border-style: none;
+    background-color: #d2dcdf;
+    padding: 1px;
+}
+
+h1 + pre hr {
+    visibility: hidden;
+}
+
+blockquote {
+    font-size: 95%;
+    border-style: solid;
+    border-color: #d2dcdf;
+    border-width: 0 0 0 0.5em;
+    padding-left: 1em;
+    margin: 8px 1em 16px 0;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+sup, sub {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+}
+
+sub {
+    top: 0.4em;
+}
+
+q {
+    quotes: '\201C' '\201D' '\2018' '\2019';
+}
+
+q:before, q:after {
+    font-size: 2em;
+    line-height: 1px;
+    position: relative;
+    top: 8px;
+    opacity: .7;
+}
+
+q:before {
+    content: "\201C";
+    content: open-quote;
+}
+
+q:after {
+    content: "\201D";
+    content: close-quote;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, Tahoma, "Times New Roman", serif;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-feature-settings: "liga" 1, "dlig" 1, "kern" 1, "frac" 0;
+    hyphens: auto;
+    font-feature-settings: "swsh" 1, "cswh" 1, "onum" 1;
+    color: #111;
+    margin: 32px 0 8px 0;
+    padding: 0;
+    line-height: 1em;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+
+h1 {
+    font-size: 2em;
+    display: inline-block;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h4 {
+    font-size: 0.95em;
+}
+
+h5 {
+    font-size: 0.85em;
+}
+
+h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+    margin-top: 16px;
+    page-break-after: avoid;
+}
+
+a:visited, .navigation a:visited {
+    color: black;
+    font-weight: bolder;
+}
+
+a:active {
+    color: #303ab6;
+    background-color: #acf;
+}
+
+a.offsite:hover {
+    background-color: #99A;
+    color: white;
+    text-decoration: none;
+    border-bottom: none;
+    padding: 0.2em 0;
+}
+
+@media screen {
+    a[type="application/pdf"]:after {
+        font-size: 0.75em;
+        vertical-align: super;
+        color: #666666;
+        content: " pdf";
+    }
+}
+
+ul {
+    list-style-type: disc;
+    margin: 8px 0;
+    padding-left: 1em;
+}
+
+li {
+    margin: 4px 0;
+}
+
+p + ul, div + ul {
+    margin: -8px 0 8px 0;
+}
+
+ul.compact li {
+    margin: 0;
+}
+
+ul.sep {
+    padding-left: 0;
+}
+
+ul.sep li {
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+    text-indent: 0;
+}
+
+ul.sep li:first-of-type {
+    padding-top: 0;
+}
+
+ul.sep li:last-of-type {
+    border-bottom: none;
+}
+
+ul.sep li:before {
+    content: '';
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    padding-bottom: 8px;
+}
+
+img {
+    max-width: 100%;
+}
+
+a img {
+    border: none;
+}
+
+.image {
+    text-align: center;
+}
+
+@media screen and (min-width: 1034px) {
+    .wide_only {
+        display: inherit;
+    }
+}
+
+.columns, .column {
+    margin: 0;
+    padding: 0;
+}
+
+.columns {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    flex-flow: column nowrap;
+    max-width: 1040px;
+}
+ 
+@media screen and (min-width: 1085px) {
+    .columns {
+        width: 100%;
+        display: flex;
+        height: 100%;
+        flex-wrap: wrap;
+        flex-flow: column wrap;
+        justify-content: space-between;
+    }
+
+    .column {
+        flex: auto;
+         
+        justify-content: space-between;
+    }
+
+    #sidebar.column {
+        width: 300px;
+        margin-top: 100px;
+        order: 1;
+        background-color: inherit;
+        padding: inherit;
+    }
+
+    #main.column {
+        max-width: 700px;
+        flex: auto;
+
+        order: 2;
+        margin-left: 40px;
+    }
+}
+
+@media screen and (max-device-width: 900px) {
+    body {
+        font-size: 1rem;
+    }
+
+    .post-date {
+        text-align: left;
+        padding-right: 0;
+        vertical-align: top;
+        min-width: 4.5rem;
+        font-family: monospace;
+        font-size: .85rem;
+    }
+
+    .mobile_hide {
+        display: none;
+    }
+
+    ol {
+        padding-left: 1rem;
+    }
+}
+
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+
+footer {
+    margin-top: 2rem;
+    border-top: 1px dotted #8080806e;
+    font-size: 1rem !important;
+}
+
+.init-ch {
+    font-weight: bold;
+    background: -webkit-linear-gradient(45deg, #000000, #5e5e5e 60%);
+     
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+pre {
+     
+    background-color: #f0f8ff;
+     
+    border: 1px solid #e5eff9;
+    line-height: 1.45em;
+    font-size: .75em;
+    padding: .84em .85em;
+    color: #1a1a1a;
+    overflow: auto;
+
+    border: 1px solid #e5eff94a;
+    padding: 0.25rem;
+    background-color: #f0f8ff85;
+    box-shadow: 0px 5px 5px 0 rgb(185 185 185 / 8%), 0 5px 15px 0 rgb(197 197 197 / 12%);
+}
+
+p > code, em > code, li > code {
+    font-size: .75em;
+    background-color: #f7f7f7;
+    padding: .25em;
+}
+
+.mono,p code,li code,pre,code,tt {
+    font-family: Menlo,Monaco,andale mono,lucida console,courier new,monospace;
+}
+
+.column table a {
+    text-decoration: none;
+}
+
+a {
+     
+    color: #2222d4 !important;
+    text-decoration: none;
+    border-bottom: 1px dotted #b6b6e4;
+}
+
+.backlink {
+    margin-top: 2rem;
+}
+
+.homelink {
+    margin-left: auto;
+    align-items: flex-end;
+    display: inline-flex;
+}
+.homelink a {
+    color: black !important;
+    border-bottom: 1px dotted #808080ad !important;
+}
+
+footer a {
+    border-bottom: none;
+}
+
+*::selection{
+    background-color: aquamarine;
+}
+</style>
+</head>
     <body style="">
         <nav class="navy"><b><a href="/">marcoslar.com</a></b></nav>
-        
-            <div style="display: flex;">
+        <div style="display: flex;">
                 <h1><span class="init-ch">B</span>o_oks</h1>
             </div>
-            
-        
-
-        <p>Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.</p>
+            <p>Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.</p>
 
 <h3><em>2022</em></h3>
 
@@ -175,15 +606,10 @@
 <ul>
 <li>A few ones&hellip;</li>
 </ul>
-
-
-        
-            <div class="backlink"></div><small><a href="/">↩ back</a></small><br>
-        
-        
+<div class="backlink"></div><small><a href="/">↩ back</a></small><br>
 <footer>
     <p>
-        <b><a href="/">marcoslar.com</a></b> © <span id="year">2012–2022</span> —
+        <b><a href="/">marcoslar.com</a></b> © <span id="year">2012–2090</span> —
         <a href="https://github.com/marcoslar/marcoslar.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
             BY-NC-SA 4.0
         </a> —
@@ -193,7 +619,6 @@
     </p>
 </footer>
 
-        
 <noscript>
     <style type="text/css">
          
@@ -201,7 +626,6 @@
         *[class^="belbo_v1"] { display: inline; }
     </style>
 </noscript>
-
 <script>
 function enableParallelSnippets(manuallyTriggered) {
     var snippetsByVersion = {};
@@ -250,42 +674,9 @@ function enableParallelSnippets(manuallyTriggered) {
     }
 }
 
-function enableReloadPageIcon() {
-    if (document.querySelectorAll('[class^="belbo_v"]').length > 0) {
-        var reloadPageIcon = document.getElementById('reload');
-        if (reloadPageIcon !== null) {
-            reloadPageIcon.style.display = 'inline';
-        }
-    }
-}
-
-function enableRandomTitle() {
-    var titles = [
-        'Asteroid Blues',
-        'Waltz for Venus',
-        'Ganymede Elegy',
-        'Betelgeuse Tango',
-        'Jupiter Jazz',
-        'Ariel Funk',
-        'Callisto Riffs',
-        'Aldebaran Soul',
-        'Venus Grunge',
-    ];
-
-    var el = document.querySelector('#rString');
-    if (el) {
-        el.innerHTML = titles[Math.floor(Math.random() * titles.length)];
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function(e) {
-    enableRandomTitle();
     enableParallelSnippets((manuallyTriggered = false));
-    enableReloadPageIcon();
-    document.getElementById("year").innerHTML = 2012 + "–" + (new Date().getFullYear());
 });
-
 </script>
-
-    </body>
+</body>
 </html>

@@ -3,10 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{{ .Config.description }}">
 <meta name="keywords" content="software, {{ .Config.keywords }}">
-<link rel="stylesheet" href="/{{ .Config.static_dir }}/css/style.css">
 <link rel="shortcut icon" href="/static/myicon.svg"/>
 <title>{{ .Config.sitename }}{{ if .Config.title }} | {{ .Config.title }} {{ end }}</title>
-{{/*{{ if .Config.syntax_on }}*/}}
-{{/*  {{ template "partials_highlighter" . }}*/}}
-{{/*{{ end }}*/}}
+<style>{{- template "partials_style" . -}}</style>
 {{ end }}

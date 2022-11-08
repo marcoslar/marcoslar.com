@@ -27,4 +27,5 @@ templates = [
     "index_left",
     "index_right",
     "style",
+    "nav",
 ]

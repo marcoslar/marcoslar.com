@@ -2,22 +2,22 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>{{ template "partials_head" . }}</head>
-    <body style="{{ if .Config.style -}}{{ range $style := .Config.style -}}{{ $style }};{{- end }}{{- end }}">
-        <nav class="navy"><b><a href="/">marcoslar.com</a></b></nav>
+    <body class="light-theme" style="{{ if .Config.style -}}{{ range $style := .Config.style -}}{{ $style }};{{- end }}{{- end }}">
+        {{- template "partials_nav" . -}}
         {{ if .Config.display_title -}}
             <div style="display: flex;">
                 <h1>{{- .Config.title | fancyTitle -}}</h1>
             </div>
             {{ if .Config.display_date -}}
-                <small class="post-date">{{- .CreatedAt.Format "Monday, 02 January 2006" -}}</small><br><br>
-            {{- end }}
-        {{- end }}
-
+                <div class="post-page-date">
+                    <small>{{- .CreatedAt.Format "Monday, 02 January 2006" -}}</small>
+                </div>
+            {{- end -}}
+        {{- end -}}
         {{- template "content" . -}}
-
         {{- if .Config.display_backlink -}}
             <div class="backlink"></div><small><a href="/">↩ back</a></small><br>
-        {{- end }}
+        {{- end -}}
         {{- template "partials_footer" . -}}
         {{- template "partials_scripts" . -}}
     </body>

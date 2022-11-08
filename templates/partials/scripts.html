@@ -55,8 +55,25 @@ function enableParallelSnippets(manuallyTriggered) {
     }
 }
 
+function onThemeSelection(theme) {
+    if (theme === 'default') {
+        theme = 'light-theme';
+    }
+    localStorage.setItem('theme', theme);
+    document.body.className = theme;
+
+}
+
 document.addEventListener('DOMContentLoaded', function(e) {
     enableParallelSnippets((manuallyTriggered = false));
+
+    if (theme = localStorage.getItem('theme')) {
+        if (theme === 'light-theme') {
+            theme = 'default';
+        }
+        document.getElementById('themeSelector').value = theme;
+        onThemeSelection(theme);
+    }
 });
 </script>
 {{ end }}

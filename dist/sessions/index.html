@@ -18,13 +18,55 @@
     --fontFamily: 'Inconsolata', sans-serif;
 }
 
+.light-theme {
+    --background: white;
+    --color: #333;
+    --hrefColor: #2222d4;
+    --headlineBg: #f0f8ff85;
+    --headlineBorder: #e5eff94a;
+    --headlineShadow1: rgb(185 185 185 / 8%);
+    --headlineShadow2: rgb(197 197 197 / 12%);
+    --preBg: #f0f8ff85;
+    --preColor: #1a1a1a;
+    --preBorder: #e5eff94a;
+    --codeBg: #f7f7f7;
+    --selectionBg: aquamarine;
+    --chBg1: black;
+    --chBg2: #5e5e5e;
+}
+
+.dark-theme {
+    --background: #282828;
+    --color: #fbf1f7;  
+    --hrefColor: #b8bdff;
+    --headlineBg: #b8bdff0d;
+    --headlineBorder: #b8bdff00;
+    --headlineShadow1: rgb(46 18 18 / 8%);
+    --headlineShadow2: rgb(38 32 32 / 12%);
+    --preBg: #37353985;
+    --preColor: var(--color);
+    --preBorder: #0000004a;
+    --codeBg: #423f4585;  
+    --selectionBg: #214539;
+    --chBg1: #fff;
+    --chBg2: #7b7b7b;
+}
+
 html {
     min-height: 100%;
 }
 
 .navy {
+    display: flex;
+    flex-direction: row;
     border-bottom: 1px dotted #8080806e;
 }
+
+.theme {
+    align-content: flex-end;
+    margin-left: auto;
+}
+
 .navy a {
     border-bottom: none;
 }
@@ -37,27 +79,18 @@ body {
     -webkit-font-smoothing: subpixel-antialiased;
     font-feature-settings: "liga" 1, "dlig" 1, "kern" 1, "frac" 0;
     hyphens: auto;
-    background-color: #fff;
-    color: #333;
-     
+    background-color: var(--background);
+    color: var(--color);
     max-width: 960px;
     padding: 0 1em;
-     
     margin: 2rem auto;
 }
 
-.main-title {
-    border-bottom: 1px dotted #8080806e;
-}
-
 .underline {
-    border: 1px solid #e5eff9;
     padding: 0.25rem;
-    background-color: aliceblue;
-    border: 1px solid #e5eff94a;
-    padding: 0.25rem;
-    background-color: #f0f8ff85;
-    box-shadow: 0px 5px 5px 0 rgb(185 185 185 / 8%), 0 5px 15px 0 rgb(197 197 197 / 12%);
+    border: 1px solid var(--headlineBorder);
+    background-color: var(--headlineBg);
+    box-shadow: 0 5px 5px 0 var(--headlineShadow1), 0 5px 15px 0 var(--headlineShadow2);
 }
 
 .columns a {
@@ -70,6 +103,12 @@ body {
     vertical-align: top;
     font-family: monospace;
     font-size: 1rem;
+}
+
+.post-page-date {
+    font-family: monospace;
+    font-size: 1rem;
+    padding-bottom: 1em;
 }
 
 .post-title {
@@ -85,20 +124,6 @@ pre.highlight {
     padding: 0;
     overflow-y: hidden;
     background-color: #f6f6f6;
-}
-
-iframe {
-    overflow: hidden;
-    margin: 0;
-    margin-top: -15px;
-    padding: 0;
-    border: none;
-}
-
-hr {
-    border-style: none;
-    background-color: #d2dcdf;
-    padding: 1px;
 }
 
 h1 + pre hr {
@@ -128,28 +153,6 @@ sub {
     top: 0.4em;
 }
 
-q {
-    quotes: '\201C' '\201D' '\2018' '\2019';
-}
-
-q:before, q:after {
-    font-size: 2em;
-    line-height: 1px;
-    position: relative;
-    top: 8px;
-    opacity: .7;
-}
-
-q:before {
-    content: "\201C";
-    content: open-quote;
-}
-
-q:after {
-    content: "\201D";
-    content: close-quote;
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-family: Georgia, Tahoma, "Times New Roman", serif;
     font-weight: normal;
@@ -158,7 +161,6 @@ h1, h2, h3, h4, h5, h6 {
     font-feature-settings: "liga" 1, "dlig" 1, "kern" 1, "frac" 0;
     hyphens: auto;
     font-feature-settings: "swsh" 1, "cswh" 1, "onum" 1;
-    color: #111;
     margin: 32px 0 8px 0;
     padding: 0;
     line-height: 1em;
@@ -188,31 +190,9 @@ h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
     page-break-after: avoid;
 }
 
-a:visited, .navigation a:visited {
-    color: black;
-    font-weight: bolder;
-}
-
 a:active {
-    color: #303ab6;
+    color: var(--hrefColor);
     background-color: #acf;
-}
-
-a.offsite:hover {
-    background-color: #99A;
-    color: white;
-    text-decoration: none;
-    border-bottom: none;
-    padding: 0.2em 0;
-}
-
-@media screen {
-    a[type="application/pdf"]:after {
-        font-size: 0.75em;
-        vertical-align: super;
-        color: #666666;
-        content: " pdf";
-    }
 }
 
 ul {
@@ -229,37 +209,6 @@ p + ul, div + ul {
     margin: -8px 0 8px 0;
 }
 
-ul.compact li {
-    margin: 0;
-}
-
-ul.sep {
-    padding-left: 0;
-}
-
-ul.sep li {
-    list-style: none;
-    padding: 8px 0;
-    margin: 0;
-    text-indent: 0;
-}
-
-ul.sep li:first-of-type {
-    padding-top: 0;
-}
-
-ul.sep li:last-of-type {
-    border-bottom: none;
-}
-
-ul.sep li:before {
-    content: '';
-}
-
-dt {
-    font-weight: bold;
-}
-
 dd {
     padding-bottom: 8px;
 }
@@ -270,10 +219,6 @@ img {
 
 a img {
     border: none;
-}
-
-.image {
-    text-align: center;
 }
 
 @media screen and (min-width: 1034px) {
@@ -308,72 +253,32 @@ a img {
 
     .column {
         flex: auto;
-         
         justify-content: space-between;
-    }
-
-    #sidebar.column {
-        width: 300px;
-        margin-top: 100px;
-        order: 1;
-        background-color: inherit;
-        padding: inherit;
-    }
-
-    #main.column {
-        max-width: 700px;
-        flex: auto;
-
-        order: 2;
-        margin-left: 40px;
     }
 }
 
 @media screen and (max-device-width: 900px) {
     body {
-        font-size: 1rem;
+        font-size: .9rem;
     }
 
     .post-date {
         text-align: left;
         padding-right: 0;
         vertical-align: top;
-        min-width: 4.5rem;
+        min-width: 4.25rem;
         font-family: monospace;
-        font-size: .85rem;
+        font-size: .7rem;
     }
 
-    .mobile_hide {
-        display: none;
+    .post-page-date {
+        font-size: .7rem;
     }
 
     ol {
         padding-left: 1rem;
     }
 }
-
- 
- 
- 
- 
-
- 
- 
- 
-
- 
- 
- 
- 
-
- 
- 
- 
-
- 
- 
- 
- 
 
 footer {
     margin-top: 2rem;
@@ -383,37 +288,30 @@ footer {
 
 .init-ch {
     font-weight: bold;
-    background: -webkit-linear-gradient(45deg, #000000, #5e5e5e 60%);
-     
+    background: -webkit-linear-gradient(45deg, var(--chBg1), var(--chBg2) 60%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 pre {
-     
-    background-color: #f0f8ff;
-     
-    border: 1px solid #e5eff9;
     line-height: 1.45em;
     font-size: .75em;
-    padding: .84em .85em;
-    color: #1a1a1a;
+    color: var(--preColor);
     overflow: auto;
-
-    border: 1px solid #e5eff94a;
-    padding: 0.25rem;
-    background-color: #f0f8ff85;
+    border: 1px solid var(--preBorder);
+    padding: 0.5rem;
+    background-color: var(--preBg);
     box-shadow: 0px 5px 5px 0 rgb(185 185 185 / 8%), 0 5px 15px 0 rgb(197 197 197 / 12%);
 }
 
 p > code, em > code, li > code {
     font-size: .75em;
-    background-color: #f7f7f7;
+    background-color: var(--codeBg);
     padding: .25em;
 }
 
 .mono,p code,li code,pre,code,tt {
-    font-family: Menlo,Monaco,andale mono,lucida console,courier new,monospace;
+    font-family: Menlo, Monaco, monospace;
 }
 
 .column table a {
@@ -421,8 +319,7 @@ p > code, em > code, li > code {
 }
 
 a {
-     
-    color: #2222d4 !important;
+    color: var(--hrefColor);
     text-decoration: none;
     border-bottom: 1px dotted #b6b6e4;
 }
@@ -431,28 +328,29 @@ a {
     margin-top: 2rem;
 }
 
-.homelink {
-    margin-left: auto;
-    align-items: flex-end;
-    display: inline-flex;
-}
-.homelink a {
-    color: black !important;
-    border-bottom: 1px dotted #808080ad !important;
-}
-
 footer a {
     border-bottom: none;
 }
 
 *::selection{
-    background-color: aquamarine;
+    background-color: var(--selectionBg);
 }
+
 </style>
 </head>
-    <body style="">
-        <nav class="navy"><b><a href="/">marcoslar.com</a></b></nav>
-        <div style="display: flex;">
+    <body class="light-theme" style="">
+<nav class="navy">
+    <div>
+        <b><a href="/">marcoslar.com</a></b>
+    </div>
+    <div class="theme">
+        <select name="theme" id="themeSelector" onchange="onThemeSelection(this.value)">
+            <option value="default">Theme: Light</option>
+            <option value="dark-theme">Theme: Dark</option>
+        </select>
+    </div>
+</nav>
+<div style="display: flex;">
                 <h1><span class="init-ch">W</span>ritings</h1>
             </div>
             <table>
@@ -580,8 +478,25 @@ function enableParallelSnippets(manuallyTriggered) {
     }
 }
 
+function onThemeSelection(theme) {
+    if (theme === 'default') {
+        theme = 'light-theme';
+    }
+    localStorage.setItem('theme', theme);
+    document.body.className = theme;
+
+}
+
 document.addEventListener('DOMContentLoaded', function(e) {
     enableParallelSnippets((manuallyTriggered = false));
+
+    if (theme = localStorage.getItem('theme')) {
+        if (theme === 'light-theme') {
+            theme = 'default';
+        }
+        document.getElementById('themeSelector').value = theme;
+        onThemeSelection(theme);
+    }
 });
 </script>
 </body>

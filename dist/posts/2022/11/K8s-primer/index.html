@@ -7,7 +7,7 @@
 <meta name="description" content="Marcoslar.com">
 <meta name="keywords" content="software, ">
 <link rel="shortcut icon" href="/static/myicon.svg"/>
-<title>Marcoslar.com | About </title>
+<title>Marcoslar.com | K8s primer </title>
 <style>
 :root {
     --fontSize: 17px;
@@ -355,50 +355,150 @@ footer a {
     </div>
 </nav>
 <div style="display: flex;">
-                <h1><span class="init-ch">A</span>bout</h1>
+                <h1><span class="init-ch">K</span>8s primer</h1>
             </div>
-            <h3>About this site</h3>
+            <div class="post-page-date">
+                    <small>Tuesday, 08 November 2022</small>
+                </div><p>This primer is targeted to developers who mainly work on product features but
+may also need to understand the basics of Kubernetes at a practical level,
+so that they know how their applications are managed, and, why not, so that
+they can actually understand as well the jargon their infrastructure colleagues
+use.
+If you are already familiarized with building containerized applications, you can
+skip directly to step 4.</p>
 
-<p><span class="belbo_v1-s1">This is just another site on the web.</span><span class="belbo_v2-s1">This is one of the top 500 sites
-on the web according to <a href="https://www.alexa.com/topsites">Alexa</a>.</span>
-In the past it has lived under different names—and perhaps it has belonged
-to different owners—but at the moment its name has a <a href="https://en.wikipedia.org/wiki/Turkish_grammar#Inflectional_suffixes">weird suffix</a> on it.</p>
+<h3>1. Alright, let&rsquo;s start</h3>
 
-<p>If there is anything that may distinguish this site from others is that
-it is what I call a <em>parallel web site</em> (or <em>parasite</em>, or <em>parablog</em>). This means that for every page P
-on this site, there may exist multiple versions of P and all of them co-exist
-under the same URL. Take this page as an example: refresh the page
-and you may get a different version of it; a version
-that conveys the same meaning (<span class="belbo_v1-s2">sometimes</span><span class="belbo_v2-s2">most of the time</span>) but it&rsquo;s
-written in a different way. You can find out more about this
-idea in the post <a href="https://www.marcoslar.com/posts/2020/08/parallel-blogs/">Parallel Blogs</a>.
-<span class="belbo_v1-s3">It&rsquo;s a silly idea,</span><span class="belbo_v2-s3">It&rsquo;s a tremendous idea,</span> I know.</p>
+<p>We want to deploy a <a href="https://go.dev/">Go</a> application using <a href="https://kubernetes.io/">Kubernetes (K8s)</a>. This is the application:</p>
 
-<p>This site is built with <a href="https://github.com/marcoslar/belbo">belbo</a>.<br />
-This site has been online since <span class="belbo_v1-s4">2012</span><span class="belbo_v2-s4">1998</span>.</p>
+<p><em>File <code>main.go</code></em></p>
 
-<h3>About me</h3>
+<pre><code>package main
 
-<p>I&rsquo;m Marcos.<br />
-To the other one, to Marcos, is to whom things happen. From Marcos
-I find out through the e-mail and I see his name in a list of
-meeting attendees, in the output of <code>git blame</code>, or in a Rundfunkbeitrag
-bill. I like to read books, to take walks with my wife, to go out for
-a run from time to time, maps, <i>fútbol</i> juggling, and computer programming;
-he shares these preferences too, but in a vain way that turns them
-into the attributes of an actor. Little by little, I am giving over
-everything to him, although I am quite aware of his perverse custom
-of falsifying and magnifying things (he usually talks to his colleagues
-using terms like SOLID, <em>good practices</em>, DDD&hellip; and I
-never fully understand it).</p>
+import (
+	&quot;fmt&quot;
+	&quot;log&quot;
+	&quot;math/rand&quot;
+	&quot;net/http&quot;
+	&quot;time&quot;
+)
 
-<p>I enjoy very much the act of creating something (anything) from
-scratch (at work I don&rsquo;t practice this as much as I would like),
-but Marcos always insists in making these creations useful in some
-way&hellip; I never fully understood that either.</p>
+func main() {
+	rand.Seed(time.Now().UnixNano())
+	id := rand.Int()
 
-<p><em><small>The <b>About me</b> section is paraphrasing the short
-story <a href="https://en.wikipedia.org/wiki/Borges_and_I">Borges y Yo</a>.</small></em></p>
+	http.HandleFunc(&quot;/&quot;, func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, &quot;Hello world (ID: %d)\n&quot;, id)
+	})
+
+	fmt.Printf(&quot;Serving on http://localhost:7070 (ID: %d)\n&quot;, id)
+	log.Fatal(http.ListenAndServe(&quot;:7070&quot;, nil))
+}
+</code></pre>
+
+<p>It&rsquo;s a simple HTTP server that listens on port 7070 and responds to requests with
+a &ldquo;Hello world&rdquo; followed by a random integer.</p>
+
+<p>You can run this app locally on your personal machine as follows:</p>
+
+<pre><code>$ go run main.go
+Serving on http://localhost:7070 (ID: 3628456987918824506)
+</code></pre>
+
+<p>And you can query the server just by doing:</p>
+
+<pre><code>$ curl localhost:7070
+Hello world (ID: 3628456987918824506)
+</code></pre>
+
+<p>So far so good, I hope.</p>
+
+<h3>2. K8s only supports containerized applications</h3>
+
+<p>We cannot just deploy our Go app by &ldquo;handing over&rdquo; the compiled binary to K8s.
+K8s only runs application within containers. Let&rsquo;s containerize our Go app; I&rsquo;ll use <a href="https://www.docker.com/">Docker</a> for that:</p>
+
+<p><em>File: <code>Dockerfile</code></em></p>
+
+<pre><code>FROM golang:1.19-alpine3.15 as build
+WORKDIR /app
+COPY main.go ./
+RUN go build -o /app/HelloWorld main.go
+EXPOSE 7070
+
+FROM alpine:3.15
+USER nobody:nobody
+COPY --from=build /app/HelloWorld /HelloWorld
+
+CMD [&quot;/HelloWorld&quot;]
+</code></pre>
+
+<p>This <code>Dockerfile</code> contains all the commands needed to build an image that
+will contain our application binary. Let&rsquo;s build the image:</p>
+
+<pre><code>$ docker build -t YOUR-HANDLE/hello-world-go:1.0.0 .
+</code></pre>
+
+<p>Once our image is built, it&rsquo;s stored in our personal machine:</p>
+
+<pre><code>$ docker image ls                                                
+REPOSITORY                     TAG       IMAGE ID       CREATED       SIZE
+YOUR-HANDLE/hello-world-go   1.0.0     a2fe58fdd36f   2 seconds ago    11.6MB
+</code></pre>
+
+<p>We can now run our containerized Go app by doing:</p>
+
+<pre><code>$ docker run --rm -p 7070:7070 YOUR-HANDLE/hello-world-go:1.0.0
+
+Serving on http://localhost:7070 (ID: 3888774625775762015)
+</code></pre>
+
+<p>We can query our containerized Go app using <code>curl localhost:7070</code> just like before.</p>
+
+<h3>3. K8s cannot access our personal machine to retrieve the Go app image</h3>
+
+<p>The image we just built is stored in our personal machine, but K8s doesn&rsquo;t
+about what&rsquo;s in our machine. The standard approach is to make our container
+image available via a container registry. I&rsquo;ll use <a href="https://hub.docker.com/">Docker Hub</a> to publish (for free)
+my Go app image:</p>
+
+<pre><code>$ docker login -u YOUR-HANDLE
+$ docker push YOUR-HANDLE/hello-world-go:1.0.0
+</code></pre>
+
+<p>(You&rsquo;ll need to input your <a href="https://www.docker.com/blog/docker-hub-new-personal-access-tokens/">personal access token</a> to login into Docker Hub.)</p>
+
+<p>Now our Go app image is publicly available via Docker Hub.</p>
+
+<h3>4. We need some kind of machine/server/node where K8s can run</h3>
+
+<p>While we can use a fully managed K8s service like <a href="https://cloud.google.com/kubernetes-engine">GKE</a> and <a href="https://aws.amazon.com/eks/">EKS</a>,
+I&rsquo;ll use <a href="https://minikube.sigs.k8s.io/docs/start/">minikube</a> to run K8s locally on my machine.
+TODO&mdash;&mdash;&mdash;&ndash;&gt;
+K8s has the notion of a <a href="https://kubernetes.io/docs/concepts/overview/components/">cluster</a>. A cluster is a set of nodes. A node can be
+a physical or a virtual machine. Let&rsquo;s create a cluster of 3 (virtual) nodes
+using <a href="https://minikube.sigs.k8s.io/docs/start/">minikube</a>:</p>
+
+<pre><code>$ minikube start --nodes 3 -p minikube-lab
+</code></pre>
+
+<p>Nice. We got 3 nodes. We could deploy our Go application on them. Let&rsquo;s use
+<a href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/">kubectl</a> to ask K8s about the status of the cluster:</p>
+
+<pre><code>$ kubectl get nodes
+
+NAME               STATUS   ROLES           AGE    VERSION
+minikube-lab       Ready    control-plane   2d1h   v1.25.2
+minikube-lab-m02   Ready    &lt;none&gt;          3h5m   v1.25.2
+minikube-lab-m03   Ready    &lt;none&gt;          3h4m   v1.25.2
+</code></pre>
+
+<p>K8s is telling us that we have 3 nodes, each of them with a unique name and
+ready for whatever we need them. One of the nodes works as the <a href="https://kubernetes.io/docs/concepts/overview/components/#control-plane-components">control plane</a>
+of our cluster (i.e., it&rsquo;s on charge of managing our cluster), while the other
+2 nodes are worker nodes (i.e., nodes on which we can deploy applications).</p>
+
+<h3>3.</h3>
 <div class="backlink"></div><small><a href="/">↩ back</a></small><br>
 <footer>
     <p>

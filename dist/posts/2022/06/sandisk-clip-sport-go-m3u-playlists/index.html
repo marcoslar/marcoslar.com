@@ -7,7 +7,7 @@
 <meta name="description" content="Marcoslar.com">
 <meta name="keywords" content="software, ">
 <link rel="shortcut icon" href="/static/myicon.svg"/>
-<title>Marcoslar.com | Writings </title>
+<title>Marcoslar.com | SanDisk Clip Sport Go M3U playlists </title>
 <style>
 :root {
     --fontSize: 17px;
@@ -351,74 +351,68 @@ footer a {
     </div>
 </nav>
 <div style="display: flex;">
-                <h1><span class="init-ch">W</span>ritings</h1>
+                <h1><span class="init-ch">S</span>anDisk Clip Sport Go M3U playlists</h1>
             </div>
-            <table>
-    <tbody><tr>
-                    <td class="post-date">
-                        <span>Jun 2022</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2022/06/sandisk-clip-sport-go-m3u-playlists/">
-                            <span style="">SanDisk Clip Sport Go M3U playlists</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Feb 2022</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2022/02/facts-gathering-skipped-when-specifying-tags/">
-                            <span style="">Ansible facts gathering skipped when specifying tags</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Jan 2022</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2022/01/host-parameter-does-not-match-hashed-host-field-in-supplied-key/">
-                            <span style="">Host parameter does not match hashed host field in supplied key</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Jan 2022</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2022/01/linux-home-lab/">
-                            <span style="">Linux home lab</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Dec 2021</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2021/12/golang-plugins/">
-                            <span style="">Golang plugins</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Aug 2020</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2020/08/parallel-blogs/">
-                            <span style="">Parallel blogs (or parablogs)</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>May 2017</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2017/05/vaporwave/">
-                            <span style="background-color:pink;color:white;">V a p o r w a v e</span>
-                        </a>
-                    </td>
-                </tr></tbody>
-</table>
+            <div class="post-page-date">
+                    <small>Thursday, 02 June 2022</small>
+                </div><p>The <a href="https://en.wikipedia.org/wiki/SanDisk_portable_media_players#SanDisk_Clip_Sport_Go">SanDisk Clip Sport Go</a> mp3 player supports M3U playlists
+but the playlist files must have <a href="https://developer.mozilla.org/en-US/docs/Glossary/CRLF">CRLF</a> terminators. If you are on
+Windows, you don&rsquo;t need to worry about this, but on Unix-like systems
+like MacOS you need a bit of glue code (on Linux you can use <a href="https://linux.die.net/man/1/dos2unix">dos2unix</a>).</p>
+
+<p><em>File <code>playlistme.sh</code></em></p>
+
+<pre><code>#!/bin/bash
+
+playlistMe() {
+  dir=&quot;$1&quot;
+  cd &quot;$dir&quot;;
+  echo &quot;Creating playlist for: $dir&quot;
+  ls -A1;
+
+  if ls -1 | egrep -i &quot;\.(aac|mp3|m4a|wma|wav|flac|ogg)&quot; &amp;&gt;/dev/null; then
+    m3u=&quot;$dir.m3u&quot;
+    echo &quot;#EXTM3U&quot; &gt; &quot;$m3u&quot;
+    for audio_file in *.mp3; do
+      echo -n &quot;#EXTINF:0,&quot; &gt;&gt; &quot;$m3u&quot;
+      echo &quot;$audio_file&quot; &gt;&gt; &quot;$m3u&quot;
+      echo &quot;$audio_file&quot; &gt;&gt; &quot;$m3u&quot;
+      echo &quot;&quot; &gt;&gt; &quot;$m3u&quot;
+    done
+    perl -pi -e 's/$/\r/' &quot;$m3u&quot;
+  fi
+  cd ..
+}
+
+playlistMe &quot;$1&quot;
+</code></pre>
+
+<p>If you run the script in a folder with some MP3s, you&rsquo;ll get a M3U playlist with CRLFs terminators.</p>
+
+<pre><code>$ playlistme music
+Creating playlist for: music
+Bruce Springsteen - Dancing In the Dark.mp3
+Madonna - Into The Groove.mp3
+The Prodigy - Firestarter.mp3
+music.m3u
+</code></pre>
+
+<pre><code>$ cat -e music/music.m3u
+#EXTM3U^M$
+#EXTINF:0,Bruce Springsteen - Dancing In the Dark.mp3^M$
+Bruce Springsteen - Dancing In the Dark.mp3^M$
+^M$
+#EXTINF:0,Madonna - Into The Groove.mp3^M$
+Madonna - Into The Groove.mp3^M$
+^M$
+#EXTINF:0,The Prodigy - Firestarter.mp3^M$
+The Prodigy - Firestarter.mp3^M$
+^M$
+</code></pre>
+
+<p>As you can see the CRLF line endings (<code>\r\n</code>) are displayed as <code>^M$</code>.</p>
+
+<p>You can then just upload the <code>music</code> folder into your SanDisk.</p>
 <div class="backlink"></div><small><a href="/">↩ back</a></small><br>
 <footer>
     <p>

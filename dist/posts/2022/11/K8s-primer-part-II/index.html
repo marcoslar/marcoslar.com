@@ -1,0 +1,975 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Marcoslar.com">
+<meta name="keywords" content="software, ">
+<link rel="shortcut icon" href="/static/myicon.svg"/>
+<title>Marcoslar.com | K8s primer - Part II </title>
+<style>
+:root {
+    --fontSize: 17px;
+    --lineHeight: calc(var(--fontSize) * 1.5);
+    --spacing: 2rem;
+    --spacingv: calc(var(--lineHeight) / 2);
+    --columnGap: 2rem;
+    --fontFamily: 'Inconsolata', sans-serif;
+}
+
+.light-theme {
+    --background: white;
+    --color: #333;
+    --hrefColor: #2222d4;
+    --headlineBg: #f0f8ff85;
+    --headlineBorder: #e5eff94a;
+    --headlineShadow1: rgb(185 185 185 / 8%);
+    --headlineShadow2: rgb(197 197 197 / 12%);
+    --preBg: #f0f8ff85;
+    --preColor: #1a1a1a;
+    --preBorder: #e5eff94a;
+    --codeBg: #f7f7f7;
+    --selectionBg: aquamarine;
+    --chBg1: black;
+    --chBg2: #5e5e5e;
+}
+
+.dark-theme {
+    --background: #282828;
+    --color: #fbf1f7;  
+    --hrefColor: #b8bdff;
+    --headlineBg: #b8bdff0d;
+    --headlineBorder: #b8bdff00;
+    --headlineShadow1: rgb(46 18 18 / 8%);
+    --headlineShadow2: rgb(38 32 32 / 12%);
+    --preBg: #37353985;
+    --preColor: var(--color);
+    --preBorder: #0000004a;
+    --codeBg: #423f4585;  
+    --selectionBg: #214539;
+    --chBg1: #fff;
+    --chBg2: #7b7b7b;
+}
+
+html {
+    min-height: 100%;
+}
+
+.navy {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px dotted #8080806e;
+}
+
+.theme {
+    align-content: flex-end;
+    margin-left: auto;
+}
+
+.navy a {
+    border-bottom: none;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-feature-settings: "liga" 1, "dlig" 1, "kern" 1, "frac" 0;
+    hyphens: auto;
+    background-color: var(--background);
+    color: var(--color);
+    max-width: 960px;
+    padding: 0 1em;
+    margin: 2rem auto;
+}
+
+.underline {
+    padding: 0.25rem;
+    border: 1px solid var(--headlineBorder);
+    background-color: var(--headlineBg);
+    box-shadow: 0 5px 5px 0 var(--headlineShadow1), 0 5px 15px 0 var(--headlineShadow2);
+}
+
+.columns a {
+    border-bottom: none;
+}
+
+.post-date {
+    text-align: left;
+    padding-right: 1rem;
+    vertical-align: top;
+    font-family: monospace;
+    font-size: 1rem;
+}
+
+.post-page-date {
+    font-family: monospace;
+    font-size: 1rem;
+    padding-bottom: 1em;
+}
+
+.post-title {
+    vertical-align: top;
+}
+
+p {
+    margin-top: 8px;
+}
+
+pre.highlight {
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    background-color: #f6f6f6;
+}
+
+h1 + pre hr {
+    visibility: hidden;
+}
+
+blockquote {
+    font-size: 95%;
+    border-style: solid;
+    border-color: #d2dcdf;
+    border-width: 0 0 0 0.5em;
+    padding-left: 1em;
+    margin: 8px 1em 16px 0;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+sup, sub {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+}
+
+sub {
+    top: 0.4em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, Tahoma, "Times New Roman", serif;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-feature-settings: "liga" 1, "dlig" 1, "kern" 1, "frac" 0;
+    hyphens: auto;
+    font-feature-settings: "swsh" 1, "cswh" 1, "onum" 1;
+    margin: 32px 0 8px 0;
+    padding: 0;
+    line-height: 1em;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+
+h1 {
+    font-size: 2rem;
+    display: inline-block;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 0.95em;
+}
+
+h5 {
+    font-size: 0.85em;
+}
+
+h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+    margin-top: 16px;
+    page-break-after: avoid;
+}
+
+a:active {
+    color: var(--hrefColor);
+    background-color: #acf;
+}
+
+ul {
+    list-style-type: disc;
+    margin: 8px 0;
+    padding-left: 1em;
+}
+
+li {
+    margin: 4px 0;
+}
+
+p + ul, div + ul {
+    margin: -8px 0 8px 0;
+}
+
+dd {
+    padding-bottom: 8px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.img-block {
+    text-align:center;
+}
+
+a img {
+    border: none;
+}
+
+@media screen and (min-width: 1034px) {
+    .wide_only {
+        display: inherit;
+    }
+}
+
+.columns, .column {
+    margin: 0;
+    padding: 0;
+}
+
+.columns {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    flex-flow: column nowrap;
+    max-width: 1040px;
+}
+ 
+@media screen and (min-width: 1085px) {
+    .columns {
+        width: 100%;
+        display: flex;
+        height: 100%;
+        flex-wrap: wrap;
+        flex-flow: column wrap;
+        justify-content: space-between;
+    }
+
+    .column {
+        flex: auto;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-device-width: 900px) {
+    body {
+        font-size: .9rem;
+    }
+
+    .post-date {
+        text-align: left;
+        padding-right: 0;
+        vertical-align: top;
+        min-width: 4.25rem;
+        font-family: monospace;
+        font-size: .7rem;
+    }
+
+    .post-page-date {
+        font-size: .7rem;
+    }
+
+    ol {
+        padding-left: 1rem;
+    }
+}
+
+footer {
+    margin-top: 2rem;
+    border-top: 1px dotted #8080806e;
+    font-size: 1rem !important;
+}
+
+.init-ch {
+    font-weight: bold;
+    background: -webkit-linear-gradient(45deg, var(--chBg1), var(--chBg2) 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+pre {
+    line-height: 1.45em;
+    font-size: .75em;
+    color: var(--preColor);
+    overflow: auto;
+    border: 1px solid var(--preBorder);
+    padding: 0.75rem;
+    background-color: var(--preBg);
+     
+}
+
+p > code, em > code, li > code {
+    font-size: .75em;
+    background-color: var(--codeBg);
+    padding: .25em;
+}
+
+.mono,p code,li code,pre,code,tt {
+    font-family: Menlo, Monaco, monospace;
+}
+
+.column table a {
+    text-decoration: none;
+}
+
+a {
+    color: var(--hrefColor);
+    text-decoration: none;
+    border-bottom: 1px dotted #b6b6e4;
+}
+
+.backlink {
+    margin-top: 2rem;
+}
+
+footer a {
+    border-bottom: none;
+}
+
+*::selection{
+    background-color: var(--selectionBg);
+}
+
+</style>
+</head>
+    <body class="light-theme" style="">
+<nav class="navy">
+    <div>
+        <b><a href="/">marcoslar.com</a></b>
+    </div>
+    <div class="theme">
+        <select name="theme" id="themeSelector" onchange="onThemeSelection(this.value)">
+            <option value="default">Theme: Light</option>
+            <option value="dark-theme">Theme: Dark</option>
+        </select>
+    </div>
+</nav>
+<div style="display: flex;">
+                <h1><span class="init-ch">K</span>8s primer - Part II</h1>
+            </div>
+            <div class="post-page-date">
+                    <small>Wednesday, 16 November 2022</small>
+                </div><p><em>This primer is targeted to developers who mainly work on product features but
+may also need to understand the basics of Kubernetes at a practical level,
+so that they know how their applications are deployed and managed.</em></p>
+
+<p><em>Requirements: <a href="https://www.docker.com/">Docker</a> and <a href="https://minikube.sigs.k8s.io/docs/start/">minikube</a>.</em></p>
+
+<p><em>First part in <a href="/">K8s Primer - Part I</a></em></p>
+
+<p>If you are coming from Part I, resume your local K8s cluster as follows:</p>
+
+<pre><code>$ minikube start --nodes 3 -p minikube-lab
+</code></pre>
+
+<h3><a href="#12" name="12">12. Why Pods and Deployments are not enough?</a></h3>
+
+<p>K8s <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployments</a> represent a set of multiple and identical Pods. They allow us
+to run multiple replicas of our application and take care of automatically replacing
+any instance that fails or becomes unresponsive. That&rsquo;s nice and all, but we are
+still facing some inconveniences:</p>
+
+<ul>
+<li>we are talking directly to individual Pods via IP addresses</li>
+<li>we cannot reach our application from outside the K8s cluster</li>
+</ul>
+
+<p>It&rsquo;s a bad idea to reach individual Pods by their IP address because
+Pods are ephemeral (e.g., whenever a rolling upgrade is performed, old Pods are
+removed and new ones created), and, if we cannot reach our Pods from outside the
+K8s cluster, well, that&rsquo;s limits the things we can do.</p>
+
+<p>It would be great if we could reach our application (our Pods) by name from outside
+the K8s cluster. As you can imagine, we need a few more K8s objects to accomplish this.</p>
+
+<h3><a href="#13" name="13">13. K8s Services</a></h3>
+
+<p>You can think of a K8s <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a> as an stable layer that sits between clients
+of your application and the bunch of Pods (managed by a Deployment) that compose
+your application. It&rsquo;s an stable layer because it provides a static IP address and
+DNS name that don&rsquo;t change regardless of what happens with your Pods and Deployments.
+With a K8s Service we are providing stable networking: a client sends requests to the
+Service, the Service forwards them to the Pods. The Service is stable, but Pods are
+changing all the time.</p>
+
+<p><em>File <code>./k8s/service.yaml</code></em></p>
+
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-service
+spec:
+  selector:
+    app: helloworld-backend
+  ports:
+    - port: 7070
+</code></pre>
+
+<p>With this manifest file we are telling K8s:</p>
+
+<blockquote>
+<p>Hey K8s, create a Service called <code>helloworld-service</code> that provides
+stable networking (static IP address and port) to all the Pods that
+have the label <code>app=helloworld-backend</code></p>
+</blockquote>
+
+<p>Let&rsquo;s submit the manifest:</p>
+
+<pre><code>$ k apply -f k8s/service.yaml
+service/helloworld-service created
+</code></pre>
+
+<p>And let&rsquo;s see what we got:</p>
+
+<pre><code>$ k get service -o wide
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE   SELECTOR
+helloworld-service   ClusterIP   10.100.210.87   &lt;none&gt;        7070/TCP   28s   app=helloworld-backend
+kubernetes           ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP    2d   &lt;none&gt;
+</code></pre>
+
+<p>We got a K8s service called <code>helloworld-service</code> with the static IP address
+<code>10.100.210.87</code>, and port <code>7070</code>, which is forwarding requests to all the Pods
+who have the label <code>app=helloworld-backend</code>. Let&rsquo;s get more details:</p>
+
+<pre><code>$ k describe service helloworld-service 
+Name:              helloworld-service
+Namespace:         default
+Labels:            &lt;none&gt;
+Annotations:       &lt;none&gt;
+Selector:          app=helloworld-backend
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.100.210.87
+IPs:               10.100.210.87
+Port:              &lt;unset&gt;  7070/TCP
+TargetPort:        7070/TCP
+Endpoints:         10.244.0.7:7070,10.244.0.8:7070,10.244.0.9:7070
+Session Affinity:  None
+Events:            &lt;none&gt;
+</code></pre>
+
+<p>Behind the curtains, K8s makes sure that our Service is always keeping an
+up-to-date list of healthy Pods that match the required label. This list of
+matching Pods is stored in the <em>Endpoints</em> object. We can also see that
+the <em>Type</em> of our Service is <code>ClusterIP</code>. That means our Service is only
+reachable from within our local K8s cluster.</p>
+
+<h3><a href="#14" name="14">14. Reaching our Go application by name</a></h3>
+
+<p>At this point, our Go application is reachable by name and from within our
+local K8s cluster. The shortname of our Service is <code>helloworld-service</code>, while
+the full name is <code>helloworld-service.default.svc.cluster.local</code>. Since we didn&rsquo;t
+specify a namespace for our Service in the manifest file, it got the default
+one (<code>default</code>). The rest, <code>.svc.cluster.local</code>, is automatically appended by K8s.</p>
+
+<p>We should be able to run <code>curl helloworld-service:7070</code> and get a response, but
+unlike the previous steps where we could run commands on any K8s node, the name
+resolution (i.e., from <code>helloworld-service</code> to an IP address) can only be done within
+Pods (containers), so we need to execute the <code>curl</code> command within a Pod.
+Our Pods (containers) do not have <code>curl</code> installed, though, nor
+we can install <code>curl</code> on them; we lack the necessary tooling (e.g., <code>apk</code>, <code>apt</code>)
+inside our containers (they are production-like, so a lot of utilities are missing).
+This is not a big deal, though; we can create a &ldquo;debugging&rdquo; Pod and run it in our
+K8s cluster to run arbitrary commands on it:</p>
+
+<pre><code>$ kubectl run -it --rm --image=curlimages/curl curly -- sh
+</code></pre>
+
+<p>Here we are starting a Pod (with one container based on the official <a href="https://hub.docker.com/r/curlimages/curl">Docker
+image for curl</a> <code>curlimages/curl</code>) in interactive mode and then opening a shell inside
+that container. Once we are in, we can try to reach our application:</p>
+
+<pre><code>/ $ curl helloworld-service:7070
+Hello world (ID: 3800977759062674150)
+
+/ $ curl helloworld-service:7070
+Hello world (ID: 7899672086525838020)
+
+/ $ curl helloworld-service:7070
+Hello world (ID: 3800977759062674150)
+
+/ $ curl helloworld-service:7070
+Hello world (ID: 7899672086525838020)
+
+/ $ curl helloworld-service:7070
+Hello world (ID: 7899672086525838020)
+</code></pre>
+
+<p>Finally, our application is reachable by name. When we reach our application
+by name, we don&rsquo;t know which Pod (instance) we are actually calling.
+Our K8s Service is on charge of balancing the load to the appropriate Pod when
+handling incoming requests. That&rsquo;s why we see different IDs
+in the response when calling our application.</p>
+
+<h3><a href="#15" name="15">15. Accessing our Go application from outside the cluster</a></h3>
+
+<p>So far we are able to:</p>
+
+<ul>
+<li>deploy our Go application (one or many instances)</li>
+<li>reach our Go application by name and port</li>
+</ul>
+
+<p>We have a few alternatives to get external traffic into our cluster.</p>
+
+<h4><strong><a href="https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport">NodePort</a></strong></h4>
+
+<p><em>File <code>./k8s/nodeport.yaml</code></em></p>
+
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-service2
+spec:
+  type: NodePort
+  selector:
+    app: helloworld-backend
+  ports:
+    - port: 7070
+      nodePort: 30100
+      targetPort: 7070
+      protocol: TCP
+
+</code></pre>
+
+<p>A K8s NodePort is just another type of K8s Service. The first Service we
+defined previously (<code>./k8s/service.yaml</code>) had the default type <code>ClusterIP</code>.
+The difference between NodePort and ClusterIP is that with NodePort K8s will
+open a port on every node in the cluster and forward any traffic sent to that port
+to our service. The biggest downside of this approach is that if your Node&rsquo;s
+IP address changes, then you&rsquo;ll need to deal with that. Let&rsquo;s submit
+the NodePort Service:</p>
+
+<pre><code>$ k apply -f k8s/nodeport.yaml
+service/helloworld-service2 created
+</code></pre>
+
+<pre><code>$ k get service                                                                                                                                                         20:22:45
+NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+helloworld-service    ClusterIP   10.100.210.87   &lt;none&gt;        7070/TCP         61m
+helloworld-service2   NodePort    10.96.45.99     &lt;none&gt;        7070:30100/TCP   94s
+kubernetes            ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP          4d
+</code></pre>
+
+<p>We got a new service (<code>helloworld-service2</code>), and we can reach it via any
+node in our K8s cluster. Since we are using minikube, in order to reach any
+node of the cluster from our personal machine, we need make the cluster&rsquo;s
+nodes reachable by opening a tunnel by means of <a href="https://en.wikipedia.org/wiki/Port_forwarding#Local_port_forwarding">port forwarding</a>.
+Run the following command in a separate terminal:</p>
+
+<pre><code>$ minikube -p minikube-lab service helloworld-service2 --url
+http://127.0.0.1:54980
+❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
+</code></pre>
+
+<p>Now from our personal machine we can either run <code>curl http://127.0.0.1:54980</code>
+on a new terminal or open the browser at that address:</p>
+
+<div class="img-block">
+    <img class="img-center" 
+         src="/static/img/k8s/go-app-browser.png" 
+         alt="Go application reachable from outside cluster"
+    >
+    <div class="caption">
+        <small><b>Fig. 3</b> Our Go application reachable from outside the K8s cluster.</small>
+    </div>
+</div>
+
+<h4><strong><a href="https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer">LoadBalancer</a></strong></h4>
+
+<p>A K8s LoadBalancer is the standard way to expose a service to outside traffic.
+You can use LoadBalancer if your (cloud) provider supports it:</p>
+
+<p><em>File <code>./k8s/loadbalancer.yaml</code></em></p>
+
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-service3
+spec:
+  type: LoadBalancer
+  selector:
+    app: helloworld-backend
+  ports:
+    - port: 9000
+      targetPort: 7070
+
+</code></pre>
+
+<pre><code>$ k apply -f k8s/loadbalancer.yaml 
+service/helloworld-service3 created
+</code></pre>
+
+<pre><code>$ k get service   
+NAME                  TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+helloworld-service    ClusterIP      10.100.210.87   &lt;none&gt;        7070/TCP         106m
+helloworld-service2   NodePort       10.96.45.99     &lt;none&gt;        7070:30100/TCP   46m
+helloworld-service3   LoadBalancer   10.108.116.80   &lt;pending&gt;     9000:30025/TCP   20s
+</code></pre>
+
+<p>Our Service <code>helloworld-service3</code> provisions a load-balancer listening on
+port 9000 which forwards all traffic to our internal Pods on port 7070. Notice
+that the <code>EXTERNAL-IP</code> column should be displaying the external IP assigned to
+our Service by our cloud provider. In our case, minikube hasn&rsquo;t assigned any
+IP yet, hence the <code>pending</code> state. Let&rsquo;s fix this. On a separate terminal run:</p>
+
+<pre><code>$ minikube -p minikube-lab tunnel  
+✅  Tunnel successfully started
+
+📌  NOTE: Please do not close this terminal as this process must stay alive for the tunnel to be accessible ...
+
+🏃  Starting tunnel for service helloworld-service3.
+</code></pre>
+
+<p>Then check out again the status of our <code>helloworld-service3</code> service:</p>
+
+<pre><code>$ k get service helloworld-service3    
+NAME                  TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+helloworld-service3   LoadBalancer   10.108.116.80   127.0.0.1     9000:30025/TCP   4m11s
+</code></pre>
+
+<p>Now it has an external IP. It&rsquo;s the localhost IP, so let&rsquo;s try to reach our
+service from our personal machine:</p>
+
+<pre><code>$ curl localhost:9000 
+Hello world (ID: 7899672086525838020)
+</code></pre>
+
+<p>It works!</p>
+
+<h3><a href="#15" name="15">15. Let&rsquo;s recap</a></h3>
+
+<p>So far we have quite some stuff running in our local K8s cluster:</p>
+
+<ul>
+<li>a Go application</li>
+<li>a Docker container running the Go application</li>
+<li>one or more K8s Pods running our application container</li>
+<li>a K8s Deployment grouping together a set of replicated Pods</li>
+<li>a K8s Service that allows to reach our app by name from within the cluster</li>
+<li>another two K8s Services that allows us to reach our app by name from within the cluster and
+can handle external traffic by load-balancing traffic across our dynamic set of Pods</li>
+</ul>
+
+<h3><a href="#16" name="16">16. K8s Ingress</a></h3>
+
+<p>K8s NodePort and K8s LoadBalancer are nice and all but have limitations. NodePorts
+require you to handle how to address nodes by IP (or name). LoadBalancer fixes this, but
+you need one LoadBalancer per Service. This wasn&rsquo;t an issue in our toy example because
+we only had one Service, but in real-world applications you may not want to deploy one
+LoadBalancer per each internal Service. Another issue with LoadBalancers is that
+they work at the Network level, meaning that you cannot use LoadBalancers to balance
+the load based on HTTP headers, or path names for example.</p>
+
+<p>A K8s <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Ingress</a> is an object that manages external access to our services in
+the cluster, providing, among other things, HTTP-based routing.</p>
+
+<div class="img-block">
+    <img class="img-center" 
+         src="/static/img/k8s/k8s-ingress.svg" 
+         alt="K8s ingress">
+    <div class="caption">
+        <small><b>Fig. 4</b> K8s Ingress. <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Reference</a></small>
+    </div>
+</div>
+
+<p>Unlike other K8s objects we have talked before, when we talk about K8s Ingress,
+we talk about two things:</p>
+
+<ul>
+<li>the Ingress object</li>
+<li>the Ingress controller</li>
+</ul>
+
+<p>The Ingress object defines the rules that allow external access to our cluster.
+An Ingress controller implements the rules defined in the Ingress object. Usually,
+a K8s cluster doesn&rsquo;t come with a predefined Ingress Controller (although hosted
+K8s clusters like <a href="https://aws.amazon.com/eks/">EKS</a> and <a href="https://cloud.google.com/kubernetes-engine">GKE</a> come with pre-installed ones).
+Minikube comes with an <a href="https://kubernetes.github.io/ingress-nginx/">NGINX Ingress Controller</a>, but you have to enable it:</p>
+
+<pre><code>$ minikube -p minikube-lab addons enable ingress
+💡  ingress is an addon maintained by Kubernetes. For any concerns contact minikube on GitHub.
+You can view the list of minikube maintainers at: https://github.com/kubernetes/minikube/blob/master/OWNERS
+💡  After the addon is enabled, please run &quot;minikube tunnel&quot; and your ingress resources would be available at &quot;127.0.0.1&quot;
+    ▪ Using image k8s.gcr.io/ingress-nginx/controller:v1.2.1
+    ▪ Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+    ▪ Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+🔎  Verifying ingress addon...
+🌟  The 'ingress' addon is enabled 
+</code></pre>
+
+<p>Minikube is telling us that in order for our ingress resources to be
+available via <code>127.0.0.1</code>, we need to open a tunnel (it requires root
+password since it opens privileged ports):</p>
+
+<pre><code>$ minikube -p minikube-lab tunnel
+✅  Tunnel successfully started
+
+📌  NOTE: Please do not close this terminal as this process must stay alive for the tunnel to be accessible ...
+
+❗  The service/ingress helloworld-ingress requires privileged ports to be exposed: [80 443]
+🔑  sudo permission will be asked for it.
+🏃  Starting tunnel for service helloworld-ingress.
+Password:
+</code></pre>
+
+<p>In another terminal let&rsquo;s verify that our Ingress Controller is up and running:</p>
+
+<pre><code>$ k get pods -n ingress-nginx  
+NAME                                        READY   STATUS      RESTARTS   AGE
+ingress-nginx-admission-create-hcr6h        0/1     Completed   0          2m
+ingress-nginx-admission-patch-cpnkk         0/1     Completed   1          2m
+ingress-nginx-controller-5959f988fd-l8mk9   1/1     Running     0          2m
+</code></pre>
+
+<p>The NGINX Controller Pod should be running under the <code>ingress-nginx</code>
+namespace and with the status <code>Running</code>.
+The two Pods in the <code>Completed</code> state were short-lived ones that helped
+initialize the main one.</p>
+
+<p>Now we have one NGINX Controller in your cluster. Let&rsquo;s deploy an Ingress
+object to route all the traffic to our internal application service.</p>
+
+<p><em>File: <code>./k8s/ingress.yaml</code></em></p>
+
+<pre><code>apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: helloworld-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: helloworld.test
+      http:
+        paths:
+          - path: /crash
+            pathType: Prefix
+            backend:
+              service:
+                name: helloworld-service
+                port:
+                  number: 6060
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: helloworld-service
+                port:
+                  number: 7070
+</code></pre>
+
+<p>The Ingress manifest goes like this:</p>
+
+<ul>
+<li><code>spec.ingressClassName: nginx</code>, we are telling K8s to use the NGINX
+Ingress Controller we have enabled before</li>
+<li><code>spec.rules</code>, we have one rule that goes like this: route any traffic
+arriving at <code>helloworld.test</code> hostname to our <code>helloworld-service</code> service
+taking into account that any request arriving at the path <code>/crash</code> will
+hit the port 6060 of our service (our service is not listening on that port),
+and any other request hitting any path that starts with <code>/</code> will
+hit our service on the port 7070</li>
+</ul>
+
+<p>Let&rsquo;s submit our Ingress:</p>
+
+<pre><code>$ k apply -f src/k8s/ingress.yaml
+ingress.networking.k8s.io/helloworld-ingress created
+</code></pre>
+
+<pre><code>$ k get ingress 
+NAME                 CLASS   HOSTS             ADDRESS        PORTS   AGE
+helloworld-ingress   nginx   helloworld.test   192.168.49.2   80      3m
+</code></pre>
+
+<p>The <code>ADDRESS</code> column shows the public endpoint of our ingress. Since we have
+opened the minikube tunnel, the public endpoint will be available via
+our localhost address <code>127.0.0.1</code>. If we want to reach our application
+by its name (<code>helloworld.test</code>), we need to update the <code>/etc/hosts</code> file
+of our local machine:</p>
+
+<p><em>File <code>/etc/hosts</code></em></p>
+
+<pre><code>...
+127.0.0.1 kubernetes.docker.internal helloworld.test
+...
+</code></pre>
+
+<p>On macOS we need to add our service hostname <code>helloworld.test</code> next to
+any existing entry that already maps a hostname to <code>127.0.0.1</code>. In our
+case, minikube adds the <code>127.0.0.1 kubernetes.docker.internal</code> automatically
+when running minikube, so we just added the <code>helloworld.test</code> next to it.</p>
+
+<p>We finally can reach our service by name and from outside the local
+cluster:</p>
+
+<pre><code>$ curl helloworld.test
+Hello world (ID: 994753618341664209)
+
+$ curl helloworld.test/crash
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;503 Service Temporarily Unavailable&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;center&gt;&lt;h1&gt;503 Service Temporarily Unavailable&lt;/h1&gt;&lt;/center&gt;
+&lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>The rules defined in our Ingress object are handling correctly
+requests arriving at <code>/crash</code> and <code>/</code>.</p>
+
+<h3><a href="#17" name="17">17. What else?</a></h3>
+
+<p>We have covered some of the basic concepts in the K8s world:</p>
+
+<ul>
+<li>Cluster</li>
+<li>Node</li>
+<li>Pod</li>
+<li>Deployment</li>
+<li>Service (ClusterIP, NodePort, LoadBalancer)</li>
+<li>Ingress</li>
+</ul>
+
+<p>We are able to deploy a toy application and make it accessible
+to the outside world (using minikube, though!). But there are many other
+topics we haven&rsquo;t covered yet such as:</p>
+
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/storage/">Storage</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/configmap/">ConfigMaps</a> and <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Secrets</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespaces</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/">Service Accounts</a></li>
+<li>&hellip;</li>
+</ul>
+
+<p>Hopefully, with the fundamentals covered in this primer,
+you should have a mental model of where the remaining pieces
+of the K8s puzzle fit.</p>
+
+<h3><a href="#ref" name="ref">References</a></h3>
+
+<p>The official <a href="https://kubernetes.io/docs/home/">K8s documentation</a> is good, but it&rsquo;s extensive and dense. It
+contains a lot of information you may not need right away, and while
+the sections are linked together, they do not tell a unified story to follow.
+I link here two books which I believe are great if you want to get an overview of
+K8s while understanding the theory behind and keeping it practical:</p>
+
+<ul>
+<li><p>Kubernetes: Up and Running, 2nd Edition. By Brendan Burns, Joe Beda,
+Kelsey Hightower</p></li>
+
+<li><p>The Kubernetes Book, 2021 Edition. By Nigel Poulton and Pushkar Joglekar</p></li>
+</ul>
+<div class="backlink"></div><small><a href="/">↩ back</a></small><br>
+<footer>
+    <p>
+        <b><a href="/">marcoslar.com</a></b> © <span id="year">2012–2090</span> —
+        <a href="https://github.com/marcoslar/marcoslar.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
+            BY-NC-SA 4.0
+        </a> —
+        <a href="https://github.com/marcoslar/marcoslar.com">Source code</a> —
+        <a href="/about">About</a>
+        
+    </p>
+</footer>
+
+<noscript>
+    <style type="text/css">
+         
+        *[class^="belbo_v"] { display: none; }
+        *[class^="belbo_v1"] { display: inline; }
+    </style>
+</noscript>
+<script>
+function enableParallelSnippets(manuallyTriggered) {
+    var snippetsByVersion = {};
+    var versionableSnippets = document.querySelectorAll('[class^="belbo_v"]');
+
+    for (var j = 0; j < versionableSnippets.length; j++) {
+        var snippet = versionableSnippets[j]
+        var majorVersion = snippet.className.split("-")[1];
+        if (majorVersion in snippetsByVersion) {
+            snippetsByVersion[majorVersion].push(snippet);
+            continue;
+        }
+
+        snippetsByVersion[majorVersion] = [snippet];
+    }
+
+    if (Object.keys(snippetsByVersion).length === 0) {
+        return;
+    }
+
+    var randomSnippets = {};
+    for (var s in snippetsByVersion) {
+        var len = snippetsByVersion[s].length;
+        randomSnippets[len] = Math.floor(Math.random() * len) + 1;
+    }
+
+    
+    for (var s in snippetsByVersion) {
+        var snippetIndex = randomSnippets[snippetsByVersion[s].length];
+
+        for (var i = 0; i < snippetsByVersion[s].length; i++) {
+            if (i !== snippetIndex - 1) {
+                snippetsByVersion[s][i].style.display = 'none';
+                
+            } else {
+                snippetsByVersion[s][i].style.display = 'inline';
+            }
+        }
+    }
+
+    if (manuallyTriggered) {
+        var el = document.getElementById('reload-icon');
+        el.classList.remove('spinner');
+        void el.offsetWidth;
+        el.classList.add('spinner');
+    }
+}
+
+function onThemeSelection(theme) {
+    if (theme === 'default') {
+        theme = 'light-theme';
+    }
+    localStorage.setItem('theme', theme);
+    document.body.className = theme;
+
+}
+
+document.addEventListener('DOMContentLoaded', function(e) {
+    enableParallelSnippets((manuallyTriggered = false));
+
+    if (theme = localStorage.getItem('theme')) {
+        if (theme === 'light-theme') {
+            theme = 'default';
+        }
+        document.getElementById('themeSelector').value = theme;
+        onThemeSelection(theme);
+    }
+});
+</script>
+</body>
+</html>

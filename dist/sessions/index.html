@@ -73,7 +73,7 @@ html {
 
 body {
     font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -169,12 +169,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 2rem;
     display: inline-block;
 }
 
 h2 {
     font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5rem;
 }
 
 h4 {
@@ -215,6 +219,15 @@ dd {
 
 img {
     max-width: 100%;
+}
+
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.img-block {
+    text-align:center;
 }
 
 a img {
@@ -299,9 +312,9 @@ pre {
     color: var(--preColor);
     overflow: auto;
     border: 1px solid var(--preBorder);
-    padding: 0.5rem;
+    padding: 0.75rem;
     background-color: var(--preBg);
-    box-shadow: 0px 5px 5px 0 rgb(185 185 185 / 8%), 0 5px 15px 0 rgb(197 197 197 / 12%);
+     
 }
 
 p > code, em > code, li > code {
@@ -355,6 +368,24 @@ footer a {
             </div>
             <table>
     <tbody><tr>
+                    <td class="post-date">
+                        <span>Nov 2022</span>
+                    </td>
+                    <td class="post-title">
+                        <a href="/posts/2022/11/K8s-primer-part-II/">
+                            <span style="">K8s primer - Part II</span>
+                        </a>
+                    </td>
+                </tr><tr>
+                    <td class="post-date">
+                        <span>Nov 2022</span>
+                    </td>
+                    <td class="post-title">
+                        <a href="/posts/2022/11/K8s-primer/">
+                            <span style="">K8s primer - Part I</span>
+                        </a>
+                    </td>
+                </tr><tr>
                     <td class="post-date">
                         <span>Jun 2022</span>
                     </td>

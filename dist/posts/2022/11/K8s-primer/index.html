@@ -1,0 +1,1012 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Marcoslar.com">
+<meta name="keywords" content="software, ">
+<link rel="shortcut icon" href="/static/myicon.svg"/>
+<title>Marcoslar.com | K8s primer - Part I </title>
+<style>
+:root {
+    --fontSize: 17px;
+    --lineHeight: calc(var(--fontSize) * 1.5);
+    --spacing: 2rem;
+    --spacingv: calc(var(--lineHeight) / 2);
+    --columnGap: 2rem;
+    --fontFamily: 'Inconsolata', sans-serif;
+}
+
+.light-theme {
+    --background: white;
+    --color: #333;
+    --hrefColor: #2222d4;
+    --headlineBg: #f0f8ff85;
+    --headlineBorder: #e5eff94a;
+    --headlineShadow1: rgb(185 185 185 / 8%);
+    --headlineShadow2: rgb(197 197 197 / 12%);
+    --preBg: #f0f8ff85;
+    --preColor: #1a1a1a;
+    --preBorder: #e5eff94a;
+    --codeBg: #f7f7f7;
+    --selectionBg: aquamarine;
+    --chBg1: black;
+    --chBg2: #5e5e5e;
+}
+
+.dark-theme {
+    --background: #282828;
+    --color: #fbf1f7;  
+    --hrefColor: #b8bdff;
+    --headlineBg: #b8bdff0d;
+    --headlineBorder: #b8bdff00;
+    --headlineShadow1: rgb(46 18 18 / 8%);
+    --headlineShadow2: rgb(38 32 32 / 12%);
+    --preBg: #37353985;
+    --preColor: var(--color);
+    --preBorder: #0000004a;
+    --codeBg: #423f4585;  
+    --selectionBg: #214539;
+    --chBg1: #fff;
+    --chBg2: #7b7b7b;
+}
+
+html {
+    min-height: 100%;
+}
+
+.navy {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px dotted #8080806e;
+}
+
+.theme {
+    align-content: flex-end;
+    margin-left: auto;
+}
+
+.navy a {
+    border-bottom: none;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-feature-settings: "liga" 1, "dlig" 1, "kern" 1, "frac" 0;
+    hyphens: auto;
+    background-color: var(--background);
+    color: var(--color);
+    max-width: 960px;
+    padding: 0 1em;
+    margin: 2rem auto;
+}
+
+.underline {
+    padding: 0.25rem;
+    border: 1px solid var(--headlineBorder);
+    background-color: var(--headlineBg);
+    box-shadow: 0 5px 5px 0 var(--headlineShadow1), 0 5px 15px 0 var(--headlineShadow2);
+}
+
+.columns a {
+    border-bottom: none;
+}
+
+.post-date {
+    text-align: left;
+    padding-right: 1rem;
+    vertical-align: top;
+    font-family: monospace;
+    font-size: 1rem;
+}
+
+.post-page-date {
+    font-family: monospace;
+    font-size: 1rem;
+    padding-bottom: 1em;
+}
+
+.post-title {
+    vertical-align: top;
+}
+
+p {
+    margin-top: 8px;
+}
+
+pre.highlight {
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    background-color: #f6f6f6;
+}
+
+h1 + pre hr {
+    visibility: hidden;
+}
+
+blockquote {
+    font-size: 95%;
+    border-style: solid;
+    border-color: #d2dcdf;
+    border-width: 0 0 0 0.5em;
+    padding-left: 1em;
+    margin: 8px 1em 16px 0;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+sup, sub {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+}
+
+sub {
+    top: 0.4em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, Tahoma, "Times New Roman", serif;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-feature-settings: "liga" 1, "dlig" 1, "kern" 1, "frac" 0;
+    hyphens: auto;
+    font-feature-settings: "swsh" 1, "cswh" 1, "onum" 1;
+    margin: 32px 0 8px 0;
+    padding: 0;
+    line-height: 1em;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+
+h1 {
+    font-size: 2rem;
+    display: inline-block;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 0.95em;
+}
+
+h5 {
+    font-size: 0.85em;
+}
+
+h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+    margin-top: 16px;
+    page-break-after: avoid;
+}
+
+a:active {
+    color: var(--hrefColor);
+    background-color: #acf;
+}
+
+ul {
+    list-style-type: disc;
+    margin: 8px 0;
+    padding-left: 1em;
+}
+
+li {
+    margin: 4px 0;
+}
+
+p + ul, div + ul {
+    margin: -8px 0 8px 0;
+}
+
+dd {
+    padding-bottom: 8px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.img-block {
+    text-align:center;
+}
+
+a img {
+    border: none;
+}
+
+@media screen and (min-width: 1034px) {
+    .wide_only {
+        display: inherit;
+    }
+}
+
+.columns, .column {
+    margin: 0;
+    padding: 0;
+}
+
+.columns {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    flex-flow: column nowrap;
+    max-width: 1040px;
+}
+ 
+@media screen and (min-width: 1085px) {
+    .columns {
+        width: 100%;
+        display: flex;
+        height: 100%;
+        flex-wrap: wrap;
+        flex-flow: column wrap;
+        justify-content: space-between;
+    }
+
+    .column {
+        flex: auto;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-device-width: 900px) {
+    body {
+        font-size: .9rem;
+    }
+
+    .post-date {
+        text-align: left;
+        padding-right: 0;
+        vertical-align: top;
+        min-width: 4.25rem;
+        font-family: monospace;
+        font-size: .7rem;
+    }
+
+    .post-page-date {
+        font-size: .7rem;
+    }
+
+    ol {
+        padding-left: 1rem;
+    }
+}
+
+footer {
+    margin-top: 2rem;
+    border-top: 1px dotted #8080806e;
+    font-size: 1rem !important;
+}
+
+.init-ch {
+    font-weight: bold;
+    background: -webkit-linear-gradient(45deg, var(--chBg1), var(--chBg2) 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+pre {
+    line-height: 1.45em;
+    font-size: .75em;
+    color: var(--preColor);
+    overflow: auto;
+    border: 1px solid var(--preBorder);
+    padding: 0.75rem;
+    background-color: var(--preBg);
+     
+}
+
+p > code, em > code, li > code {
+    font-size: .75em;
+    background-color: var(--codeBg);
+    padding: .25em;
+}
+
+.mono,p code,li code,pre,code,tt {
+    font-family: Menlo, Monaco, monospace;
+}
+
+.column table a {
+    text-decoration: none;
+}
+
+a {
+    color: var(--hrefColor);
+    text-decoration: none;
+    border-bottom: 1px dotted #b6b6e4;
+}
+
+.backlink {
+    margin-top: 2rem;
+}
+
+footer a {
+    border-bottom: none;
+}
+
+*::selection{
+    background-color: var(--selectionBg);
+}
+
+</style>
+</head>
+    <body class="light-theme" style="">
+<nav class="navy">
+    <div>
+        <b><a href="/">marcoslar.com</a></b>
+    </div>
+    <div class="theme">
+        <select name="theme" id="themeSelector" onchange="onThemeSelection(this.value)">
+            <option value="default">Theme: Light</option>
+            <option value="dark-theme">Theme: Dark</option>
+        </select>
+    </div>
+</nav>
+<div style="display: flex;">
+                <h1><span class="init-ch">K</span>8s primer - Part I</h1>
+            </div>
+            <div class="post-page-date">
+                    <small>Tuesday, 08 November 2022</small>
+                </div><p><em>This primer is targeted to developers who mainly work on product features but
+may also need to understand the basics of Kubernetes at a practical level,
+so that they know how their applications are deployed and managed.</em></p>
+
+<p><em>Requirements: <a href="https://www.docker.com/">Docker</a> and <a href="https://minikube.sigs.k8s.io/docs/start/">minikube</a>.</em></p>
+
+<p><em>If you are already familiarized with building containerized applications, you can
+skip directly to <a href="#4">step 4</a>.</em></p>
+
+<p><em>Second part in <a href="/">K8s Primer - Part II</a></em></p>
+
+<h3><a name="1" href="#one">1. Alright, let&rsquo;s start</a></h3>
+
+<p>We want to deploy a <a href="https://go.dev/">Go</a> application using <a href="https://kubernetes.io/">Kubernetes (K8s)</a>. The application is
+a simple HTTP server that listens on port 7070 and responds to any request with
+a &ldquo;Hello world&rdquo; followed by a random integer.</p>
+
+<p><em>File <code>./main.go</code></em></p>
+
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;log&quot;
+	&quot;math/rand&quot;
+	&quot;net/http&quot;
+	&quot;time&quot;
+)
+
+func main() {
+	rand.Seed(time.Now().UnixNano())
+	id := rand.Int()
+
+	http.HandleFunc(&quot;/&quot;, func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, &quot;Hello world (ID: %d)\n&quot;, id)
+	})
+
+	fmt.Printf(&quot;Serving on http://localhost:7070 (ID: %d)\n&quot;, id)
+	log.Fatal(http.ListenAndServe(&quot;:7070&quot;, nil))
+}
+</code></pre>
+
+<p>We can run this HTTP server locally on your personal machine:</p>
+
+<pre><code>$ go build main.go &amp;&amp; ./main # Or just: go run main.go
+Serving on http://localhost:7070 (ID: 3628456987918824506)
+</code></pre>
+
+<p>And we can query the server using <a href="https://curl.se/">curl</a>:</p>
+
+<pre><code>$ curl localhost:7070
+Hello world (ID: 3628456987918824506)
+</code></pre>
+
+<p>So far so good.</p>
+
+<h3><a href="#2" name="2">2. K8s runs containerized applications</a></h3>
+
+<p>We cannot just deploy our Go app by &ldquo;handing over&rdquo; the compiled binary <code>main</code>
+to K8s. K8s runs applications within containers. We need to containerize our
+Go app; I&rsquo;ll use <a href="https://www.docker.com/">Docker</a> for that:</p>
+
+<p><em>File <code>./Dockerfile</code></em></p>
+
+<pre><code>FROM golang:1.19-alpine3.15 as build
+WORKDIR /app
+COPY main.go ./
+RUN go build -o /app/HelloWorld main.go
+EXPOSE 7070
+
+FROM alpine:3.15
+USER nobody:nobody
+COPY --from=build /app/HelloWorld /HelloWorld
+
+CMD [&quot;/HelloWorld&quot;]
+</code></pre>
+
+<p>The <code>./Dockerfile</code> contains all the commands needed to build an image that
+will contain our application binary. Let&rsquo;s build the image:</p>
+
+<pre><code>$ docker build -t YOUR-HANDLE/hello-world-go:1.0.0 .
+</code></pre>
+
+<p>The image is now stored in our personal machine:</p>
+
+<pre><code>$ docker image ls                                                
+REPOSITORY                     TAG       IMAGE ID       CREATED       SIZE
+YOUR-HANDLE/hello-world-go   1.0.0     a2fe58fdd36f   2 seconds ago    11.6MB
+</code></pre>
+
+<p>We could run our containerized Go app locally by doing:</p>
+
+<pre><code>$ docker run --rm -p 7070:7070 YOUR-HANDLE/hello-world-go:1.0.0
+
+Serving on http://localhost:7070 (ID: 3888774625775762015)
+</code></pre>
+
+<p>And we can query our containerized Go app just like before: <code>curl localhost:7070</code>.</p>
+
+<h3><a href="#3" name="3">3. Let&rsquo;s publish our Go application image</a></h3>
+
+<p>The image we just built is stored in our personal machine, but K8s doesn&rsquo;t know how
+to retrieve the image from our file system. The standard approach is to make our container
+image available via a container registry. I&rsquo;ll use <a href="https://hub.docker.com/">Docker Hub</a> to publish (for free)
+my Go app image:</p>
+
+<pre><code>$ docker login -u YOUR-HANDLE
+$ docker push YOUR-HANDLE/hello-world-go:1.0.0
+</code></pre>
+
+<p>(<em><code>docker login</code> will ask for your <a href="https://www.docker.com/blog/docker-hub-new-personal-access-tokens/">personal access token</a> to login into Docker Hub.</em>)</p>
+
+<p>Now our Go app image is publicly available via Docker Hub.</p>
+
+<h3><a href="#4" name="4">4. We need some kind of machine/server/node where K8s can run</a></h3>
+
+<p>If we want to run applications on K8s, we first need to figure out
+where K8s can run. We need hardware. We can use a fully managed K8s
+service like <a href="https://cloud.google.com/kubernetes-engine">GKE</a> and <a href="https://aws.amazon.com/eks/">EKS</a>, or we can use <a href="https://minikube.sigs.k8s.io/docs/start/">minikube</a>, open source and free, to
+run K8s locally on our machine. I&rsquo;ll use minikube.</p>
+
+<p>K8s has the notion of <a href="https://kubernetes.io/docs/concepts/overview/components/">clusters</a>. A cluster is a set of nodes. A node can be a
+physical or a virtual machine. We can run K8s itself and our application on nodes.</p>
+
+<p>Let&rsquo;s create a local K8s cluster of three (virtual) nodes:</p>
+
+<pre><code>$ minikube start --nodes 3 -p minikube-lab
+</code></pre>
+
+<p>Nice. We got three nodes. Let&rsquo;s use <a href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/">kubectl</a>, a CLI that lets us interact with K8s,
+to ask K8s about the status of our cluster:</p>
+
+<pre><code>$ kubectl get nodes
+
+NAME               STATUS   ROLES           AGE    VERSION
+minikube-lab       Ready    control-plane   1h    v1.25.2
+minikube-lab-m02   Ready    &lt;none&gt;          58s   v1.25.2
+minikube-lab-m03   Ready    &lt;none&gt;          58s   v1.25.2
+</code></pre>
+
+<p>K8s is telling us that we have three nodes, each of them with a unique name and
+ready for whatever we may need them. One of the nodes works as the <a href="https://kubernetes.io/docs/concepts/overview/components/#control-plane-components">control plane</a>
+of our cluster (i.e., this is where most of the K8s components run to manage the cluster),
+while the other two nodes are what K8s calls <a href="https://kubernetes.io/docs/concepts/overview/components/">worker</a> nodes (i.e., nodes on which
+our application can run.)</p>
+
+<h3><a href="#5" name="5">5. Let&rsquo;s deploy our Go app in our local K8s cluster</a></h3>
+
+<p>We got a cluster and we got a containerized application, but can&rsquo;t yet deploy our
+containerized application on the cluster.
+We first need a <a href="https://kubernetes.io/docs/concepts/workloads/pods/">Pod</a>. A Pod can be thought of as a wrapper that allows a container
+to run on K8s. It&rsquo;s true that we can run containerized apps on K8s, but K8s requires
+that any container runs inside a Pod.</p>
+
+<div class="img-block">
+    <img class="img-center" 
+         src="/static/img/k8s/app-container-pod-2.svg" 
+         alt="App within container within Pod"
+         width="350" height="350"
+    >
+    <div class="caption">
+        <small><b>Fig. 1</b> Go app within container within Pod.</small>
+    </div>
+</div>
+
+<p>Let&rsquo;s create our Pod in a declarative way:</p>
+
+<p><em>File <code>./k8s/pod.yaml</code></em></p>
+
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: helloworld-app
+  labels:
+    app: helloworld-backend
+spec:
+  containers:
+    - image: mypublicrepos/hello-world-go:1.0.0
+      name: helloworld-container
+      ports:
+        - containerPort: 7070
+          name: http
+          protocol: TCP
+</code></pre>
+
+<p>This YAML file, also known as a Pod <a href="https://kubernetes.io/docs/reference/glossary/?all=true#term-manifest">manifest</a>, declares the desired state of our cluster.
+We are telling K8s:</p>
+
+<blockquote>
+<p>Hey K8s, create one Pod named <code>helloworld-app</code> which contains inside one container
+named <code>helloworld-container</code> whose image can be pulled from <code>YOUR-HANDLE/hello-world-go:1.0.0</code>
+(from DockerHub) and that runs on port 7070</p>
+</blockquote>
+
+<ul>
+<li><code>kind</code>: identifies the type of object being declared. We are declaring a Pod</li>
+<li><code>apiVersion</code>: defines the schema version we&rsquo;ll use when creating the Pod object.
+We are using the Pod schema <code>v1</code></li>
+<li><code>metadata.*</code>: this section describes the Pod (its name, its labels, annotations, etc.).
+We identify Pods by their name. We use labels to group Pods together</li>
+<li><code>spec.*</code>: this part describes the list of containers that will run within the Pod.
+We are declaring a single container, its image and its port</li>
+</ul>
+
+<p>Now we are finally ready to deploy our app.</p>
+
+<h3><a href="#6" name="6">6. Let&rsquo;s deploy a Pod!</a></h3>
+
+<p>We can use <code>kubectl</code> (alias <code>k</code>) to submit our <code>./k8s/pod.yaml</code> manifest to K8s.
+Behind the curtains a lot things will happen, but what we care about here is that K8s
+will find a healthy node on our cluster on which our Pod can run:</p>
+
+<pre><code>$ k apply -f k8s/pod.yaml
+pod/helloworld-app created
+</code></pre>
+
+<p>We can check if the Pod is in our cluster, but you may want to wait a little bit
+before running the following command (it may take some time to pull the
+image container):</p>
+
+<pre><code>$ k get pods -o wide                                                                        
+NAME             READY   STATUS    RESTARTS   AGE     IP           NODE               NOMINATED NODE   READINESS GATES
+helloworld-app   1/1     Running   0          2m11s   10.244.2.2   minikube-lab-m03   &lt;none&gt;           &lt;none&gt;
+</code></pre>
+
+<p>Our Pod is there. It&rsquo;s running on the node <code>minikube-lab-m03</code> (a worker node),
+and it even has its own IP address (<code>10.244.2.2</code>). Let&rsquo;s get more details about our Pod:</p>
+
+<pre><code>$ k describe pod helloworld-app
+Name:         helloworld-app
+Namespace:    default
+Priority:     0
+Node:         minikube-lab-m03/192.168.49.4
+Start Time:   Fri, 11 Nov 2022 20:41:23 +0100
+Labels:       app=helloworld-backend
+Annotations:  &lt;none&gt;
+Status:       Running
+IP:           10.244.2.2
+IPs:
+  IP:  10.244.2.2
+Containers:
+  helloworld-container:
+    Container ID:   docker://284cf78c1abd23ba1229b493db35c605004f122e0f7e32222fc8340ea6855efe
+    Image:          YOUR-HANDLE/hello-world-go:1.0.0
+    Image ID:       docker-pullable://YOUR-HANDLE/hello-world-go@sha256:56345565aae8bd519084145e2990ebdeabba12
+    Port:           7070/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Fri, 11 Nov 2022 20:41:23 +0100
+    Ready:          True
+    Restart Count:  0
+    Environment:    &lt;none&gt;
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-vh2vb (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  kube-api-access-vh2vb:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       &lt;nil&gt;
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              &lt;none&gt;
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  4m13s  default-scheduler  Successfully assigned default/helloworld-app to minikube-lab-m03
+  Normal  Pulled     4m13s  kubelet            Container image &quot;YOUR-HANDLE/hello-world-go:1.0.0&quot; already present on machine
+  Normal  Created    4m13s  kubelet            Created container helloworld-container
+  Normal  Started    4m13s  kubelet            Started container helloworld-container
+</code></pre>
+
+<p>That&rsquo;s a lot of information. Some remarkable stuff:</p>
+
+<ul>
+<li>The <code>namespace</code> of the Pod is <code>default</code>. <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespaces</a> provide a mechanism
+for isolating groups of resources within a single cluster. We didn&rsquo;t specify
+any namespace in our Pod manifest, so our Pod got the default one</li>
+<li>Our Pod has one label (<code>app=helloworld-backend</code>) which is useful for filtering and
+grouping Pods as we&rsquo;ll see later</li>
+<li>Our Pod is running one container named <code>helloworld-container</code> which hasn&rsquo;t
+suffered any restarts yet</li>
+<li>There are some events attached to our Pod (container creation, image pulling,
+scheduling of the Pod to a node)</li>
+</ul>
+
+<h3><a href="#7" name="7">7. What can (cannot) we do with our Pod?</a></h3>
+
+<p>We</p>
+
+<ul>
+<li>can query its state (as seen before)</li>
+<li>can delete it (<code>k delete pod helloworld-app</code>)</li>
+<li>can recreate it (first delete and then create again)</li>
+<li>can reach it by its IP address</li>
+<li>cannot modify it (Pods are immutable)</li>
+<li>cannot reach it from outside the K8s cluster</li>
+</ul>
+
+<p>From our local machine we cannot query the Go app running in the Pod. While the Pod
+has an IP address, the IP is only reachable from within the K8s cluster. Check this out:</p>
+
+<pre><code>$ curl 10.244.2.2:7070 
+curl: (28) Failed to connect to 10.244.2.2 port 7070: Operation timed out
+</code></pre>
+
+<p>Can&rsquo;t reach the Pod from my local machine. Let&rsquo;s SSH into one of the nodes of the
+K8s cluster and try to query our Go app from there:</p>
+
+<pre><code>$ minikube ssh -p minikube-lab -n minikube-lab-m02
+Last login: Fri Nov 11 20:00:05 2022 from 192.168.49.1
+docker@minikube-lab-m02:~$ curl 10.244.2.2:7070
+Hello world (ID: 8356456912919624511)
+</code></pre>
+
+<p>Our Go app is reachable from within the cluster! But to reach our Pod we need to
+know its IP address, and as we&rsquo;ll see later, that&rsquo;s not ideal. Pods come and go,
+they may die unexpectedly.<br>
+If Pods are ephemeral, so are their IP addresses. If we don&rsquo;t want to keep track
+of which IP address corresponds to which Pod, we&rsquo;ll to reach Pods in a different way
+(e.g., by name). But first let&rsquo;s deploy more stuff.</p>
+
+<h3><a href="#8" name="8">8. Let&rsquo;s deploy two identical Pods</a></h3>
+
+<p>A simple way to (horizontally) scale our Go app would be to deploy many instances
+of it. What if we try to deploy again the same Pod?</p>
+
+<pre><code>$ k apply -f k8s/pod.yaml      
+pod/helloworld-app unchanged
+</code></pre>
+
+<p>We cannot deploy two identical Pods. We could write another manifest
+(e.g., <code>./k8s/pod2.yaml</code>) where we give the Pod a different name (e.g., <code>helloworld-app2</code>)
+and try to deploy that:</p>
+
+<pre><code>$ git diff --no-index k8s/pod.yaml k8s/pod2.yaml 
+
+diff --git a/pod.yaml b/pod2.yaml
+index d04ad55..9e15e0a 100644
+--- a/pod.yaml
++++ b/pod2.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: v1
+ kind: Pod
+ metadata:
+-  name: helloworld-app
++  name: helloworld-app2
+   labels:
+     app: helloworld-backend
+ spec:
+</code></pre>
+
+<pre><code>$ k apply -f k8s/pod2.yaml
+pod/helloworld-app2 created
+</code></pre>
+
+<pre><code>$ k get pods -o wide
+NAME              READY   STATUS    RESTARTS   AGE     IP           NODE               NOMINATED NODE   READINESS GATES
+helloworld-app    1/1     Running   0          75m     10.244.2.2   minikube-lab-m03   &lt;none&gt;           &lt;none&gt;
+helloworld-app2   1/1     Running   0          1m25s   10.244.1.2   minikube-lab-m02   &lt;none&gt;           &lt;none&gt;
+</code></pre>
+
+<p>There it is. Now we have two instances of our Go app running in two different Pods.
+The second Pod has been scheduled to a different node (<code>minikube-lab-m02</code>) than
+the first Pod, but that won&rsquo;t be always the case. Notice as well that our second
+Pod got a different IP address (<code>10.244.1.2</code>).</p>
+
+<h3><a href="#9" name="9">9. Let&rsquo;s deploy two identical Pods (better way)</a></h3>
+
+<p>You almost never deploy Pods using only a Pod manifest. K8s offers a better way to
+deploy one or more instances of your application (without having to manually create N different
+Pod manifest files): via the K8s <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployment</a> object.
+A K8s Deployment is a higher abstraction than the K8s Pod, and it allows us to describe
+our application&rsquo;s lifecycle via features such as scaling, zero-downtime deployments
+and rollbacks, self-healing, etc.</p>
+
+<p>An application could be composed of N identical Pods
+running on multiple Nodes, each of them with their own IP address and name.
+We don&rsquo;t want to deal with each of them individually; we should care about the bigger picture
+(<em>we have one application running</em>), not about internal details (<em>our running application
+is composed of N Pods</em>).</p>
+
+<p>Let&rsquo;s create a Deployment manifest to deploy our Go application:</p>
+
+<p><em>File <code>./k8s/deployment.yaml</code></em></p>
+
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+  labels:
+    app: helloworld-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: helloworld-backend
+  template:
+    metadata:
+      labels:
+        app: helloworld-backend
+    spec:
+      containers:
+      - image: mypublicrepos/hello-world-go:1.0.0
+        name: helloworld-container
+        ports:
+          - containerPort: 7070
+            name: http
+            protocol: TCP
+</code></pre>
+
+<p>With this manifest file we are telling K8s:</p>
+
+<blockquote>
+<p>Hey K8s, create a Deployment named <code>helloworld-deployment</code> that creates two replicated Pods.
+The Pods should be identical (i.e., same container image and port).</p>
+</blockquote>
+
+<p>Notice how the part under the <code>spec.template.spec</code> key of the manifest file is exactly
+the same as the one we had in our Pod manifest (<code>./k8s/pod.yaml</code>) under the <code>spec</code> key.
+We are, indeed, somehow <em>embedding</em> the Pod spec in the Deployment spec.
+Let&rsquo;s submit the Deployment manifest to K8s and see if our Pods are created:</p>
+
+<pre><code>$ k apply -f k8s/deployment.yaml
+deployment.apps/helloworld-deployment created
+
+$ k get pods -o wide
+NAME                                     READY   STATUS    RESTARTS   AGE     IP           NODE               NOMINATED NODE   READINESS GATES
+helloworld-deployment-79fcbf57bc-4zdvg   1/1     Running   0          13s     10.244.2.3   minikube-lab-m03   &lt;none&gt;           &lt;none&gt;
+helloworld-deployment-79fcbf57bc-g8ksc   1/1     Running   0          13s     10.244.1.3   minikube-lab-m02   &lt;none&gt;           &lt;none&gt;
+</code></pre>
+
+<p>We have two pods. Each of them were scheduled to a different node and got a
+different cluster-wide IP address. Nice. At this point we would no longer need
+our <code>./k8s/pod.yaml</code> and <code>./k8s/pod2.yaml</code> manifest files, so we could as well delete
+them because our <code>./k8s/deployment.yaml</code> is enough. Let&rsquo;s see what K8s has to say about
+our Deployment:</p>
+
+<pre><code>$ k get deployments -o wide
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS             IMAGES                               SELECTOR
+helloworld-deployment   2/2     2            2           1m    helloworld-container   mypublicrepos/hello-world-go:1.0.0   app=helloworld-backend
+</code></pre>
+
+<p>So our Deployment is managing two Pods as expected. How does our Deployment know
+about which Pods &ldquo;belong&rdquo; to it? Via the selector labels. In our Deployment
+manifest, the <code>spec.selector</code> defines the labels Pods should have to be managed
+by the Deployment. The label <code>spec.selector.matchLabels.app</code> has to match the label
+defined in the Pod template (<code>spec.template.metadata.labels.app</code>).</p>
+
+<div class="img-block">
+    <img class="img-center" 
+          src="/static/img/k8s/deployment2.svg" 
+          alt="App within container within Pods within Deployment"
+          width="650"
+          height="250"
+    >
+    <div class="caption">
+        <small><b>Fig. 2</b> Go app within container within Pods within Deployment.</small>
+    </div>
+</div>
+
+<h3><a href="#10" name="10">10. Deployment&rsquo;s niceties</a></h3>
+
+<p>Pods deployed via Pod manifests are also known as <em>static</em> Pods. If you delete
+a static Pod (e.g., <code>k delete pod helloworld-app</code>), the Pod is gone forever.
+The only way to scale static Pods is manually (as we saw, by creating a duplicated
+Pod manifest file). That&rsquo;s why in real-world applications we don&rsquo;t usually
+deploy Pods via Pod manifests, but via Deployments.
+Deployments have all the benefits of being monitored and managed by K8s.
+Let&rsquo;s examine this.</p>
+
+<p>Run the following command on one terminal:</p>
+
+<pre><code>$ k get pods --watch                  
+NAME                                     READY   STATUS    RESTARTS   AGE
+helloworld-deployment-79fcbf57bc-8nmnh   1/1     Running   0          11s
+helloworld-deployment-79fcbf57bc-ppcb8   1/1     Running   0          19m
+</code></pre>
+
+<p>The <code>--watch</code> flag allows us to watch for updates in the Pods managed by our
+Deployment object. On a second terminal, let&rsquo;s kill one of such Pods:</p>
+
+<pre><code>$ k delete pod helloworld-deployment-79fcbf57bc-ppcb8  
+pod &quot;helloworld-deployment-79fcbf57bc-ppcb8&quot; deleted
+</code></pre>
+
+<p>On the first terminal we see:</p>
+
+<pre><code>$ k get pods --watch                  
+NAME                                     READY   STATUS              RESTARTS   AGE
+helloworld-deployment-79fcbf57bc-8nmnh   1/1     Running             0          11s
+helloworld-deployment-79fcbf57bc-ppcb8   1/1     Running             0          19m
+helloworld-deployment-79fcbf57bc-ppcb8   1/1     Terminating         0          19m
+helloworld-deployment-79fcbf57bc-mw8gg   0/1     Pending             0          0s
+helloworld-deployment-79fcbf57bc-mw8gg   0/1     Pending             0          0s
+helloworld-deployment-79fcbf57bc-mw8gg   0/1     ContainerCreating   0          0s
+helloworld-deployment-79fcbf57bc-mw8gg   1/1     Running             0          1s
+helloworld-deployment-79fcbf57bc-ppcb8   0/1     Terminating         0          19m
+helloworld-deployment-79fcbf57bc-ppcb8   0/1     Terminating         0          19m
+helloworld-deployment-79fcbf57bc-ppcb8   0/1     Terminating         0          19m
+</code></pre>
+
+<p>The Pod whose name ends in <code>-ppcb8</code> is being terminated as requested
+but not before a new Pod is created (the Pod whose name ends in <code>-mw8gg</code>)
+and ready to serve. Why does this happen?
+Because in our Deployment manifest we have specified <code>spec.replicas: 2</code>,
+so K8s will constantly monitor the state of our cluster to make sure it matches
+the desired stated our manifest file represents. At the end, we&rsquo;ll always have
+two Pods running (the old one <code>-8nmh</code> and the new one <code>-mw8gg</code>):</p>
+
+<pre><code>$ k get pods
+NAME                                     READY   STATUS    RESTARTS   AGE
+helloworld-deployment-79fcbf57bc-8nmnh   1/1     Running   0          25s
+helloworld-deployment-79fcbf57bc-mw8gg   1/1     Running   0          5s
+</code></pre>
+
+<h3><a href="#11" name="11">11. Accessing our Go application</a></h3>
+
+<p>K8s Deployments allow us to manage multiple replicas of the same Pod.
+They also bring other niceties like self-healing (e.g., if a Pod, managed by a Deployment,
+dies, K8s takes care of creating a new Pod to substitute the dead one), and
+auto-scaling (e.g., the number of Pods managed by a Deployment can increase or decrease
+automatically based on load). But we can&rsquo;t still do the following:</p>
+
+<ul>
+<li>refer to our application by name (instead of by IP address)</li>
+<li>reach our application from outside the K8s cluster</li>
+</ul>
+
+<p>For the first point we need another K8s object, the K8s <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a>. But, it&rsquo;s enough for today.
+let&rsquo;s continue tomorrow in Part II. Let&rsquo;s shutdown our local K8s cluster:</p>
+
+<pre><code>$ minikube stop -p minikube-lab
+✋  Stopping node &quot;minikube-lab&quot;  ...
+🛑  Powering off &quot;minikube-lab&quot; via SSH ...
+✋  Stopping node &quot;minikube-lab-m02&quot;  ...
+🛑  Powering off &quot;minikube-lab-m02&quot; via SSH ...
+✋  Stopping node &quot;minikube-lab-m03&quot;  ...
+🛑  Powering off &quot;minikube-lab-m03&quot; via SSH ...
+🛑  3 nodes stopped.
+</code></pre>
+
+<p><a href="/">K8s Primer - Part II</a>.</p>
+<div class="backlink"></div><small><a href="/">↩ back</a></small><br>
+<footer>
+    <p>
+        <b><a href="/">marcoslar.com</a></b> © <span id="year">2012–2090</span> —
+        <a href="https://github.com/marcoslar/marcoslar.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
+            BY-NC-SA 4.0
+        </a> —
+        <a href="https://github.com/marcoslar/marcoslar.com">Source code</a> —
+        <a href="/about">About</a>
+        
+    </p>
+</footer>
+
+<noscript>
+    <style type="text/css">
+         
+        *[class^="belbo_v"] { display: none; }
+        *[class^="belbo_v1"] { display: inline; }
+    </style>
+</noscript>
+<script>
+function enableParallelSnippets(manuallyTriggered) {
+    var snippetsByVersion = {};
+    var versionableSnippets = document.querySelectorAll('[class^="belbo_v"]');
+
+    for (var j = 0; j < versionableSnippets.length; j++) {
+        var snippet = versionableSnippets[j]
+        var majorVersion = snippet.className.split("-")[1];
+        if (majorVersion in snippetsByVersion) {
+            snippetsByVersion[majorVersion].push(snippet);
+            continue;
+        }
+
+        snippetsByVersion[majorVersion] = [snippet];
+    }
+
+    if (Object.keys(snippetsByVersion).length === 0) {
+        return;
+    }
+
+    var randomSnippets = {};
+    for (var s in snippetsByVersion) {
+        var len = snippetsByVersion[s].length;
+        randomSnippets[len] = Math.floor(Math.random() * len) + 1;
+    }
+
+    
+    for (var s in snippetsByVersion) {
+        var snippetIndex = randomSnippets[snippetsByVersion[s].length];
+
+        for (var i = 0; i < snippetsByVersion[s].length; i++) {
+            if (i !== snippetIndex - 1) {
+                snippetsByVersion[s][i].style.display = 'none';
+                
+            } else {
+                snippetsByVersion[s][i].style.display = 'inline';
+            }
+        }
+    }
+
+    if (manuallyTriggered) {
+        var el = document.getElementById('reload-icon');
+        el.classList.remove('spinner');
+        void el.offsetWidth;
+        el.classList.add('spinner');
+    }
+}
+
+function onThemeSelection(theme) {
+    if (theme === 'default') {
+        theme = 'light-theme';
+    }
+    localStorage.setItem('theme', theme);
+    document.body.className = theme;
+
+}
+
+document.addEventListener('DOMContentLoaded', function(e) {
+    enableParallelSnippets((manuallyTriggered = false));
+
+    if (theme = localStorage.getItem('theme')) {
+        if (theme === 'light-theme') {
+            theme = 'default';
+        }
+        document.getElementById('themeSelector').value = theme;
+        onThemeSelection(theme);
+    }
+});
+</script>
+</body>
+</html>

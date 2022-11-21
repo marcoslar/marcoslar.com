@@ -8,7 +8,7 @@ so that they know how their applications are deployed and managed.*
 
 *Requirements: [Docker] and [minikube].*
 
-*First part in [K8s Primer - Part I](/)*
+*First part in [K8s Primer - Part I]*
 
 If you are coming from Part I, resume your local K8s cluster as follows:
 
@@ -519,7 +519,7 @@ Kelsey Hightower
 
 - The Kubernetes Book, 2021 Edition. By Nigel Poulton and Pushkar Joglekar
 
-[Part I]: https://
+[K8s Primer - Part I]: /posts/2022/11/k8s-primer/
 [Docker]: https://www.docker.com/
 [minikube]: https://minikube.sigs.k8s.io/docs/start/
 [Deployments]: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/

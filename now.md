@@ -13,7 +13,7 @@ I'm reading:
 
 - A History of Western Philosophy by Bertrand Russell
 - TCP/IP Illustrated, Vol. 1: The Protocols by Kevin R. Fall, W. Richard Stevens
-- The Kubernetes Book by Nigel Poulton
+- The Lost Symbol by Dan Brown
 
 I'm writing:
 

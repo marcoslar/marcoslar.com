@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 
 ### *2022*
 
+- Rendezvous with Rama. *Arthur C. Clarke*
 - The Kubernetes Book. *Nigel Poulton*
 - The Little Schemer. *Daniel P. Friedman and Matthias Felleisen*
 - Go with the Domain. *Robert Laszczak, Miłosz Smółka*

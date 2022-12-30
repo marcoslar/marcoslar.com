@@ -3,3 +3,5 @@
 *.swp
 ignore
 plugins/*.so
+*-cleartext.md
+.env.json

@@ -5,3 +5,4 @@ ignore
 plugins/*.so
 *-cleartext.md
 .env.json
+main.go

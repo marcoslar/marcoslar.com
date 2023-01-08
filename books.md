@@ -6,6 +6,10 @@ display_date = false
 
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.
 
+### *2023*
+
+- The Cuckoo's Egg. *Clifford Stoll*
+
 ### *2022*
 
 - The Lost Symbol. *Dan Brown*
@@ -27,6 +31,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 - UNIX and Linux System Administration Handbook. *Evi Nemeth, Garth Snyder, et al.*
 
 ### *2021*
+
 - UNIX and Linux System Administration Handbook. *Evi Nemeth, Garth Snyder, et al.* (80%)
 - Shape Up: Stop Running in Circles and Ship Work that Matters. *Ryan Singer*
 - Poems. *Charles Bukowski*
@@ -43,6 +48,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 - Ficciones. *Jorge Luis Borges*
 
 ### *2020*
+
 - The Art of Computer Programming. *Donald Knuth* (without exercises)
 - A Philosophy of Software Design. *John Ousterhout*
 - Ripley's Game. *Patricia Highsmith*

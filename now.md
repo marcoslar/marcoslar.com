@@ -14,7 +14,6 @@ I'm reading:
 - A History of Western Philosophy by Bertrand Russell
 - TCP/IP Illustrated, Vol. 1: The Protocols by Kevin R. Fall, W. Richard Stevens
 - Effective Python by Brett Slatkin
-- The Cuckoo's Egg by Clifford Stoll
 
 I'm writing:
 

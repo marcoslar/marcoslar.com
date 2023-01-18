@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2023*
 
+- Desire. *Haruki Murakami*
 - The Cuckoo's Egg. *Clifford Stoll*
 
 ### *2022*

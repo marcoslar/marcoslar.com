@@ -11,6 +11,11 @@ display_date = false
             {{- if eq $page.Config.display_in_sessions false -}}
                 {{ $display_in_sessions = false }}
             {{- end -}}
+
+            {{ if contains $page.Config.plain_files $page.RelativePath }}
+              {{ $display_in_sessions = false }}
+            {{ end }}
+
             {{- if $display_in_sessions -}}
                 <tr>
                     <td class="post-date">

@@ -18,6 +18,10 @@ display_title = true
 display_date = true
 display_backlink = true
 
+plain_files = [
+  "robots.txt",
+]
+
 templates = [
     "head",
     "footer",

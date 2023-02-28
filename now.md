@@ -11,9 +11,10 @@ Things I'm doing at the moment.
 
 I'm reading:
 
+- The Linux Programming Interface by Michael Kerrisk
+- Unsong by Scott Alexander
 - A History of Western Philosophy by Bertrand Russell
 - TCP/IP Illustrated, Vol. 1: The Protocols by Kevin R. Fall, W. Richard Stevens
-- Effective Python by Brett Slatkin
 
 I'm writing:
 

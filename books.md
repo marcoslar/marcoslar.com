@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2023*
 
+- Hardware and Software Support for Virtualization. *Edouard Bugnion, Jason Nieh, Dan Tsafrir* (50%)
 - Effective Python. *Brett Slatkin*
 - The Code Book. *Simon Singh*
 - Desire. *Haruki Murakami*

@@ -8,6 +8,9 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2023*
 
+- UNIX: A History and a Memoir. *Brian Kernighan*
+- The God Proof. *Jeffrey Kegler*
+- Unsong. *Scott Alexander*
 - Streaming Change Data Capture. *Kevin Petrie et al.*
 - Hardware and Software Support for Virtualization. *Edouard Bugnion, Jason Nieh, Dan Tsafrir* (50%)
 - Effective Python. *Brett Slatkin*

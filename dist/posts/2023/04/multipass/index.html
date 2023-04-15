@@ -7,7 +7,7 @@
 <meta name="description" content="Marcoslar.com">
 <meta name="keywords" content="software, ">
 <link rel="shortcut icon" href="/static/myicon.svg"/>
-<title>Marcoslar.com | Writings </title>
+<title>Marcoslar.com | Multipass </title>
 <style>
 :root {
     --fontSize: 17px;
@@ -364,103 +364,90 @@ footer a {
     </div>
 </nav>
 <div style="display: flex;">
-                <h1><span class="init-ch">W</span>ritings</h1>
+                <h1><span class="init-ch">M</span>ultipass</h1>
             </div>
-            <table>
-    <tbody><tr>
-                    <td class="post-date">
-                        <span>Apr 2023</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2023/04/multipass/">
-                            <span style="">Multipass</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Nov 2022</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2022/11/K8s-primer-part-II/">
-                            <span style="">K8s primer - Part II</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Nov 2022</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2022/11/K8s-primer/">
-                            <span style="">K8s primer - Part I</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Jun 2022</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2022/06/sandisk-clip-sport-go-m3u-playlists/">
-                            <span style="">SanDisk Clip Sport Go M3U playlists</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Feb 2022</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2022/02/facts-gathering-skipped-when-specifying-tags/">
-                            <span style="">Ansible facts gathering skipped when specifying tags</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Jan 2022</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2022/01/host-parameter-does-not-match-hashed-host-field-in-supplied-key/">
-                            <span style="">Host parameter does not match hashed host field in supplied key</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Jan 2022</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2022/01/linux-home-lab/">
-                            <span style="">Linux home lab</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Dec 2021</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2021/12/golang-plugins/">
-                            <span style="">Golang plugins</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>Aug 2020</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2020/08/parallel-blogs/">
-                            <span style="">Parallel blogs (or parablogs)</span>
-                        </a>
-                    </td>
-                </tr><tr>
-                    <td class="post-date">
-                        <span>May 2017</span>
-                    </td>
-                    <td class="post-title">
-                        <a href="/posts/2017/05/vaporwave/">
-                            <span style="background-color:pink;color:white;">V a p o r w a v e</span>
-                        </a>
-                    </td>
-                </tr>
-              
-            </tbody>
-</table>
+            <div class="post-page-date">
+                    <small>Saturday, 15 April 2023</small>
+                </div><p>I&rsquo;ve recently switched over to using <a href="https://multipass.run/">multipass</a> to spin up VMs on my
+computer. I found that the combo <a href="https://www.marcoslar.com/posts/2022/01/linux-home-lab/">Vagrant + VMware</a> was very unstable, at least
+on Apple M1 (e.g., tear down your home lab and you cannot start it again because
+of network issues).</p>
+
+<p>Multipass works flawlessly. This thing is rock solid, easy to use and
+it works fast. The only downside is that it doesn&rsquo;t have a built-in feature for
+configuring multiple VMs at once through some sort of configuration file or command
+line arguments. But hey, one can certainly script multiple launches in bash, right?
+This is what I&rsquo;m doing nowadays:</p>
+
+<pre><code>#!/usr/bin/env bash
+
+DEFAULT_NAME=&quot;my-vm&quot;
+DEFAULT_CPUS=2
+DEFAULT_DISK=&quot;8G&quot;
+DEFAULT_MEMORY=&quot;4G&quot;
+
+vm_ip() {
+  local machine_name=&quot;$1&quot;
+  multipass info --format csv &quot;$machine_name&quot; | tail -n +2 | cut -d',' -f3
+}
+
+launch_vm() {
+  local params=()
+  while [[ &quot;$#&quot; -gt 0 ]]; do
+    case &quot;$1&quot; in
+      --name) name=&quot;$2&quot;; shift 2;;
+      --cpus) cpus=&quot;$2&quot;; shift 2;;
+      --disk) disk=&quot;$2&quot;; shift 2;;
+      --memory) memory=&quot;$2&quot;; shift 2;;
+      --mount) mount=&quot;$2&quot;; shift 2;;
+      *) echo &quot;Unknown parameter: $1&quot;; exit 1;;
+    esac
+  done
+
+  params+=(--name &quot;${name:-$DEFAULT_NAME}&quot;)
+  params+=(--cpus &quot;${cpus:-$DEFAULT_CPUS}&quot;)
+  params+=(--disk &quot;${disk:-$DEFAULT_DISK}&quot;)
+  params+=(--memory &quot;${memory:-$DEFAULT_MEMORY}&quot;)
+
+  mount_opt=&quot;..:/data&quot;
+  if $mount; then
+    params+=(--mount $mount_opt)
+  fi
+
+  cloud_init=$(sed &quot;s/{{ hostname }}/$name/g&quot; cloud-init.yaml)
+
+  echo &quot;Launching VM with params: ${params[@]}&quot;
+  multipass launch &quot;${params[@]}&quot; --cloud-init &lt;(echo &quot;$cloud_init&quot;)
+}
+
+launch_vm --name vm0 --cpus 2 --disk 8G --memory 3G --mount true
+if [ $? -eq 0 ]; then
+  multipass exec vm0 -- sh -c '
+      sudo apt update -y
+      sudo apt install XXX -y
+  '
+fi
+
+launch_vm --name vm1 --cpus 1 --disk 4G --memory 1G --mount false
+launch_vm --name vm2 --cpus 2 --disk 5G --memory 2G --mount false
+</code></pre>
+
+<p>I use <a href="https://cloudinit.readthedocs.io/en/latest/">cloud-init</a> to initialize each machine:</p>
+
+<pre><code>#cloud-config
+hostname: {{ hostname }}.someName.com
+users:
+  - name: myUser
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC9M... noname
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    shell: /bin/bash
+</code></pre>
+
+<p>Initially, I thought about writing my own thin wrapper around multipass
+to make it multi-machine configurable, but later I discovered that someone
+had already done so (of course!): the tool is called <a href="https://github.com/pkorobeinikov/multipass-compose">multipass-compose</a>.</p>
 <div class="backlink"></div><small><a href="/">↩ back</a></small><br>
 <footer>
     <p>

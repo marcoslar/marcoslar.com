@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2023*
 
+- The Infinite Staircase. *Geoffrey A. Moore*
 - UNIX: A History and a Memoir. *Brian Kernighan*
 - The God Proof. *Jeffrey Kegler*
 - Unsong. *Scott Alexander*

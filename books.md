@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2023*
 
+- OAuth 2.0 Simplified. *Aaron Parecki*
 - Socrates' Defence. *Plato* 
 - The Infinite Staircase. *Geoffrey A. Moore*
 - UNIX: A History and a Memoir. *Brian Kernighan*

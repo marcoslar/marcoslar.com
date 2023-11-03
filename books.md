@@ -8,6 +8,13 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 
 ### *2023*
 
+- Patterns, Principles, and Practices of Domain-Driven Design. *Nick Tune & Scott Millett*
+- Atomic Kotlin. *Svetlana Isakova & Bruce Eckel*
+- The Annotated Turing. *Charles Petzold*
+- Java The Legend. *Ben Evans*
+- La tabla de Flandes. *Arturo Pérez-Reverte*
+- Sophie's World. *Jostein Gaarder*
+- Sum. *David Eagleman*
 - OAuth 2.0 Simplified. *Aaron Parecki*
 - Socrates' Defence. *Plato* 
 - The Infinite Staircase. *Geoffrey A. Moore*

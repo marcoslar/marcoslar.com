@@ -6,3 +6,5 @@ plugins/*.so
 *-cleartext.md
 .env.json
 main.go
+deploy.sh
+website.zip

@@ -8,6 +8,9 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2023*
 
+- Calculating God. *Robert J. Sawyer*
+- The Three-Body Problem. *Liu Cixin*
+- God's Debris. *Scott Adams*
 - Patterns, Principles, and Practices of Domain-Driven Design. *Nick Tune & Scott Millett*
 - Atomic Kotlin. *Svetlana Isakova & Bruce Eckel*
 - The Annotated Turing. *Charles Petzold*

@@ -2,7 +2,7 @@
 .DS_Store
 *.swp
 ignore
-enc
+hidden
 plugins/*.so
 *-cleartext.md
 .env.json

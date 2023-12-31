@@ -369,6 +369,11 @@ footer a {
             <p>I always forget how to do this kind of stuff.</p>
 
 <ul>
+<li><p>GPG (symmetric) decryption (echoing password)</p>
+
+<pre><code>$ echo $key | gpg --batch --yes --passphrase-fd 0 --output $1.plain --decrypt $1
+</code></pre></li>
+
 <li><p>Base64 encoding</p>
 
 <pre><code>$ echo -n 'my-string' | base64

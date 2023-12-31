@@ -6,6 +6,12 @@ display_date = false
 
 I always forget how to do this kind of stuff.
 
+- GPG (symmetric) decryption (echoing password)
+
+```
+$ echo $key | gpg --batch --yes --passphrase-fd 0 --output $1.plain --decrypt $1
+```
+
 - Base64 encoding
 
 ```

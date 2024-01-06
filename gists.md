@@ -9,7 +9,7 @@ I always forget how to do this kind of stuff.
 - psql enhancements
 
 ```
-\set PROMPT1 '%[%033[1m%]%M %n@%/%R%[%033[0m%]%# '
+\set PROMPT1 '%[%033[1m%]%M %n@%/%R%[%033[0m%]%x%# '
 \set PROMPT2 '[more] %R > '
 \pset null '[NULL]'
 \x auto

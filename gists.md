@@ -6,6 +6,19 @@ display_date = false
 
 I always forget how to do this kind of stuff.
 
+- psql enhancements
+
+```
+\set PROMPT1 '%[%033[1m%]%M %n@%/%R%[%033[0m%]%# '
+\set PROMPT2 '[more] %R > '
+\pset null '[NULL]'
+\x auto
+\set VERBOSITY verbose
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTCONTROL ignoredups
+\set COMP_KEYWORD_CASE upper
+```
+
 - GPG (symmetric) decryption (echoing password)
 
 ```

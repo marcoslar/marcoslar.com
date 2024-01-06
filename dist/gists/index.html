@@ -369,6 +369,18 @@ footer a {
             <p>I always forget how to do this kind of stuff.</p>
 
 <ul>
+<li><p>psql enhancements</p>
+
+<pre><code>\set PROMPT1 '%[%033[1m%]%M %n@%/%R%[%033[0m%]%# '
+\set PROMPT2 '[more] %R &gt; '
+\pset null '[NULL]'
+\x auto
+\set VERBOSITY verbose
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTCONTROL ignoredups
+\set COMP_KEYWORD_CASE upper
+</code></pre></li>
+
 <li><p>GPG (symmetric) decryption (echoing password)</p>
 
 <pre><code>$ echo $key | gpg --batch --yes --passphrase-fd 0 --output $1.plain --decrypt $1

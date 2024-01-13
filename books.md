@@ -6,6 +6,10 @@ display_date = false
 
 Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, házmelo saber.
 
+### *2024*
+
+- Postgres. The First Experience. *Pavel Luzanov, Egor Rogov, Igor Levshin*
+
 ### *2023*
 
 - Calculating God. *Robert J. Sawyer*

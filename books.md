@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2024*
 
+- AWS CDK in Practice. *Mark Avdi, Leo Lam*
 - Postgres. The First Experience. *Pavel Luzanov, Egor Rogov, Igor Levshin*
 
 ### *2023*

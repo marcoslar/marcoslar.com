@@ -12,6 +12,5 @@ Things I'm doing at the moment.
 I'm reading:
 
 - The Linux Programming Interface by Michael Kerrisk
-- Postgresql 14 Internal
-- American Psycho by Breat Ellis
+- Postgresql 14 Internals
 

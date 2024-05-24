@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2024*
 
+- Jurassic Park. *Michael Crichton*
 - PostgreSQL 14 Internals. *Egor Rogov* (80%)
 - American Psycho. *Bret Easton Ellis*
 - AWS CDK in Practice. *Mark Avdi, Leo Lam*

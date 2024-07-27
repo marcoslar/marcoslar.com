@@ -21,7 +21,7 @@
 .light-theme {
     --background: white;
     --color: #333;
-    --hrefColor: #2222d4;
+    --hrefColor: blue;
     --headlineBg: #f0f8ff85;
     --headlineBorder: #e5eff94a;
     --headlineShadow1: rgb(185 185 185 / 8%);
@@ -72,8 +72,8 @@ html {
 }
 
 body {
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: 1.25rem;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.35rem;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -81,7 +81,7 @@ body {
     hyphens: auto;
     background-color: var(--background);
     color: var(--color);
-    max-width: 960px;
+    max-width: 1200px;
     padding: 0 1em;
     margin: 2rem auto;
 }
@@ -93,16 +93,9 @@ body {
     box-shadow: 0 5px 5px 0 var(--headlineShadow1), 0 5px 15px 0 var(--headlineShadow2);
 }
 
-.columns a {
-    border-bottom: none;
-}
-
 .post-date {
     text-align: left;
     padding-right: 1rem;
-    vertical-align: top;
-    font-family: monospace;
-    font-size: 1rem;
 }
 
 .post-page-date {
@@ -154,7 +147,7 @@ sub {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: Georgia, Tahoma, "Times New Roman", serif;
+    font-family: "Times New Roman", serif;
     font-weight: normal;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -358,8 +351,8 @@ footer a {
     </div>
     <div class="theme">
         <select name="theme" id="themeSelector" onchange="onThemeSelection(this.value)">
-            <option value="default">Theme: Light</option>
-            <option value="dark-theme">Theme: Dark</option>
+            <option value="default">Light</option>
+            <option value="dark-theme">Dark</option>
         </select>
     </div>
 </nav>
@@ -379,8 +372,8 @@ sounded to me a bit lame</span>).</p>
 <div class="columns">
     <div class="column">
         
-<h3 class="underline">
-    Recent <a href="/sessions/">writings</a>
+<h3>
+    <a href="/sessions/">Posts</a>
 </h3>
 
 <table>
@@ -390,7 +383,7 @@ sounded to me a bit lame</span>).</p>
             
             <tr>
                     <td class="post-date">
-                        <span>Apr 2023</span>
+                        <span>2023-15-04</span>
                     </td>
                     <td class="post-title">
                         <a href="/posts/2023/04/multipass/">
@@ -407,7 +400,7 @@ sounded to me a bit lame</span>).</p>
             
             <tr>
                     <td class="post-date">
-                        <span>Nov 2022</span>
+                        <span>2022-16-11</span>
                     </td>
                     <td class="post-title">
                         <a href="/posts/2022/11/K8s-primer-part-II/">
@@ -424,7 +417,7 @@ sounded to me a bit lame</span>).</p>
             
             <tr>
                     <td class="post-date">
-                        <span>Nov 2022</span>
+                        <span>2022-08-11</span>
                     </td>
                     <td class="post-title">
                         <a href="/posts/2022/11/K8s-primer/">
@@ -441,7 +434,7 @@ sounded to me a bit lame</span>).</p>
             
             <tr>
                     <td class="post-date">
-                        <span>Jun 2022</span>
+                        <span>2022-02-06</span>
                     </td>
                     <td class="post-title">
                         <a href="/posts/2022/06/sandisk-clip-sport-go-m3u-playlists/">
@@ -458,7 +451,7 @@ sounded to me a bit lame</span>).</p>
             
             <tr>
                     <td class="post-date">
-                        <span>Feb 2022</span>
+                        <span>2022-23-02</span>
                     </td>
                     <td class="post-title">
                         <a href="/posts/2022/02/facts-gathering-skipped-when-specifying-tags/">
@@ -475,7 +468,7 @@ sounded to me a bit lame</span>).</p>
             
             <tr>
                     <td class="post-date">
-                        <span>Jan 2022</span>
+                        <span>2022-25-01</span>
                     </td>
                     <td class="post-title">
                         <a href="/posts/2022/01/host-parameter-does-not-match-hashed-host-field-in-supplied-key/">
@@ -492,7 +485,7 @@ sounded to me a bit lame</span>).</p>
             
             <tr>
                     <td class="post-date">
-                        <span>Jan 2022</span>
+                        <span>2022-02-01</span>
                     </td>
                     <td class="post-title">
                         <a href="/posts/2022/01/linux-home-lab/">
@@ -509,7 +502,7 @@ sounded to me a bit lame</span>).</p>
             
             <tr>
                     <td class="post-date">
-                        <span>Dec 2021</span>
+                        <span>2021-18-12</span>
                     </td>
                     <td class="post-title">
                         <a href="/posts/2021/12/golang-plugins/">
@@ -526,7 +519,7 @@ sounded to me a bit lame</span>).</p>
             
             <tr>
                     <td class="post-date">
-                        <span>Aug 2020</span>
+                        <span>2020-29-08</span>
                     </td>
                     <td class="post-title">
                         <a href="/posts/2020/08/parallel-blogs/">
@@ -543,7 +536,7 @@ sounded to me a bit lame</span>).</p>
             
             <tr>
                     <td class="post-date">
-                        <span>May 2017</span>
+                        <span>2017-02-05</span>
                     </td>
                     <td class="post-title">
                         <a href="/posts/2017/05/vaporwave/">
@@ -638,23 +631,11 @@ sounded to me a bit lame</span>).</p>
     </div>
     <div class="column">
         
-<h3 class="underline" id="current-projects">Current projects</h3>
+<h3>
+    <a href="/gists/">Gists</a>
+</h3>
 
-<ul>
-    <li>
-        <a href="https://github.com/marcoslar/belbo">Belbo</a> - A static site generator
-    </li>
-    <li>
-        <span>S4H - Sessions for hackers (WIP)</span>
-    </li>
-</ul>
-
-<p>
-    More at <a href="https://github.com/marcoslar/">github.com</a>.
-</p>
-
-<h3 class="underline" id="writing-and-presentations">Presentations and talks</h3>
-
+<h3 id="writing-and-presentations">Presentations and talks</h3>
 <ul>
     <li>
         <a href="">Reproducing cloud</a> environments with Vagrant
@@ -667,10 +648,7 @@ sounded to me a bit lame</span>).</p>
     </li>
 </ul>
 
-<h3 class="underline">
-    <a href="/gists/">Gists</a>
-</h3>
-
+<br>
 <p>
     Or, why not, you could also check out what I'm doing right
     <a href="/now">now</a>,

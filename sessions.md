@@ -1,5 +1,5 @@
 ---
-title = "Writings"
+title = "Posts"
 display_in_sessions = false
 display_date = false
 ---
@@ -19,7 +19,7 @@ display_date = false
             {{- if $display_in_sessions -}}
                 <tr>
                     <td class="post-date">
-                        <span>{{- $page.CreatedAt.Format "Jan 2006" -}}</span>
+                        <span>{{- $page.CreatedAt.Format "2006-02-01" -}}</span>
                     </td>
                     <td class="post-title">
                         <a href="/{{ $page.Url }}/">

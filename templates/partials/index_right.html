@@ -1,6 +1,6 @@
 {{ define "partials_index_right" }}
-<h3 class="underline">
-    Recent <a href="/sessions/">writings</a>
+<h3>
+    <a href="/sessions/">Posts</a>
 </h3>
 
 <table>
@@ -17,7 +17,7 @@
             {{ if $display_in_sessions -}}
                 <tr>
                     <td class="post-date">
-                        <span>{{ $page.CreatedAt.Format "Jan 2006" }}</span>
+                        <span>{{ $page.CreatedAt.Format "2006-02-01" }}</span>
                     </td>
                     <td class="post-title">
                         <a href="/{{ $page.Url }}/">

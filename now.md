@@ -12,5 +12,6 @@ Things I'm doing at the moment.
 I'm reading:
 
 - The Linux Programming Interface by Michael Kerrisk
-- Postgresql 14 Internals
-
+- SQL Performance Explained by Markus Winand
+- Chaos: Making a New Science by James Gleick
+- Consider This: Chuck Palahniuk

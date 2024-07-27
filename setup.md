@@ -36,6 +36,11 @@ SanDisk Clip Sport Go</a>. Pretty decent! It's a bit bigger than the
 iPOD shuffle, but I can definitely carry it on my pocket (the clip is strong enough to carry
 the device hanging from the jacket).
 
+The second-best piece of hardware I have is the Kindle Scribe. I bought it in 2024 and
+primarily use it for reading the tons of @{pirated books|| books}@ I have on my hard drive. 
+It's big, so PDFs fit just fine. The best part is the battery, it usually lasts over a month 
+without needing a charge.
+
 ### Software
 
 These days I try to run as much as I can in virtual machines.
@@ -44,11 +49,13 @@ Nevertheless, this is a list of some programs I have installed in my laptop:
 - IntelliJ IDEA (e.g., Goland, PyCharm)
 - Vim
 - iTerm2
-- Vagrant
+- <s>Vagrant</s> Multipass
 - Docker
-- VMware
+- <s>VMware</s> QEMU
 - Git
 - Chrome, Firefox
 - f.lux
 - VLC
 - OpenEmu
+- Zotero
+- JupyterLab

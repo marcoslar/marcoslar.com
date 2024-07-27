@@ -8,12 +8,13 @@ display_backlink = false
 I’m Marcos. I live with my wonderful wife 
 @{(<i>naber canım!</i>)||(<i>bak canım, çevrimiçiyim!</i>)}@ in Germany,
 where I work as a @{computer programmer|| software developer}@.
-This site is just the place where I try to archive my stuff,
-so if it’s prose you will find grammar mistakes; if it’s code you’ll
-definitely find @{silly||}@ bugs. The *lar* suffix in the `marcoslar.com` domain name is the 
-plural form of my surname in the Turkish 
-language (so like Marco*ses*@{ in English||, but in English the plural form always
-sounded to me a bit lame}@).
+This site is simply where I try to archive my stuff. If you come
+across prose, expect grammar mistakes; if it’s code you’ll
+definitely find some @{silly||}@ bugs. The *lar* suffix in the 
+`marcoslar.com` domain name represents the plural form of my surname 
+in Turkish, similar to Marco*ses*@{ in English||, though the English plural 
+always sounded a bit off to me}@.
+If you find this site useful, consider yourself lucky.
 
 <div class="columns">
     <div class="column">

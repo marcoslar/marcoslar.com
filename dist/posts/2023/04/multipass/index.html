@@ -368,13 +368,13 @@ footer a {
             </div>
             <div class="post-page-date">
                     <small>Saturday, 15 April 2023</small>
-                </div><p>I&rsquo;ve recently switched over to using <a href="https://multipass.run/">multipass</a> to spin up VMs on my
+                </div><p>I&rsquo;ve recently switched to using <a href="https://multipass.run/">multipass</a> to spin up VMs on my
 computer. I found that the combo <a href="https://www.marcoslar.com/posts/2022/01/linux-home-lab/">Vagrant + VMware</a> was very unstable, at least
 on Apple M1 (e.g., tear down your home lab and you cannot start it again because
 of network issues).</p>
 
-<p>Multipass works flawlessly. This thing is rock solid, easy to use and
-it works fast. The only downside is that it doesn&rsquo;t have a built-in feature for
+<p>Multipass works flawlessly. This thing is rock solid, easy to use and fast.
+The only downside is that it doesn&rsquo;t have a built-in feature for
 configuring multiple VMs at once through some sort of configuration file or command
 line arguments. But hey, one can certainly script multiple launches in bash, right?
 This is what I&rsquo;m doing nowadays:</p>
@@ -445,7 +445,7 @@ users:
     shell: /bin/bash
 </code></pre>
 
-<p>Initially, I thought about writing my own thin wrapper around multipass
+<p>Initially, I considered writing my own thin wrapper around Multipass
 to make it multi-machine configurable, but later I discovered that someone
 had already done so (of course!): the tool is called <a href="https://github.com/pkorobeinikov/multipass-compose">multipass-compose</a>.</p>
 <div class="backlink"></div><small><a href="/">↩ back</a></small><br>

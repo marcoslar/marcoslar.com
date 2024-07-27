@@ -2,13 +2,13 @@
 title = "Multipass"
 ---
 
-I've recently switched over to using [multipass][1] to spin up VMs on my
+I've recently switched to using [multipass][1] to spin up VMs on my
 computer. I found that the combo [Vagrant + VMware][2] was very unstable, at least
 on Apple M1 (e.g., tear down your home lab and you cannot start it again because 
 of network issues).
 
-Multipass works flawlessly. This thing is rock solid, easy to use and
-it works fast. The only downside is that it doesn't have a built-in feature for
+Multipass works flawlessly. This thing is rock solid, easy to use and fast. 
+The only downside is that it doesn't have a built-in feature for
 configuring multiple VMs at once through some sort of configuration file or command
 line arguments. But hey, one can certainly script multiple launches in bash, right?
 This is what I'm doing nowadays:
@@ -81,7 +81,7 @@ users:
     shell: /bin/bash
 ```
 
-Initially, I thought about writing my own thin wrapper around multipass
+Initially, I considered writing my own thin wrapper around Multipass
 to make it multi-machine configurable, but later I discovered that someone
 had already done so (of course!): the tool is called [multipass-compose][4].
 

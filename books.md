@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2024*
 
+- SQL Performance Explained. *Markus Winand*
 - The UNIX-Haters Handbook. *Daniel Weise, Steven Strassmann, Simson Garfinkel*
 - Technofeudalism: What Killed Capitalism. *Yanis Varoufakis*
 - Jurassic Park. *Michael Crichton*

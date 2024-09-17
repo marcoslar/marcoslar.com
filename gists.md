@@ -6,6 +6,12 @@ display_date = false
 
 I always forget how to do this kind of stuff.
 
+- Create a text file of size N (around 20 MB)
+
+```
+yes hello | head -c 20000000 > sample.txt
+```
+
 - psql enhancements
 
 ```

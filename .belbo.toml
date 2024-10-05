@@ -29,7 +29,7 @@ templates = [
     "highlighter",
     "reload",
     "index_left",
-    "index_right",
+    "postlist",
     "style",
     "nav",
 ]

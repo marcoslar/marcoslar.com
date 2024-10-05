@@ -22,14 +22,15 @@
 .light-theme {
     --background: white;
     --color: #333;
-    --hrefColor: blue;
+    --hrefColor: black;
     --headlineBg: #f0f8ff85;
     --headlineBorder: #e5eff94a;
     --headlineShadow1: rgb(185 185 185 / 8%);
     --headlineShadow2: rgb(197 197 197 / 12%);
     --preBg: #f0f8ff85;
     --preColor: #1a1a1a;
-    --preBorder: #e5eff94a;
+    --preBorder: #1a1a1a21;
+
     --codeBg: #f7f7f7;
     --selectionBg: aquamarine;
     --chBg1: black;
@@ -37,16 +38,16 @@
 }
 
 .dark-theme {
-    --background: #282828;
-    --color: #fbf1f7;  
-    --hrefColor: #b8bdff;
+    --background: #060f11;
+    --color:   #c8cacb;
+    --hrefColor:   #858ded;
     --headlineBg: #b8bdff0d;
     --headlineBorder: #b8bdff00;
     --headlineShadow1: rgb(46 18 18 / 8%);
     --headlineShadow2: rgb(38 32 32 / 12%);
     --preBg: #37353985;
-    --preColor: var(--color);
-    --preBorder: #0000004a;
+    --preColor:   #e7e7e8;
+    --preBorder: #1a2225;
     --codeBg: #423f4585;  
     --selectionBg: #214539;
     --chBg1: #fff;
@@ -60,7 +61,8 @@ html {
 .navy {
     display: flex;
     flex-direction: row;
-    border-bottom: 1px dotted #8080806e;
+    border-bottom: 1px solid #1a1a1a21;
+    padding: .5rem;
 }
 
 .theme {
@@ -74,7 +76,7 @@ html {
 
 body {
     font-family: "Times New Roman", Times, serif;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -82,10 +84,21 @@ body {
     hyphens: auto;
     background-color: var(--background);
     color: var(--color);
+    margin: 0;
+}
+
+.body {
     max-width: 1200px;
     padding: 0 1em;
     margin: 2rem auto;
 }
+
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
 
 .underline {
     padding: 0.25rem;
@@ -97,7 +110,10 @@ body {
 .post-date {
     text-align: left;
     padding-right: 1rem;
+  
 }
+.post-item {
+display:flex;}
 
 .post-date-log {
     text-align: left;
@@ -117,7 +133,7 @@ body {
 }
 
 p {
-    margin-top: 8px;
+margin-bottom: 1rem;
 }
 
 pre.highlight {
@@ -162,20 +178,25 @@ h1, h2, h3, h4, h5, h6 {
     font-feature-settings: "liga" 1, "dlig" 1, "kern" 1, "frac" 0;
     hyphens: auto;
     font-feature-settings: "swsh" 1, "cswh" 1, "onum" 1;
-    margin: 32px 0 8px 0;
     padding: 0;
     line-height: 1em;
     page-break-after: avoid;
     page-break-inside: avoid;
 }
 
-h1 {
-    font-size: 2rem;
-    display: inline-block;
+h2, h3, h4, h5, h6 {
+    margin: 3rem 0 0.5rem 0;
 }
 
+h1 {
+    font-size: 2.25rem;
+    display: inline-block;
+    margin-bottom: .75rem;
+}
+
+
 h2 {
-    font-size: 2em;
+    font-size: 1.5rem;
 }
 
 h3 {
@@ -189,6 +210,7 @@ h4 {
 h5 {
     font-size: 0.85em;
 }
+
 
 h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
     margin-top: 16px;
@@ -271,18 +293,18 @@ a img {
     }
 }
 
-@media screen and (max-device-width: 900px) {
+@media screen and (max-width: 900px) {
     body {
-        font-size: .9rem;
+         
     }
 
     .post-date {
         text-align: left;
-        padding-right: 0;
-        vertical-align: top;
-        min-width: 4.25rem;
-        font-family: monospace;
-        font-size: .7rem;
+         
+         
+         
+        
+        font-size: .9rem;
     }
 
     .post-page-date {
@@ -292,12 +314,29 @@ a img {
     ol {
         padding-left: 1rem;
     }
+
+    h2[data-sectnum]:before {
+        margin-left: 0 !important;
+    }
+
+    h2[data-sectnum] a {
+        margin-left: 1.5rem;
+    }
 }
 
 footer {
-    margin-top: 2rem;
-    border-top: 1px dotted #8080806e;
+    border-top: 1px solid #1a1a1a21;
     font-size: 1rem !important;
+    margin-top: 4rem;
+    margin-bottom: 0;
+    margin-right: auto;
+    margin-left: auto;
+    padding: .5rem;
+     
+}
+
+.navy a {
+    text-decoration: none;
 }
 
 .init-ch {
@@ -309,12 +348,15 @@ footer {
 
 pre {
     line-height: 1.45em;
-    font-size: .75em;
+    font-size: .7em;
     color: var(--preColor);
     overflow: auto;
     border: 1px solid var(--preBorder);
-    padding: 0.75rem;
-    background-color: var(--preBg);
+    padding: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: .375rem;
+    border-width: 1px;
      
 }
 
@@ -325,7 +367,7 @@ p > code, em > code, li > code {
 }
 
 .mono,p code,li code,pre,code,tt {
-    font-family: Menlo, Monaco, monospace;
+    font-family: monospace;
 }
 
 .column table a {
@@ -334,8 +376,7 @@ p > code, em > code, li > code {
 
 a {
     color: var(--hrefColor);
-    text-decoration: none;
-    border-bottom: 1px dotted #b6b6e4;
+    text-decoration: underline;
 }
 
 .backlink {
@@ -349,6 +390,26 @@ footer a {
 *::selection{
     background-color: var(--selectionBg);
 }
+
+h1[data-sectnum]:before,
+h2[data-sectnum]:before,
+h3[data-sectnum]:before,
+h4[data-sectnum]:before,
+h5[data-sectnum]:before {
+    content: attr(data-sectnum);
+    display: inline-block;
+    position: absolute;
+    pointer-events: none;
+    margin-left: -2rem;
+    text-align: right;
+    font-size: 1.25rem;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    text-decoration: none;
+}
+
+ 
 
 </style>
 </head>
@@ -364,10 +425,12 @@ footer a {
         </select>
     </div>
 </nav>
-<div style="display: flex;">
-                <h1><span class="init-ch">L</span>og</h1>
-            </div>
-            <h3>July 2022</h3>
+<div class="body">
+            <div class="content-wrapper">
+                <div style="display: flex;">
+                        <h1><span class="init-ch">L</span>og</h1>
+                    </div>
+                    <h3>July 2022</h3>
 
 <div class="post-date-log">26 July 2022</div>
 
@@ -417,19 +480,7 @@ logs when metrics are enough, good commit messages for important features, etc.)
 Once again I have changed the style of the website. I had to update <a href="https://github.com/marcoslar/belbo">belbo</a> to support content
 in multiple directories (see <a href="https://github.com/marcoslar/belbo/commit/817bd5b170e5ebeb93e55e0cae2a2b444d6fff96"><code>817bd5b</code></a>),
 but it turned out I actually didn&rsquo;t need the feature.</p>
-<div class="backlink"></div><small><a href="/">↩ back</a></small><br>
-<footer>
-    <p>
-        <b><a href="/">marcoslar.com</a></b> © <span id="year">2012–2090</span> —
-        <a href="https://github.com/marcoslar/marcoslar.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
-            BY-NC-SA 4.0
-        </a> —
-        <a href="https://github.com/marcoslar/marcoslar.com">Source code</a> —
-        <a href="/about">About</a>
-        
-    </p>
-</footer>
-
+<div class="backlink"></div><small><a href="/">↩ back</a></small><br></div>
 <noscript>
     <style type="text/css">
          
@@ -506,5 +557,17 @@ document.addEventListener('DOMContentLoaded', function(e) {
     }
 });
 </script>
+</div>
+<footer>
+    <p>
+        <b><a href="/">marcoslar.com</a></b> © <span id="year">2012–2090</span> —
+        <a href="https://github.com/marcoslar/marcoslar.com/blob/master/LICENSE-nc-sa-4.0.txt" target="_blank">
+            BY-NC-SA 4.0
+        </a> —
+        <a href="https://github.com/marcoslar/marcoslar.com">Source code</a> —
+        <a href="/about">About</a>
+        
+    </p>
+</footer>
 </body>
 </html>

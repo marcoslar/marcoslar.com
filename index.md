@@ -18,7 +18,7 @@ If you find this site useful, consider yourself lucky.
 
 <div class="columns">
     <div class="column">
-        {{ template "partials_index_right" . }}
+        {{ template "partials_postlist" . }}
     </div>
     <div class="column">
         {{ template "partials_index_left" . }}

@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 
 ### *2024*
 
+- Chaos: Making a New Science. *James Gleick*
 - Perfume: The Story of a Murderer. *Patrick Süskind*
 - The Phoenix Project. *Gene Kim, Kevin Behr, George Spafford*
 - SQL Performance Explained. *Markus Winand*

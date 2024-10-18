@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>{{ template "partials_head" . }}</head>
-    <body class="light-theme" style="{{ if .Config.style -}}{{ range $style := .Config.style -}}{{ $style }};{{- end }}{{- end }}">
+    <body class="light-theme" data="{{ .Config.data }}" style="{{ if .Config.style -}}{{ range $style := .Config.style -}}{{ $style }};{{- end }}{{- end }}">
         {{- template "partials_nav" . -}}
         <div class="body">
             <div class="content-wrapper">

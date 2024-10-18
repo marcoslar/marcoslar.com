@@ -9,3 +9,4 @@ plugins/*.so
 main.go
 deploy.sh
 website.zip
+sessions

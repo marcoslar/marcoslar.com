@@ -8,7 +8,7 @@
 <meta name="keywords" content="software, ">
 <meta name="format-detection" content="telephone=no">
 <link rel="shortcut icon" href="/static/myicon.svg"/>
-<title>Marcoslar.com | Gists </title>
+<title>Marcoslar.com | Session 1—Statically-linked Go programs </title>
 <style>
 :root {
     --fontSize: 17px;
@@ -486,53 +486,129 @@ text-transform: uppercase;
 <div class="body">
             <div class="content-wrapper">
                 <div style="display: flex;">
-                        <h1><span class="init-ch">G</span>ists</h1>
+                        <h1><span class="init-ch">S</span>ession 1—Statically-linked Go programs</h1>
                     </div>
-                    <p>I always forget how to do this kind of stuff.</p>
+                    <div class="post-page-date">
+                            <small>Wednesday, 09 October 2024</small>
+                        </div><p>This session explores the specifics of running Go programs
+in <code>FROM SCRATCH</code> and <a href="https://www.alpinelinux.org/">Alpine</a> containers. The following Go program
+starts an HTTP server on port 8080. When you send a request to <code>/</code>,
+it returns the body length of the <code>example.com</code> website:</p>
 
-<ul>
-<li><p>Create a text file of size N (around 20 MB)</p>
+<p><span class="file">File: main.go</span></p>
 
-<pre><code>yes hello | head -c 20000000 &gt; sample.txt
-</code></pre></li>
+<pre><code>package main
 
-<li><p>psql enhancements</p>
+import (
+	&quot;fmt&quot;
+	&quot;io&quot;
+	&quot;log&quot;
+	&quot;net/http&quot;
+)
 
-<pre><code>\set PROMPT1 '%[%033[1m%]%M %n@%/%R%[%033[0m%]%x%# '
-\set PROMPT2 '[more] %R &gt; '
-\pset null '[NULL]'
-\x auto
-\set VERBOSITY verbose
-\set HISTFILE ~/.psql_history- :DBNAME
-\set HISTCONTROL ignoredups
-\set COMP_KEYWORD_CASE upper
-</code></pre></li>
+func getBodyLength(url string) (int, error) {
+	resp, err := http.Get(url)
+	if err != nil {
+		return 0, err
+	}
+	defer resp.Body.Close()
 
-<li><p>GPG (symmetric) decryption (echoing password)</p>
+	if resp.StatusCode != http.StatusOK {
+		return 0, fmt.Errorf(&quot;received non-200 status code: %d&quot;, resp.StatusCode)
+	}
 
-<pre><code>$ echo $key | gpg --batch --yes --passphrase-fd 0 --output $1.plain --decrypt $1
-</code></pre></li>
+	body, err := io.ReadAll(resp.Body)
 
-<li><p>Base64 encoding</p>
+	if err != nil {
+		return 0, err
+	}
 
-<pre><code>$ echo -n 'my-string' | base64
-</code></pre></li>
+	return len(body), nil
+}
 
-<li><p>Show octal file permissions</p>
+func main() {
+	http.HandleFunc(&quot;/&quot;, func(w http.ResponseWriter, r *http.Request) {
+		bodyLength, err := getBodyLength(&quot;https://example.com&quot;)
+		if err != nil {
+			fmt.Fprintf(w, &quot;%s&quot;, err)
+			return
+		}
+		fmt.Fprintf(w, &quot;%d&quot;, bodyLength)
+	})
 
-<pre><code>$ stat -c '%a' ~/.ssh/authorized_keys
-</code></pre></li>
+	fmt.Println(&quot;Server listening on http://localhost:8080&quot;)
+	if err := http.ListenAndServe(&quot;:8080&quot;, nil); err != nil {
+		log.Fatalf(&quot;Failed to start server: %v&quot;, err)
+	}
+}
+</code></pre>
 
-<li><p>Create parent directories as needed</p>
+<p>When you run this on your machine, it behaves as expected:</p>
 
-<pre><code>$ mkdir -p env/roles/nginx/{tasks,handlers,defaults}
-</code></pre></li>
+<pre><code>$ go build -o server . &amp;&amp; ./server &amp;
+[1] 189644
+Server listening on http://localhost:8080
+$ curl localhost:8080
+1256
+</code></pre>
 
-<li><p>Search for strings in git history excluding certain files</p>
+<h2 data-sectnum="1.">
+    <a name="1" href="#">FROM SCRATCH containers</a>
+</h2>
 
-<pre><code>git log -S &quot;private-key&quot; -p -- . ':(exclude)*.html*' ':(exclude)*.js*'
-</code></pre></li>
-</ul>
+<p>If you want to Dockerize the program with just the resulting
+binary, a common approach is to create a minimal container
+using <code>scratch</code>.</p>
+
+<p><span class="file">File: Dockerfile</span></p>
+
+<pre><code># syntax=docker/dockerfile:1
+
+FROM scratch
+COPY server /
+EXPOSE 8080
+ENTRYPOINT [&quot;./server&quot;]
+</code></pre>
+
+<p>Assuming the Go binary <code>server</code> is located at the root
+of the build context, you can build the Docker image like this:</p>
+
+<pre><code>$ docker build -t scratch .
+$ docker run -d -p 8080:8080 scratch
+</code></pre>
+
+<p>Our container should be up and running, but <code>docker ps -a</code> shows
+that it has exited:</p>
+
+<pre><code>CONTAINER ID   IMAGE     COMMAND     CREATED         STATUS                  
+7e07c01c2130   scratch   &quot;./server&quot;  7 seconds ago   Exited (1) 6 seconds ago
+</code></pre>
+
+<p>If we take a look at the logs, we see this:</p>
+
+<pre><code>$ docker logs 7e
+exec ./server: no such file or directory
+</code></pre>
+
+<p>Gotcha number 1: Our binary is dynamically linked to one
+or more libraries that don&rsquo;t exist in the container.
+When we built our Go program with <code>go build -o server .</code>,
+we didn&rsquo;t specify if we wanted our binary to be statically
+or dynamically linked. This can be adjusted using the
+environment variable <code>CGO_ENABLED</code>. When <code>CGO_ENABLED</code> is
+set to <code>1</code> (the default), the binaries are dynamically linked.
+If we set it to <code>0</code>, we get a statically linked binary,
+which is great for keeping things lean in a minimal container.</p>
+
+<p>Let&rsquo;s see what libraries our binary depends on:</p>
+
+<pre><code>$ ldd server
+	linux-vdso.so.1 (0x0000ffffb7f01000)
+	libc.so.6 =&gt; /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffb7d10000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffb7ec8000)
+</code></pre>
+
+<p>To be continued&hellip;</p>
 <div class="backlink"></div><small><a href="/">↩ back</a></small><br></div>
 <noscript>
     <style type="text/css">

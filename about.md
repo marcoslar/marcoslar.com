@@ -3,6 +3,7 @@ title = "About"
 layout = "base_layout"
 display_in_sessions = false
 display_date = false
+data = "about"
 ---
 
 ### About this site
@@ -25,7 +26,8 @@ This site is built with [belbo][3].
 This site has been online since @{2012||1998||2006}@.
 
 ### About me
-<i>I'm Marcos.
+<blockquote>
+I'm Marcos.
 To the other one, to Marcos, is to whom things happen. From Marcos 
 I find out through the e-mail and I see his name in a list of 
 meeting attendees, in the output of <small>`git blame`</small>, or in a Rundfunkbeitrag 
@@ -40,7 +42,8 @@ never fully understand it).
 I enjoy very much the act of creating something (anything) from 
 scratch, and at work I don't practice this as much as I would like, 
 but Marcos always insists in making these creations useful in some
-way... I never fully understood that either.</i>
+way... I never fully understood that either.
+</blockquote>
 
 *<small>The <b>About me</b> section is paraphrasing the short 
 story [Borges y Yo](https://en.wikipedia.org/wiki/Borges_and_I).</small>*

@@ -9,9 +9,10 @@
 }
 
 .light-theme {
-    --background: white;
+    --background: #fdfff8;
     --color: #333;
     --hrefColor: black;
+    --h1Color: black;
     --headlineBg: #f0f8ff85;
     --headlineBorder: #e5eff94a;
     --headlineShadow1: rgb(185 185 185 / 8%);
@@ -24,12 +25,16 @@
     --selectionBg: aquamarine;
     --chBg1: black;
     --chBg2: #5e5e5e;
+    --linkColor: black;
+    --linkColorHover: black;
+    --sitenameColor: black;
 }
 
 .dark-theme {
     --background: #060f11;
     --color: /*#fbf1f7; #ebdbb2;*/ #c8cacb;
-    --hrefColor: /*#b8bdff;*/ #858ded;
+    --hrefColor: /*#b8bdff; #858ded;*/ #00a667;
+    --h1Color: white;
     --headlineBg: #b8bdff0d;
     --headlineBorder: #b8bdff00;
     --headlineShadow1: rgb(46 18 18 / 8%);
@@ -41,6 +46,26 @@
     --selectionBg: #214539;
     --chBg1: #fff;
     --chBg2: #7b7b7b;
+    --linkColor: #00a667;
+    --linkColorHover: #00d992;
+    --sitenameColor: white;
+}
+
+a:not([name]) {
+    color: var(--linkColor);
+}
+
+a:not([name]):hover {
+    color: var(--linkColorHover);
+}
+
+a[name], td.post-title a, h2 a, h3 a {
+    color: var(--h1Color) !important;
+}
+
+
+.sitename {
+    color: var(--sitenameColor) !important;
 }
 
 html {
@@ -83,7 +108,7 @@ body {
 }
 
 .content-wrapper {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -182,25 +207,33 @@ h1 {
     font-size: 2.25rem;
     display: inline-block;
     margin-bottom: .75rem;
+    color: var(--h1Color);
 }
 
 
 h2 {
     font-size: 1.5rem;
+    color: var(--h1Color);
 }
 
 h3 {
     font-size: 1.5rem;
+    color: var(--h1Color);
 }
 
 h4 {
     font-size: 0.95em;
+    color: var(--h1Color);
 }
 
 h5 {
     font-size: 0.85em;
+    color: var(--h1Color);
 }
 
+.columns a, footer a, body[data="about"] a {
+    color: var(--h1Color) !important;
+}
 
 h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
     margin-top: 16px;
@@ -398,6 +431,31 @@ h5[data-sectnum]:before {
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     text-decoration: none;
 }
+
+p:has(.file) + pre {
+    margin: 0;
+}
+
+p:has(> .file) {
+    margin-bottom: 0.5rem;
+}
+
+.file {
+    font-size: 65%;
+    font-family: monospace;
+    text-transform: uppercase;
+}
+
+h1, h2, h3, h4 {
+    font-family: monospace;
+    text-transform: uppercase;
+}
+
+h2[data-sectnum] a[name] {
+font-family: monospace;
+text-transform: uppercase;
+}
+
 
 /*table, th, td {
     border: 1px solid #1a1a1a21;

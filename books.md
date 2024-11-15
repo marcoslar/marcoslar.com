@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 
 ### *2024*
 
+- The Master Switch. *Tim Wu*
 - The Arrest of Arsène Lupin. *Maurice Leblanc*
 - Chaos: Making a New Science. *James Gleick*
 - Perfume: The Story of a Murderer. *Patrick Süskind*

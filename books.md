@@ -8,6 +8,8 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; rápido, h�
 
 ### *2024*
 
+- Consider this. *Chuck Palahniuk*
+- The Subtle Art of Not Giving a F*ck. *Mark Manson*
 - The Master Switch. *Tim Wu*
 - The Arrest of Arsène Lupin. *Maurice Leblanc*
 - Chaos: Making a New Science. *James Gleick*

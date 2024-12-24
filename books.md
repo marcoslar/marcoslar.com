@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2024*
 
+- Star Maker. *Olaf Stapledon*
 - Consider this. *Chuck Palahniuk*
 - The Subtle Art of Not Giving a F*ck. *Mark Manson*
 - The Master Switch. *Tim Wu*

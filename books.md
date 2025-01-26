@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2025*
 
+- Learning Go: An Idiomatic Approach to Real-World Go Programming. *Jon Bodner*
 - The Lost World. *Michael Crichton*
 
 ### *2024*

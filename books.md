@@ -8,6 +8,8 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2025*
 
+- A Short Stay in Hell. *Steven L. Peck*
+- Improbable. *Adam Fawer*
 - Quantum Computing Since Democritus. *Scott Aaronson* (50%)
 - Learning Go: An Idiomatic Approach to Real-World Go Programming. *Jon Bodner*
 - The Lost World. *Michael Crichton*

@@ -8,6 +8,8 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2025*
 
+- The Man Who Folded Himself. *David Gerrold*
+- Fahrenheit 451. *Ray Bradbury*
 - A Short Stay in Hell. *Steven L. Peck*
 - Improbable. *Adam Fawer*
 - Quantum Computing Since Democritus. *Scott Aaronson* (50%)

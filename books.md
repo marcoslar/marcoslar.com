@@ -8,6 +8,7 @@ Books I have read. Irgendwie denke ich, du solltest nicht hier sein; r√°pido, h√
 
 ### *2025*
 
+- Ghost In The Wires. *Kevin Mitnick and William L. Simon*
 - The Metamorphosis of Prime Intellect. *Roger Williams*
 - The Man Who Folded Himself. *David Gerrold*
 - Fahrenheit 451. *Ray Bradbury*
